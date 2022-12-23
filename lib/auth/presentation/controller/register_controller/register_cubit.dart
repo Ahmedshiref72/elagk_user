@@ -14,17 +14,17 @@ class RegisterCubit extends Cubit<RegisterStates>
   RegisterModel? registerModel;
 
 
-  void userRegister({
+  Future<void> userRegister({
     required String email,
     required String password,
     required String phone,
     required String username,
 
 
-  })
+  }) async
   {
     emit(RegisterLoadingState());
-    DioHelper.postData(
+    await DioHelper.postData(
       url: "http://freelancerr-001-site1.btempurl.com/api/Auth/register",
 
       data:{
@@ -35,11 +35,11 @@ class RegisterCubit extends Cubit<RegisterStates>
 
       },
     ).then((value) {
-      print(value.data);
+      print(value.data.toString());
 
-      registerModel= RegisterModel.fromJson(value.data);
+      // registerModel= RegisterModel.fromJson(value.data);
 
-      emit(RegisterSuccessState(registerModel!));
+      emit(RegisterSuccessState());
     }).catchError((error){
       print(error.toString());
       emit(RegisterErrorState(error.toString()));

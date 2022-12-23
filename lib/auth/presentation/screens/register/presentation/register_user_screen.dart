@@ -22,7 +22,7 @@ import '../../../controller/register_controller/register_states.dart';
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
-  static final _formKey = GlobalKey<FormState>();
+  static final _formKey1 = GlobalKey<FormState>();
   static final _emailController = TextEditingController();
   static final _fullNameController = TextEditingController();
   static final _phoneController = TextEditingController();
@@ -40,7 +40,7 @@ class RegisterScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(AppPadding.p15),
                 child: Form(
-                  key: _formKey,
+                  key: _formKey1,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -140,7 +140,7 @@ class RegisterScreen extends StatelessWidget {
                               fallback: (context) => MainButton(
                                     title: AppStrings.createAccount,
                                     onPressed: () {
-                                      if (_formKey.currentState!.validate()) {
+                                      if (_formKey1.currentState!.validate()) {
                                         RegisterCubit.get(context).userRegister(
                                           email: _emailController.text.trim(),
                                           password: _passwordController.text.trim(),

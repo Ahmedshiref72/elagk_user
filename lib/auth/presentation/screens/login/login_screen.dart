@@ -99,11 +99,9 @@ class LoginScreen extends StatelessWidget {
                       BlocConsumer<LoginCubit, LoginStates>(
                         listener: (context, state) {
                           if (state is LoginSuccessState) {
-
                             if (state.loginModel.roles![0]
-                                    .toString()
-                                    .toUpperCase() ==
-                                'USER') {
+                                .toString()
+                                .toUpperCase() == 'USER') {
                               showToast(
                                   text: 'Login Successfully',
                                   state: ToastStates.SUCCESS);
@@ -116,7 +114,8 @@ class LoginScreen extends StatelessWidget {
                                   text: 'This User Can\'t Access' ,
                                   state: ToastStates.ERROR);
                             }
-                          } else if (state is LoginErrorState) {
+                          }
+                          else if (state is LoginErrorState) {
                             showToast(
                                 text: '${state.error}',
                                 state: ToastStates.ERROR);

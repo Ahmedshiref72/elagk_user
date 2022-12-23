@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'auth/presentation/controller/register_controller/register_cubit.dart';
 import 'shared/global/app_theme.dart';
 import 'shared/utils/app_routes.dart';
 import 'shared/utils/app_strings.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         providers:
         [
           BlocProvider(create: (BuildContext context) =>LoginCubit()),
+          BlocProvider(create: (BuildContext context) =>RegisterCubit()),
 
         ],
         child: MaterialApp(

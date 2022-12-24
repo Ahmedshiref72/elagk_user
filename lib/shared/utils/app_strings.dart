@@ -163,6 +163,8 @@ class AppStrings {
   static const String prescriptionPrice = "سعر الروشتة";
   static const String sendPrescriptionAndDeliverPrice =
       "ارسال سعر الروشتة والتوصيل";
+  static const String prescriptionAndDeliverPrice =
+      "اطلب الدوا بالروشتة ";
   static const String equipped = "تم التجهيز";
   static const String refuseOrAnnoy = "رفض او ازعاج";
   static const String price = "السعر ";

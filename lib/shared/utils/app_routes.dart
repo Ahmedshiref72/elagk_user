@@ -3,6 +3,7 @@ import 'package:elagk/auth/presentation/screens/register/presentation/register_u
 import 'package:elagk/home/presentation/screens/home_screen.dart';
 import 'package:elagk/opening/presentation/screens/offline_widget.dart';
 import 'package:elagk/opening/presentation/screens/splash_screen.dart';
+import 'package:elagk/pharmacy/phamacy_screen.dart';
 import 'package:elagk/shared/utils/app_strings.dart';
 import 'package:elagk/shared/utils/argument_models.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class Routes {
   static const String allOrdersScreen = '/allOrdersScreen';
   static const String addNewMedicinesScreen = '/addNewMedicinesScreen';
   static const String updateMedicineScreen = '/updateMedicineScreen';
+  static const String pharmacy = '/pharmacy';
 }
 
 class RouteGenerator {
@@ -64,6 +66,8 @@ class RouteGenerator {
       //   return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+        case Routes.pharmacy:
+        return MaterialPageRoute(builder: (_) => const PharmacyScreen());
       // case Routes.oneOrderDetailsScreen:
       //   return MaterialPageRoute(builder: (_) => const OneOrderDetailsScreen());
 

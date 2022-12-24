@@ -1,6 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:elagk/auth/presentation/controller/register_controller/register_cubit.dart';
 import 'package:elagk/auth/presentation/controller/register_controller/register_state.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +20,7 @@ import '../../../components/screen_background.dart';
 import '../../../controller/login_controller/login_cubit.dart';
 import '../../../controller/login_controller/login_states.dart';
 
-class RegisterScreen extends StatefulWidget {
+class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
   static final _formKey1 = GlobalKey<FormState>();
@@ -29,13 +30,6 @@ class RegisterScreen extends StatefulWidget {
   static final _phoneController = TextEditingController();
   static final _passwordController = TextEditingController();
   static final _userNameController = TextEditingController();
-
-  @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
-
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(AppPadding.p15),
                 child: Form(
-                  key: RegisterScreen._formKey1,
+                  key: _formKey1,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,7 +55,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       //full name
                       MainTextFormField(
-                        controller: RegisterScreen._firstNameController,
+                        controller: _firstNameController,
                         label: AppStrings.firstName,
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.text,
@@ -77,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                       MainTextFormField(
-                        controller: RegisterScreen._lastNameController,
+                        controller: _lastNameController,
                         label: AppStrings.lastName,
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.text,
@@ -93,7 +87,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                       MainTextFormField(
-                        controller: RegisterScreen._userNameController,
+                        controller: _userNameController,
                         label: AppStrings.userName,
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.text,
@@ -108,27 +102,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         },
                       ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
-                      //phone
-                      MainTextFormField(
-                        controller: RegisterScreen._phoneController,
-                        label: AppStrings.phoneNumber,
-                        hint: AppStrings.enterValidPhone,
-                        hintColor: AppColors.lightGrey,
-                        inputType: TextInputType.phone,
-                        textDirection: TextDirection.ltr,
-                        obscure: false,
-                        validator: (value) {
-                          if (value!.length < AppSize.s12) {
-                            return AppStrings.enterValidPassword;
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                      SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
+
                       //email
                       MainTextFormField(
-                        controller: RegisterScreen._emailController,
+                        controller: _emailController,
                         label: AppStrings.email,
                         hint: AppStrings.emailExample,
                         hintColor: AppColors.lightGrey,
@@ -140,7 +117,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                       //password
                       MainTextFormField(
-                        controller: RegisterScreen._passwordController,
+                        controller: _passwordController,
 
                         label: AppStrings.password,
                         hint: AppStrings.passwordExample,
@@ -159,6 +136,89 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       SizedBox(
                         height: mediaQueryHeight(context) / AppSize.s30,
                       ),
+                      //phone
+                      MainTextFormField(
+                        suffixIcon: InkWell(
+                          onTap: () {
+                            showDialog(
+
+                                context: context,
+                                builder: (_) => AlertDialog(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(32.0))),
+                                  contentPadding: EdgeInsets.only(top: 10.0),
+                                  elevation: 24.0,
+                                  title: Text('Add New Number',
+                                  ),
+                                  content: Padding(
+                                    padding: const EdgeInsets.all(AppSize.s30),
+                                    child: MainTextFormField(
+                                      controller: _phoneController,
+                                      label: AppStrings.phoneNumber,
+                                      hint: AppStrings.enterValidPhone,
+                                      hintColor: AppColors.lightGrey,
+                                      inputType: TextInputType.phone,
+                                      textDirection: TextDirection.ltr,
+                                      obscure: false,
+                                      validator: (value) {
+                                        if (value!.length < AppSize.s12) {
+                                          return AppStrings.enterValidPassword;
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
+                                  ),
+
+                                  actions: [
+                                    CupertinoDialogAction(
+                                      child: Container(
+                                        child: Text(
+                                          'Done',
+                                          style: TextStyle(color: Colors.blue),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        if (_formKey1.currentState!.validate()) {
+                                          RegisterCubit.get(context).userRegister(
+                                            email: _emailController.text.trim(),
+                                            password:
+                                            _passwordController.text.trim(),
+                                            phone: _phoneController.text.trim(),
+                                            username:_userNameController.text.trim(),
+                                            firstName: _firstNameController.text.trim(),
+                                            lastName: _lastNameController.text.trim(),
+                                          );
+                                        };
+                                      },
+                                    ),
+
+                                  ],
+                                ));
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.add,
+                            ),
+                          ),
+                        ),
+                        controller: _phoneController,
+                        label: AppStrings.phoneNumber,
+                        hint: AppStrings.enterValidPhone,
+                        hintColor: AppColors.lightGrey,
+                        inputType: TextInputType.phone,
+                        textDirection: TextDirection.ltr,
+                        obscure: false,
+                        validator: (value) {
+                          if (value!.length < AppSize.s12) {
+                            return AppStrings.enterValidPassword;
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                       BlocConsumer<RegisterCubit, RegisterStates>(
                         listener: (context, state) {
                           if (state is RegisterSuccessState) {
@@ -181,15 +241,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               fallback: (context) => MainButton(
                                     title: AppStrings.createAccount,
                                     onPressed: () {
-                                      if (RegisterScreen._formKey1.currentState!.validate()) {
+                                      if (_formKey1.currentState!.validate()) {
                                         RegisterCubit.get(context).userRegister(
-                                          email: RegisterScreen._emailController.text.trim(),
+                                          email: _emailController.text.trim(),
                                           password:
-                                              RegisterScreen._passwordController.text.trim(),
-                                          phone: RegisterScreen._phoneController.text.trim(),
-                                          username:RegisterScreen._userNameController.text.trim(),
-                                          firstName: RegisterScreen._firstNameController.text.trim(),
-                                          lastName: RegisterScreen._lastNameController.text.trim(),
+                                              _passwordController.text.trim(),
+                                          phone: _phoneController.text.trim(),
+                                          username:_userNameController.text.trim(),
+                                          firstName: _firstNameController.text.trim(),
+                                          lastName: _lastNameController.text.trim(),
                                         );
                                       };
 
@@ -209,7 +269,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                             TextSpan(
                               text: ' ${AppStrings.login}',
-                              style: Theme.of(context).textTheme.labelMedium,
+                              style: const TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold
+                              ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   navigateTo(
@@ -231,3 +294,5 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 }
+
+

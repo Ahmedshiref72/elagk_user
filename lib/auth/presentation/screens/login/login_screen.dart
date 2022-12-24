@@ -48,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       MainTextFormField(
                         controller: _emailController,
-                        label: AppStrings.userName,
+                        label: AppStrings.emailAddress,
                         hint: AppStrings.emailExample,
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.emailAddress,
@@ -79,7 +79,7 @@ class LoginScreen extends StatelessWidget {
                           onPressed: () {
                             navigateTo(
                               context: context,
-                              screenRoute: Routes.forgetPasswordScreen,
+                              screenRoute: Routes.pharmacy,
                             );
                           },
                           child: Text(
@@ -149,7 +149,11 @@ class LoginScreen extends StatelessWidget {
                             ),
                             TextSpan(
                               text: ' ${AppStrings.createAccount}',
-                              style: Theme.of(context).textTheme.labelMedium,
+
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold
+                              ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   navigateTo(

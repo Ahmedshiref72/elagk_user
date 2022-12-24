@@ -19,7 +19,7 @@ import '../../../components/screen_background.dart';
 import '../../../controller/login_controller/login_cubit.dart';
 import '../../../controller/login_controller/login_states.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
   static final _formKey1 = GlobalKey<FormState>();
@@ -29,6 +29,13 @@ class RegisterScreen extends StatelessWidget {
   static final _phoneController = TextEditingController();
   static final _passwordController = TextEditingController();
   static final _userNameController = TextEditingController();
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +49,7 @@ class RegisterScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(AppPadding.p15),
                 child: Form(
-                  key: _formKey1,
+                  key: RegisterScreen._formKey1,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,7 +61,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       //full name
                       MainTextFormField(
-                        controller: _firstNameController,
+                        controller: RegisterScreen._firstNameController,
                         label: AppStrings.firstName,
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.text,
@@ -70,7 +77,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                       MainTextFormField(
-                        controller: _lastNameController,
+                        controller: RegisterScreen._lastNameController,
                         label: AppStrings.lastName,
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.text,
@@ -86,7 +93,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                       MainTextFormField(
-                        controller: _userNameController,
+                        controller: RegisterScreen._userNameController,
                         label: AppStrings.userName,
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.text,
@@ -103,7 +110,7 @@ class RegisterScreen extends StatelessWidget {
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                       //phone
                       MainTextFormField(
-                        controller: _phoneController,
+                        controller: RegisterScreen._phoneController,
                         label: AppStrings.phoneNumber,
                         hint: AppStrings.enterValidPhone,
                         hintColor: AppColors.lightGrey,
@@ -121,7 +128,7 @@ class RegisterScreen extends StatelessWidget {
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                       //email
                       MainTextFormField(
-                        controller: _emailController,
+                        controller: RegisterScreen._emailController,
                         label: AppStrings.email,
                         hint: AppStrings.emailExample,
                         hintColor: AppColors.lightGrey,
@@ -133,7 +140,8 @@ class RegisterScreen extends StatelessWidget {
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                       //password
                       MainTextFormField(
-                        controller: _passwordController,
+                        controller: RegisterScreen._passwordController,
+
                         label: AppStrings.password,
                         hint: AppStrings.passwordExample,
                         hintColor: AppColors.lightGrey,
@@ -173,15 +181,15 @@ class RegisterScreen extends StatelessWidget {
                               fallback: (context) => MainButton(
                                     title: AppStrings.createAccount,
                                     onPressed: () {
-                                      if (_formKey1.currentState!.validate()) {
+                                      if (RegisterScreen._formKey1.currentState!.validate()) {
                                         RegisterCubit.get(context).userRegister(
-                                          email: _emailController.text.trim(),
+                                          email: RegisterScreen._emailController.text.trim(),
                                           password:
-                                              _passwordController.text.trim(),
-                                          phone: _phoneController.text.trim(),
-                                          username:_userNameController.text.trim(),
-                                          firstName: _firstNameController.text.trim(),
-                                          lastName: _lastNameController.text.trim(),
+                                              RegisterScreen._passwordController.text.trim(),
+                                          phone: RegisterScreen._phoneController.text.trim(),
+                                          username:RegisterScreen._userNameController.text.trim(),
+                                          firstName: RegisterScreen._firstNameController.text.trim(),
+                                          lastName: RegisterScreen._lastNameController.text.trim(),
                                         );
                                       };
 

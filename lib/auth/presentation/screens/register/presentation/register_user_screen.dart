@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:elagk/auth/presentation/controller/register_controller/register_cubit.dart';
+import 'package:elagk/auth/presentation/controller/register_controller/register_state.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,16 +18,17 @@ import '../../../components/main_button.dart';
 import '../../../components/screen_background.dart';
 import '../../../controller/login_controller/login_cubit.dart';
 import '../../../controller/login_controller/login_states.dart';
-import '../../../controller/register_controller/register_states.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
   static final _formKey1 = GlobalKey<FormState>();
   static final _emailController = TextEditingController();
-  static final _fullNameController = TextEditingController();
+  static final _firstNameController = TextEditingController();
+  static final _lastNameController = TextEditingController();
   static final _phoneController = TextEditingController();
   static final _passwordController = TextEditingController();
+  static final _userNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +54,40 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       //full name
                       MainTextFormField(
-                        controller: _fullNameController,
-                        label: AppStrings.fullName,
+                        controller: _firstNameController,
+                        label: AppStrings.firstName,
+                        hintColor: AppColors.lightGrey,
+                        inputType: TextInputType.text,
+                        textDirection: TextDirection.ltr,
+                        obscure: false,
+                        validator: (value) {
+                          if (value!.length < AppSize.s0) {
+                            return AppStrings.enterValidFullName;
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
+                      MainTextFormField(
+                        controller: _lastNameController,
+                        label: AppStrings.lastName,
+                        hintColor: AppColors.lightGrey,
+                        inputType: TextInputType.text,
+                        textDirection: TextDirection.ltr,
+                        obscure: false,
+                        validator: (value) {
+                          if (value!.length < AppSize.s0) {
+                            return AppStrings.enterValidFullName;
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
+                      MainTextFormField(
+                        controller: _userNameController,
+                        label: AppStrings.userName,
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.text,
                         textDirection: TextDirection.ltr,
@@ -88,7 +122,7 @@ class RegisterScreen extends StatelessWidget {
                       //email
                       MainTextFormField(
                         controller: _emailController,
-                        label: AppStrings.userName,
+                        label: AppStrings.email,
                         hint: AppStrings.emailExample,
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.emailAddress,
@@ -125,8 +159,7 @@ class RegisterScreen extends StatelessWidget {
                                 state: ToastStates.SUCCESS);
                             navigateTo(
                                 context: context,
-                                screenRoute: Routes.registerScreen);
-
+                                screenRoute: Routes.loginScreen);
                           } else if (state is RegisterErrorState) {
                             showToast(
                                 text: '${state.error}',
@@ -136,18 +169,23 @@ class RegisterScreen extends StatelessWidget {
                         builder: (context, state) {
                           return ConditionalBuilder(
                               condition: (state is RegisterLoadingState),
-                              builder: (context) => CircularProgressIndicator(),
+                              builder: (context) => const CircularProgressIndicator(),
                               fallback: (context) => MainButton(
                                     title: AppStrings.createAccount,
                                     onPressed: () {
                                       if (_formKey1.currentState!.validate()) {
                                         RegisterCubit.get(context).userRegister(
                                           email: _emailController.text.trim(),
-                                          password: _passwordController.text.trim(),
+                                          password:
+                                              _passwordController.text.trim(),
                                           phone: _phoneController.text.trim(),
-                                          username: _fullNameController.text.trim(),
+                                          username:_userNameController.text.trim(),
+                                          firstName: _firstNameController.text.trim(),
+                                          lastName: _lastNameController.text.trim(),
                                         );
-                                      }
+                                      };
+
+
                                     },
                                   ));
                         },

@@ -1,11 +1,14 @@
 import 'package:elagk/auth/presentation/screens/login/login_screen.dart';
 import 'package:elagk/auth/presentation/screens/register/presentation/register_user_screen.dart';
+import 'package:elagk/home/presentation/screens/home_screen.dart';
 import 'package:elagk/opening/presentation/screens/offline_widget.dart';
 import 'package:elagk/opening/presentation/screens/splash_screen.dart';
 import 'package:elagk/shared/utils/app_strings.dart';
 import 'package:elagk/shared/utils/argument_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+
+import '../../auth/presentation/screens/reset_password/reset_password_screen.dart';
 
 class Routes {
   static const String home = '/';
@@ -15,7 +18,7 @@ class Routes {
   static const String forgetPasswordScreen = '/forgetPasswordScreen';
   static const String otpVerifyScreen = '/otpVerifyScreen';
   static const String resetPasswordScreen = '/resetPasswordScreen';
-  static const String homeDrawerScreen = '/homeDrawerScreen';
+  static const String homeScreen = '/homeScreen';
   static const String oneOrderDetailsScreen = '/oneOrderDetailsScreen';
   static const String imageSlideShow = '/imageSlideShow';
   static const String allOrdersScreen = '/allOrdersScreen';
@@ -50,8 +53,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case Routes.registerScreen:
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
-      // case Routes.forgetPasswordScreen:
-      //   return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
+       case Routes.forgetPasswordScreen:
+        return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
       // case Routes.otpVerifyScreen:
       //   return MaterialPageRoute(builder: (_) {
       //     final args = routeSettings.arguments as OTPArguments;
@@ -59,8 +62,8 @@ class RouteGenerator {
       //   });
       // case Routes.resetPasswordScreen:
       //   return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
-      // case Routes.homeDrawerScreen:
-      //   return MaterialPageRoute(builder: (_) => const HomeDrawer());
+      case Routes.homeScreen:
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       // case Routes.oneOrderDetailsScreen:
       //   return MaterialPageRoute(builder: (_) => const OneOrderDetailsScreen());
 

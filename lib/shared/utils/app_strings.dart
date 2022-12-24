@@ -19,7 +19,8 @@ class AppStrings {
   static const String pleaseLogin = "برجاء قم بتسجيل الدخول";
   static const String emailExample = "account@example.com";
   static const String passwordExample = "**************";
-  static const String userName = "البريد الإلكتروني";
+  static const String userName = "اسم المستخدم";
+  static const String email = "البريد الإلكتروني";
   static const String password = "كلمة المرور";
   static const String phoneExample = "*********01";
   static const String forgotPassword = "نسيت كلمة المرور";
@@ -34,7 +35,8 @@ class AppStrings {
   static const String contactWithUs = "اتصل بنا";
   static const String createAccount = "انشاء حساب";
   static const String createAccount1 = "قم بملى جميع حقول بياناتك لاكمال عملية التسجيل";
-  static const String fullName = "الاسم بالكامل";
+  static const String firstName = "الاسم الاول";
+  static const String lastName = "الاسم الاخير";
 
   // OTP verify screen
   static const String emailVerification = "التحقق من البريد الإلكتروني";

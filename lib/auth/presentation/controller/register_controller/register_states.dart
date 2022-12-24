@@ -10,9 +10,9 @@ class RegisterLoadingState extends RegisterStates {}
 class RegisterSuccessState extends RegisterStates
 {
 
-  // final RegisterModel registerModel;
-  //
-  // RegisterSuccessState(this.registerModel);
+ final RegisterModel registerModel;
+
+   RegisterSuccessState(this.registerModel);
 }
 
 class RegisterErrorState extends RegisterStates

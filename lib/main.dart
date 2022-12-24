@@ -1,13 +1,14 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:elagk/auth/presentation/controller/login_controller/login_cubit.dart';
+import 'package:elagk/auth/presentation/controller/register_controller/register_cubit.dart';
 import 'package:elagk/shared/bloc_observer.dart';
+import 'package:elagk/shared/local/shared_preference.dart';
 import 'package:elagk/shared/network/dio_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'auth/presentation/controller/register_controller/register_cubit.dart';
 import 'shared/global/app_theme.dart';
 import 'shared/utils/app_routes.dart';
 import 'shared/utils/app_strings.dart';
@@ -18,6 +19,7 @@ void main() {
   // await initFCM(); // TODO: enable it after adding app notifications.
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
+  CacheHelper.init();
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(

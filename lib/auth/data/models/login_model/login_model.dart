@@ -7,7 +7,6 @@ class LoginModel {
   List<String>? roles;
   String? token;
   String? expiresOn;
-  String? phone;
 
   LoginModel(
       {this.userId,
@@ -17,9 +16,7 @@ class LoginModel {
         this.email,
         this.roles,
         this.token,
-        this.expiresOn,
-        this.phone,
-      });
+        this.expiresOn});
 
   LoginModel.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];
@@ -30,7 +27,6 @@ class LoginModel {
     roles = json['roles'].cast<String>();
     token = json['token'];
     expiresOn = json['expiresOn'];
-    phone = json['phone'];
   }
 
   Map<String, dynamic> toJson() {
@@ -43,7 +39,6 @@ class LoginModel {
     data['roles'] = roles;
     data['token'] = token;
     data['expiresOn'] = expiresOn;
-    data['phone'] = phone;
     return data;
   }
 }

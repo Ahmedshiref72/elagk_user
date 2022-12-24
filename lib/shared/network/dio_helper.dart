@@ -21,6 +21,7 @@ class DioHelper {
     return await dio!.get(
       url,
       queryParameters: query,
+
     );
   }
 
@@ -31,12 +32,13 @@ class DioHelper {
     String? token ,
   }) async {
     dio!.options.headers ={
+
       'Content-Type': 'application/json'
 
 
     };
 
-    return dio!.post(
+    return   dio!.post(
       url,
       queryParameters:query,
       data: data,

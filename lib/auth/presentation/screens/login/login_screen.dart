@@ -109,7 +109,7 @@ class LoginScreen extends StatelessWidget {
                                   state: ToastStates.SUCCESS);
                               navigateFinalTo(
                                   context: context,
-                                  screenRoute: Routes.homeScreen);
+                                  screenRoute: Routes.homeDrawer);
                             }else
                             {
                               showToast(

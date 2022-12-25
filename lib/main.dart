@@ -29,7 +29,7 @@ void main() {
       statusBarBrightness: Brightness.dark, // For iOS (dark icons)
     ),
   );
-  runApp(DevicePreview(enabled: !kReleaseMode, builder: (context) => MyApp()));
+  runApp(DevicePreview(enabled: !kReleaseMode, builder: (context) => const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

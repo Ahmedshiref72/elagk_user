@@ -1,14 +1,13 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import '../../../../shared/components/toast_component.dart';
 import '../../../../shared/global/app_colors.dart';
 import '../../../../shared/utils/app_routes.dart';
 import '../../../../shared/utils/app_strings.dart';
 import '../../../../shared/utils/app_values.dart';
 import '../../../../shared/utils/navigation.dart';
-import '../../../../shared/utils/text_field_validation.dart';
 import '../../components/MainTextFormField.dart';
 import '../../components/auth_title_subtitle_widget.dart';
 import '../../components/logo_widget.dart';
@@ -61,6 +60,25 @@ class ResetPasswordScreen extends StatelessWidget {
                           } else {
                             return null;
                           }
+                        },
+                      ),
+                      SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
+                      FlutterPwValidator(
+                        successColor: AppColors.primary,
+
+                        controller: _passwordController,
+                        minLength: 8,
+                        uppercaseCharCount: 1,
+                        numericCharCount: 3,
+                        specialCharCount: 1,
+                        width: 400,
+                        height: 150,
+                        onSuccess: (){
+
+                          return 'Success';
+                        },
+                        onFail: (){
+                          return 'Password is Weak';
                         },
                       ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),

@@ -22,6 +22,7 @@ class ResetPasswordScreen extends StatelessWidget {
 
   static final _formKey = GlobalKey<FormState>();
   static final _passwordController = TextEditingController();
+  static final _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +108,10 @@ class ResetPasswordScreen extends StatelessWidget {
                               onPressed: () async {
                                   if (_formKey.currentState!.validate()) {
                                     ResetPasswordCubit.get(context)
-                                        .ResetPass(password: '');
+                                        .ResetPass(
+                                        password: _passwordController.toString(),
+                                      email: _emailController.toString()
+                                    );
                                   }
                               },
                             ),

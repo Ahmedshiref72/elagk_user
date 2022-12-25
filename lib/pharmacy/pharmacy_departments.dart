@@ -17,12 +17,10 @@ class PharmacyCategories extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return Categories(
             onTap: () {
-
             },
             categoryName: 'shefo',
             containerColor:
                 AppColors.offBlue,
-
             textColor:  Colors.white,
             borderColor:  Border.all(color: AppColors.lightGrey),
           );

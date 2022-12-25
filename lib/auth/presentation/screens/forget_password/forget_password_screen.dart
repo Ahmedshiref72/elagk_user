@@ -15,18 +15,19 @@ import '../../components/logo_widget.dart';
 import '../../components/main_button.dart';
 import '../../components/screen_background.dart';
 import '../../controller/forget_passord_controller/forget_passowrd_state.dart';
-import '../../controller/reset_password_controller/reset_password_cubit.dart';
-import '../../controller/reset_password_controller/reset_password_state.dart';
+import '../../controller/forget_passord_controller/forget_password_cubit.dart';
 
-class ResetPasswordScreen extends StatelessWidget {
-  const ResetPasswordScreen({Key? key}) : super(key: key);
+class ForgetPasswordScreen extends StatelessWidget {
+  const ForgetPasswordScreen({Key? key}) : super(key: key);
 
   static final _formKey = GlobalKey<FormState>();
-  static final _passwordController = TextEditingController();
+  static final emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
+    bool _hasInternet = false;
+    final color = _hasInternet ? Colors.green : Colors.red;
+    final text = _hasInternet ? 'Internet' : 'No Internet';
     return SafeArea(
       child: Directionality(
         textDirection: TextDirection.rtl,
@@ -48,36 +49,30 @@ class ResetPasswordScreen extends StatelessWidget {
                         authSubtitle: AppStrings.enterValidEmail,
                       ),
                       MainTextFormField(
-                        controller: _passwordController,
-                        label: AppStrings.password,
-                        hint: AppStrings.passwordExample,
+                        controller: emailController,
+                        label: AppStrings.enterValidEmail,
+                        hint: AppStrings.emailExample,
                         hintColor: AppColors.lightGrey,
-                        inputType: TextInputType.visiblePassword,
+                        inputType: TextInputType.emailAddress,
                         textDirection: TextDirection.ltr,
-                        obscure: true,
-                        validator: (value) {
-                          if (value!.length < AppSize.s8) {
-                            return AppStrings.enterValidPassword;
-                          } else {
-                            return null;
-                          }
-                        },
+                        obscure: false,
+                        validator: (value) => validateEmail(value!),
                       ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
-                      BlocConsumer<ResetPasswordCubit, ResetPasswordStates>(
+                      BlocConsumer<ForgetPasswordCubit, ForgetPasswordStates>(
                         listener: (context, state) {
                           if (state is SendOTPSuccessState) {
                             {
                               showToast(
-                                  text: AppStrings.resetPassword, state: ToastStates.SUCCESS);
+                                  text: AppStrings.codeSendedSuccessFully, state: ToastStates.SUCCESS);
                               navigateFinalTo(
                                   context: context,
-                                  screenRoute: Routes.loginScreen);
+                                  screenRoute: Routes.confirmPasswordScreen);
                             }
 
                           } else if (state is SendOTPErrorState) {
                             showToast(
-                                text: AppStrings.erorrResetPassword,
+                                text: AppStrings.codeSendError,
                                 state: ToastStates.ERROR);
                           }
                         },
@@ -87,14 +82,24 @@ class ResetPasswordScreen extends StatelessWidget {
                             builder: (context) => MainButton(
                               title: AppStrings.codeSendButton,
                               onPressed: () async {
+                                _hasInternet = await InternetConnectionChecker()
+                                    .hasConnection;
+                                if (_hasInternet) {
                                   if (_formKey.currentState!.validate()) {
-                                    ResetPasswordCubit.get(context)
-                                        .ResetPass(password: '');
+                                    ForgetPasswordCubit.get(context)
+                                        .sendOTP(email: emailController.text.trim());
                                   }
+                                }
+                                else {
+                                  showToast(
+                                      text:
+                                          'Please Check Your Network Connection',
+                                      state: ToastStates.SUCCESS);
+                                }
                               },
                             ),
                             fallback: (context) =>
-                            const CircularProgressIndicator(),
+                                const CircularProgressIndicator(),
                           );
                         },
                       ),

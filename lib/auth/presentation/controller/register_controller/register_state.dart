@@ -1,7 +1,5 @@
 import 'package:elagk/auth/data/models/register_model/register_model.dart';
 
-import '../../../data/models/login_model/login_model.dart';
-
 
 abstract class RegisterStates {}
 
@@ -25,20 +23,5 @@ class RegisterErrorState extends RegisterStates
 }
 
 
-class SendOTPLoadingState extends RegisterStates {}
 
-class SendOTPSuccessState extends RegisterStates
-{
-  final LoginModel loginModel;
-
-  SendOTPSuccessState(this.loginModel);
-
-}
-
-class SendOTPErrorState extends RegisterStates
-{
-  final String error;
-
-  SendOTPErrorState(this.error);
-}
 

@@ -3,6 +3,15 @@ class AppStrings {
   static const String appTitle = "3elagk pharmacy - علاجك لصيدليات";
   static const String isNull = "null";
   static const String nA = "N/A";
+  static const String welcome  = " مرحبا بكم في علاجك";
+  static const String pharmacies="صيدليات";
+  static const String search  = "ابحث .....";
+// forget password
+  static const String codeSendButton  = "اعاده تعيين كلمه المرور";
+  static const String codeSendedSuccessFully="تم ارسال كود التفعيل بنجاح";
+  static const String codeSendedSuccessFully1=" كود التفعيل صحيح";
+  static const String codeSendError  = "برجاء ادخال بريد الكتروني صحيح";
+  static const String codeSendError1  = " كود التفعيل غير صحيح";
 
   // offline screen
   static const String noInternetConnection = "لا يوجد اتصال بالإنترنت";
@@ -24,7 +33,10 @@ class AppStrings {
   static const String password = "كلمة المرور";
   static const String phoneExample = "*********01";
   static const String forgotPassword = "نسيت كلمة المرور";
+  static const String resetPassword = "تم تغيير كلمة المرور بنجاح";
+  static const String erorrResetPassword = "لم يتم تغيير كلمة المرور بنجاح    ";
   static const String enterValidEmail = "يرجي إدخال بريد إلكتروني صحيح!";
+  static const String enterValidnum = "يرجي إدخال الكود";
   static const String enterValidPassword =
       "يجب أن تتكون كلمة المرور من 8 أحرف بحد أدني";
   static const String enterValidFullName =
@@ -63,7 +75,7 @@ class AppStrings {
       "ادخل كلمة مرور تتكون من 8 أحرف بحد أدني، وتحتوي علي رقم وحرف كبير ورمز واحد عالأقل.";
   static const String theNewPassword = "كلمة المرور الجديدة";
   static const String hintPassword = "Aa123456#.*";
-  static const String resetPassword = "تعيين كلمة المرور الجديدة";
+  static const String resetPassword1 = "تعيين كلمة المرور الجديدة";
 
   // Drawer taps
   static const String homeScreen = "الصفحة الرئيسية";
@@ -96,6 +108,8 @@ class AppStrings {
   static const String productPicture = "إضافة صورة";
   static const String confirmDeleteProduct = "هل أنت متأكد من حذف المنتج؟";
   static const String delete = "حذف";
+  static const String prescriptionAndDeliverPrice =
+      "اطلب الدوا بالروشتة ";
 
   // static const String availableQuantity = "الكمية المتاحة";
   static const String enterValidProductName = "من فضلك ادخل اسم صحيح";
@@ -163,8 +177,6 @@ class AppStrings {
   static const String prescriptionPrice = "سعر الروشتة";
   static const String sendPrescriptionAndDeliverPrice =
       "ارسال سعر الروشتة والتوصيل";
-  static const String prescriptionAndDeliverPrice =
-      "اطلب الدوا بالروشتة ";
   static const String equipped = "تم التجهيز";
   static const String refuseOrAnnoy = "رفض او ازعاج";
   static const String price = "السعر ";

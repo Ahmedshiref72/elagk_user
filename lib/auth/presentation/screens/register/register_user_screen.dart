@@ -5,20 +5,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../shared/components/toast_component.dart';
-import '../../../../../shared/global/app_colors.dart';
-import '../../../../../shared/utils/app_routes.dart';
-import '../../../../../shared/utils/app_strings.dart';
-import '../../../../../shared/utils/app_values.dart';
-import '../../../../../shared/utils/navigation.dart';
-import '../../../../../shared/utils/text_field_validation.dart';
-import '../../../components/MainTextFormField.dart';
-import '../../../components/auth_title_subtitle_widget.dart';
-import '../../../components/logo_widget.dart';
-import '../../../components/main_button.dart';
-import '../../../components/screen_background.dart';
-import '../../../controller/login_controller/login_cubit.dart';
-import '../../../controller/login_controller/login_states.dart';
+import 'package:flutter_pw_validator/flutter_pw_validator.dart';
+import '../../../../shared/components/toast_component.dart';
+import '../../../../shared/global/app_colors.dart';
+import '../../../../shared/utils/app_routes.dart';
+import '../../../../shared/utils/app_strings.dart';
+import '../../../../shared/utils/app_values.dart';
+import '../../../../shared/utils/navigation.dart';
+import '../../../../shared/utils/text_field_validation.dart';
+import '../../components/MainTextFormField.dart';
+import '../../components/auth_title_subtitle_widget.dart';
+import '../../components/logo_widget.dart';
+import '../../components/main_button.dart';
+import '../../components/screen_background.dart';
+import '../../controller/login_controller/login_cubit.dart';
+import '../../controller/login_controller/login_states.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -29,7 +30,6 @@ class RegisterScreen extends StatelessWidget {
   static final _lastNameController = TextEditingController();
   static final _phoneController = TextEditingController();
   static final _passwordController = TextEditingController();
-  static final _userNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +69,7 @@ class RegisterScreen extends StatelessWidget {
                           }
                         },
                       ),
+
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                       MainTextFormField(
                         controller: _lastNameController,
@@ -85,57 +86,8 @@ class RegisterScreen extends StatelessWidget {
                           }
                         },
                       ),
-                      SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
-                      MainTextFormField(
-                        controller: _userNameController,
-                        label: AppStrings.userName,
-                        hintColor: AppColors.lightGrey,
-                        inputType: TextInputType.text,
-                        textDirection: TextDirection.ltr,
-                        obscure: false,
-                        validator: (value) {
-                          if (value!.length < AppSize.s0) {
-                            return AppStrings.enterValidFullName;
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                      SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
 
-                      //email
-                      MainTextFormField(
-                        controller: _emailController,
-                        label: AppStrings.email,
-                        hint: AppStrings.emailExample,
-                        hintColor: AppColors.lightGrey,
-                        inputType: TextInputType.emailAddress,
-                        textDirection: TextDirection.ltr,
-                        obscure: false,
-                        validator: (value) => validateEmail(value!),
-                      ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
-                      //password
-                      MainTextFormField(
-                        controller: _passwordController,
-
-                        label: AppStrings.password,
-                        hint: AppStrings.passwordExample,
-                        hintColor: AppColors.lightGrey,
-                        inputType: TextInputType.visiblePassword,
-                        textDirection: TextDirection.ltr,
-                        obscure: true,
-                        validator: (value) {
-                          if (value!.length < AppSize.s8) {
-                            return AppStrings.enterValidPassword;
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                      SizedBox(
-                        height: mediaQueryHeight(context) / AppSize.s30,
-                      ),
                       //phone
                       MainTextFormField(
                         suffixIcon: InkWell(
@@ -185,7 +137,6 @@ class RegisterScreen extends StatelessWidget {
                                             password:
                                             _passwordController.text.trim(),
                                             phone: _phoneController.text.trim(),
-                                            username:_userNameController.text.trim(),
                                             firstName: _firstNameController.text.trim(),
                                             lastName: _lastNameController.text.trim(),
                                           );
@@ -218,6 +169,58 @@ class RegisterScreen extends StatelessWidget {
                           }
                         },
                       ),
+                      SizedBox(
+                          height: mediaQueryHeight(context) / AppSize.s30),
+                      //email
+                      MainTextFormField(
+                        controller: _emailController,
+                        label: AppStrings.email,
+                        hint: AppStrings.emailExample,
+                        hintColor: AppColors.lightGrey,
+                        inputType: TextInputType.emailAddress,
+                        textDirection: TextDirection.ltr,
+                        obscure: false,
+                        validator: (value) => validateEmail(value!),
+                      ),
+                      SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
+                      //password
+                      MainTextFormField(
+                        controller: _passwordController,
+                        label: AppStrings.password,
+                        hint: AppStrings.passwordExample,
+                        hintColor: AppColors.lightGrey,
+                        inputType: TextInputType.visiblePassword,
+                        textDirection: TextDirection.ltr,
+                        obscure: true,
+                        validator: (value) {
+                          if (value!.length < AppSize.s8) {
+                            return AppStrings.enterValidPassword;
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        height: mediaQueryHeight(context) / AppSize.s30,
+                      ),
+                      FlutterPwValidator(
+                        successColor: AppColors.primary,
+
+                        controller: _passwordController,
+                        minLength: 8,
+                        uppercaseCharCount: 1,
+                        numericCharCount: 3,
+                        specialCharCount: 1,
+                        width: 400,
+                        height: 150,
+                        onSuccess: (){
+
+                          return 'Success';
+                        },
+                        onFail: (){
+                          return 'Password is Weak';
+                        },
+                      ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                       BlocConsumer<RegisterCubit, RegisterStates>(
                         listener: (context, state) {
@@ -237,7 +240,7 @@ class RegisterScreen extends StatelessWidget {
                         builder: (context, state) {
                           return ConditionalBuilder(
                               condition: (state is RegisterLoadingState),
-                              builder: (context) => const CircularProgressIndicator(),
+                              builder: (context) => CircularProgressIndicator(),
                               fallback: (context) => MainButton(
                                     title: AppStrings.createAccount,
                                     onPressed: () {
@@ -247,13 +250,10 @@ class RegisterScreen extends StatelessWidget {
                                           password:
                                               _passwordController.text.trim(),
                                           phone: _phoneController.text.trim(),
-                                          username:_userNameController.text.trim(),
                                           firstName: _firstNameController.text.trim(),
                                           lastName: _lastNameController.text.trim(),
                                         );
-                                      };
-
-
+                                      }
                                     },
                                   ));
                         },
@@ -269,9 +269,9 @@ class RegisterScreen extends StatelessWidget {
                             ),
                             TextSpan(
                               text: ' ${AppStrings.login}',
-                              style: const TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold
+                              style: TextStyle(
+                                color: AppColors.blue,
+                                fontWeight: FontWeight.bold
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
@@ -294,5 +294,3 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 }
-
-

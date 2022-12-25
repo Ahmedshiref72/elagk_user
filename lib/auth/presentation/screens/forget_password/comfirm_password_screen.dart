@@ -1,32 +1,32 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:flutter_verification_code/flutter_verification_code.dart';
 import '../../../../shared/components/toast_component.dart';
 import '../../../../shared/global/app_colors.dart';
 import '../../../../shared/utils/app_routes.dart';
 import '../../../../shared/utils/app_strings.dart';
 import '../../../../shared/utils/app_values.dart';
 import '../../../../shared/utils/navigation.dart';
-import '../../../../shared/utils/text_field_validation.dart';
-import '../../components/MainTextFormField.dart';
 import '../../components/auth_title_subtitle_widget.dart';
 import '../../components/logo_widget.dart';
 import '../../components/main_button.dart';
 import '../../components/screen_background.dart';
-import '../../controller/forget_passord_controller/forget_passowrd_state.dart';
-import '../../controller/reset_password_controller/reset_password_cubit.dart';
-import '../../controller/reset_password_controller/reset_password_state.dart';
+import '../../controller/confim_password/confirm_password_cubit.dart';
+import '../../controller/confim_password/confirm_password_state.dart';
 
-class ResetPasswordScreen extends StatelessWidget {
-  const ResetPasswordScreen({Key? key}) : super(key: key);
+
+class ConfirmPasswordScreen extends StatelessWidget {
+  const ConfirmPasswordScreen({Key? key}) : super(key: key);
 
   static final _formKey = GlobalKey<FormState>();
-  static final _passwordController = TextEditingController();
+  static final emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
+    bool _hasInternet = false;
+    final color = _hasInternet ? Colors.green : Colors.red;
+    final text = _hasInternet ? 'Internet' : 'No Internet';
     return SafeArea(
       child: Directionality(
         textDirection: TextDirection.rtl,
@@ -44,58 +44,61 @@ class ResetPasswordScreen extends StatelessWidget {
                     children: [
                       const LogoWidget(),
                       const AuthTitleAndSubtitle(
-                        authTitle: AppStrings.forgotPassword,
-                        authSubtitle: AppStrings.enterValidEmail,
+                        authTitle: AppStrings.codeSendButton,
+                        authSubtitle: AppStrings.enterValidnum,
                       ),
-                      MainTextFormField(
-                        controller: _passwordController,
-                        label: AppStrings.password,
-                        hint: AppStrings.passwordExample,
-                        hintColor: AppColors.lightGrey,
-                        inputType: TextInputType.visiblePassword,
-                        textDirection: TextDirection.ltr,
-                        obscure: true,
-                        validator: (value) {
-                          if (value!.length < AppSize.s8) {
-                            return AppStrings.enterValidPassword;
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
+
+
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
-                      BlocConsumer<ResetPasswordCubit, ResetPasswordStates>(
+                      BlocConsumer<ConfirmPasswordCubit, ConfirmPasswordStates>(
                         listener: (context, state) {
-                          if (state is SendOTPSuccessState) {
+                          if (state is SendCodeSuccessState) {
                             {
                               showToast(
-                                  text: AppStrings.resetPassword, state: ToastStates.SUCCESS);
+                                  text: AppStrings.codeSendedSuccessFully1, state: ToastStates.SUCCESS);
                               navigateFinalTo(
                                   context: context,
-                                  screenRoute: Routes.loginScreen);
+                                  screenRoute: Routes.homeScreen);
                             }
 
-                          } else if (state is SendOTPErrorState) {
+                          } else if (state is SendCodeErrorState) {
                             showToast(
-                                text: AppStrings.erorrResetPassword,
+                                text: AppStrings.codeSendError1,
                                 state: ToastStates.ERROR);
                           }
                         },
                         builder: (context, state) {
                           return ConditionalBuilder(
-                            condition: state is! SendOTPLoadingState,
-                            builder: (context) => MainButton(
-                              title: AppStrings.codeSendButton,
-                              onPressed: () async {
-                                  if (_formKey.currentState!.validate()) {
-                                    ResetPasswordCubit.get(context)
-                                        .ResetPass(password: '');
-                                  }
+                            condition: state is! SendCodeLoadingState,
+                            builder: (context) =>  VerificationCode(
+                              textStyle: Theme.of(context).textTheme.bodyText2!
+                                  .copyWith(color: Theme.of(context).primaryColor),
+                              keyboardType: TextInputType.number,
+                              underlineColor: AppColors.offBlue1,
+                              length: 6,
+                              cursorColor: Colors.blue,
+                              onCompleted: (String value) {
+                                if (_formKey.currentState!.validate()) {
+                                  ConfirmPasswordCubit.get(context)
+                                      .sendCode(code:int.parse(value) ,);
+                                }
                               },
+                              onEditing: (bool value) {},
+                              margin: const EdgeInsets.all(12),
                             ),
                             fallback: (context) =>
                             const CircularProgressIndicator(),
                           );
+                        },
+                      ),
+                      MainButton(
+                        title: AppStrings.codeSendButton,
+                        onPressed: () async {
+                          navigateFinalTo(
+                              context: context,
+                              screenRoute: Routes.homeScreen);
+
+
                         },
                       ),
                     ],

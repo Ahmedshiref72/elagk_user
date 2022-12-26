@@ -13,14 +13,15 @@ class PharmacyCategories extends StatelessWidget {
       color: Colors.transparent,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 2,
+        itemCount: 4,
         itemBuilder: (BuildContext context, int index) {
           return Categories(
             onTap: () {
             },
+
             categoryName: 'shefo',
             containerColor:
-                AppColors.offBlue,
+                Color(0xff1d71b8),
             textColor:  Colors.white,
             borderColor:  Border.all(color: AppColors.lightGrey),
           );

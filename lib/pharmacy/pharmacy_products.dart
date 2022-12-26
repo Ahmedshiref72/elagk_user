@@ -8,6 +8,7 @@ class PharmacyProducts extends StatefulWidget {
 
   final String firstCategoryName;
 
+
   @override
   State<PharmacyProducts> createState() => _PharmacyProductsState();
 }
@@ -27,15 +28,13 @@ class _PharmacyProductsState extends State<PharmacyProducts> {
           crossAxisSpacing: AppSize.s10,
           mainAxisSpacing: AppSize.s10,
         ),
-        itemCount: 5,
+        itemCount: 25,
       itemBuilder: (BuildContext context, int index) {
         return ProductItemPharmacy(
-          productName: "productName",
-          productPrice: "23",
+          categoriesName: "productName",
+          categoriesPrice: "23",
           imageSrc: "state.medicines![index].imageUrl ?? AppConstants.empty",
           onTap: () {
-
-
           },
         );
       },

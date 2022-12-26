@@ -1,4 +1,4 @@
-import 'package:elagk/auth/presentation/screens/forget_password/comfirm_password_screen.dart';
+import 'package:elagk/auth/presentation/screens/forget_password/otp_password_screen.dart';
 import 'package:elagk/auth/presentation/screens/forget_password/forget_password_screen.dart';
 import 'package:elagk/auth/presentation/screens/login/login_screen.dart';
 import 'package:elagk/auth/presentation/screens/register/register_user_screen.dart';
@@ -6,6 +6,8 @@ import 'package:elagk/drawer/presentation/components/home_drawe_widget.dart';
 import 'package:elagk/home/presentation/screens/home_screen.dart';
 import 'package:elagk/opening/presentation/screens/offline_widget.dart';
 import 'package:elagk/opening/presentation/screens/splash_screen.dart';
+import 'package:elagk/pharmacy/categories_screen/categories_screen.dart';
+import 'package:elagk/pharmacy/phamacy_screen.dart';
 import 'package:elagk/shared/utils/app_strings.dart';
 import 'package:elagk/shared/utils/argument_models.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,8 @@ class Routes {
   static const String homeScreen = '/homeScreen';
   static const String oneOrderDetailsScreen = '/oneOrderDetailsScreen';
   static const String homeDrawer = '/HomeDrawer';
+  static const String pharmacy = '/PharmacyScreen';
+  static const String categories = '/CategoriesScreen';
   static const String allOrdersScreen = '/allOrdersScreen';
   static const String addNewMedicinesScreen = '/addNewMedicinesScreen';
   static const String updateMedicineScreen = '/updateMedicineScreen';
@@ -35,10 +39,10 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => OfflineBuilder(
             connectivityBuilder: (
-              BuildContext context,
-              ConnectivityResult connectivity,
-              Widget child,
-            ) {
+                BuildContext context,
+                ConnectivityResult connectivity,
+                Widget child,
+                ) {
               final bool connected = connectivity != ConnectivityResult.none;
               if (connected) {
                 return const SplashScreen();
@@ -49,29 +53,34 @@ class RouteGenerator {
             child: const Center(child: CircularProgressIndicator()),
           ),
         );
-      // case Routes.notificationsScreen:
-      //   return MaterialPageRoute(builder: (_) => const NotificationScreen());
+    // case Routes.notificationsScreen:
+    //   return MaterialPageRoute(builder: (_) => const NotificationScreen());
       case Routes.loginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case Routes.registerScreen:
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case Routes.forgetPasswordScreen:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
-        case Routes.confirmPasswordScreen:
-        return MaterialPageRoute(builder: (_) => const ConfirmPasswordScreen());
-      // case Routes.forgetPasswordScreen:
-      //   return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
-      // case Routes.otpVerifyScreen:
-      //   return MaterialPageRoute(builder: (_) {
-      //     final args = routeSettings.arguments as OTPArguments;
-      //     return OTPVerifyScreen(email: args.email);
-      //   });
+      case Routes.confirmPasswordScreen:
+        return MaterialPageRoute(builder: (_) => const OtpPasswordScreen());
+
+    // case Routes.forgetPasswordScreen:
+    //   return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
+    // case Routes.otpVerifyScreen:
+    //   return MaterialPageRoute(builder: (_) {
+    //     final args = routeSettings.arguments as OTPArguments;
+    //     return OTPVerifyScreen(email: args.email);
+    //   });
       case Routes.homeDrawer:
         return MaterialPageRoute(builder: (_) => const HomeDrawer());
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
-      // case Routes.oneOrderDetailsScreen:
-      //   return MaterialPageRoute(builder: (_) => const OneOrderDetailsScreen());
+      case Routes.pharmacy:
+        return MaterialPageRoute(builder: (_) => const PharmacyScreen());
+      case Routes.categories:
+        return MaterialPageRoute(builder: (_) => const CategoriesScreen());
+    // case Routes.oneOrderDetailsScreen:
+    //   return MaterialPageRoute(builder: (_) => const OneOrderDetailsScreen());
 
 
       default:

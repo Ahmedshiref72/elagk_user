@@ -137,9 +137,11 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                           return ConditionalBuilder(
                             condition: state is! SendOTPLoadingState,
                             builder: (context) => MainButton(
-                              title: AppStrings.codeSendButton,
-                              onPressed: () async {
-                                _hasInternet = await InternetConnectionChecker()
+                              title: AppStrings.codeSendButton1,
+                              onPressed: () async { navigateFinalTo(
+                                  context: context,
+                                  screenRoute: Routes.homeDrawer);
+                                /*_hasInternet = await InternetConnectionChecker()
                                     .hasConnection;
                                 if (_hasInternet) {
                                   if (ForgetPasswordScreen._formKey.currentState!.validate()) {
@@ -152,7 +154,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                                       text:
                                           'Please Check Your Network Connection',
                                       state: ToastStates.SUCCESS);
-                                }
+                                }*/
                               },
                             ),
                             fallback: (context) =>

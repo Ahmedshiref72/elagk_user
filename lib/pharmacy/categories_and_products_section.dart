@@ -17,10 +17,10 @@ class CategoriesAndProductsSection extends StatelessWidget {
     return Column(
       children: [
         const PharmacyProductsBar(),
-        SizedBox(height: mediaQueryWidth(context) / AppSize.s40),
+        SizedBox(height: mediaQueryWidth(context) / AppSize.s30),
         // categories & products.
        const PharmacyCategories(),
-        SizedBox(height: mediaQueryWidth(context) / AppSize.s25),
+        SizedBox(height: mediaQueryWidth(context) / AppSize.s15),
         PharmacyProducts(
           firstCategoryName: firstCategoryName,
         ),

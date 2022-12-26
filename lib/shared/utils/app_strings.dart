@@ -8,11 +8,11 @@ class AppStrings {
   static const String search  = "ابحث .....";
 // forget password
   static const String codeSendButton  = "اعاده تعيين كلمه المرور";
+  static const String codeSendButton1  = "ارسال كود التفعيل ";
   static const String codeSendedSuccessFully="تم ارسال كود التفعيل بنجاح";
-  static const String codeSendedSuccessFully1=" كود التفعيل صحيح";
   static const String codeSendError  = "برجاء ادخال بريد الكتروني صحيح";
+  static const String codeSendedSuccessFully1=" كود التفعيل صحيح";
   static const String codeSendError1  = " كود التفعيل غير صحيح";
-
   // offline screen
   static const String noInternetConnection = "لا يوجد اتصال بالإنترنت";
   static const String failedToConnect =
@@ -33,10 +33,7 @@ class AppStrings {
   static const String password = "كلمة المرور";
   static const String phoneExample = "*********01";
   static const String forgotPassword = "نسيت كلمة المرور";
-  static const String resetPassword = "تم تغيير كلمة المرور بنجاح";
-  static const String erorrResetPassword = "لم يتم تغيير كلمة المرور بنجاح    ";
   static const String enterValidEmail = "يرجي إدخال بريد إلكتروني صحيح!";
-  static const String enterValidnum = "يرجي إدخال الكود";
   static const String enterValidPassword =
       "يجب أن تتكون كلمة المرور من 8 أحرف بحد أدني";
   static const String enterValidFullName =
@@ -49,12 +46,17 @@ class AppStrings {
   static const String createAccount1 = "قم بملى جميع حقول بياناتك لاكمال عملية التسجيل";
   static const String firstName = "الاسم الاول";
   static const String lastName = "الاسم الاخير";
+  static const String prescriptionAndDeliverPrice =
+      "اطلب الدوا بالروشتة ";
 
   // OTP verify screen
   static const String emailVerification = "التحقق من البريد الإلكتروني";
   static const String verificationCodeSent =
       "ادخل رمز التحقق المكون من 6 أرقام الذي تم إرساله إلى بريدك الإلكتروني:";
   static const String verify = "تأكيد";
+  static const String resetPassword = "تم تغيير كلمة المرور بنجاح";
+  static const String erorrResetPassword = "لم يتم تغيير كلمة المرور بنجاح    ";
+  static const String enterValidnum = "يرجي إدخال الكود";
 
   // Make login screen
   static const String pleaseLoginToBrowseApp =
@@ -75,14 +77,18 @@ class AppStrings {
       "ادخل كلمة مرور تتكون من 8 أحرف بحد أدني، وتحتوي علي رقم وحرف كبير ورمز واحد عالأقل.";
   static const String theNewPassword = "كلمة المرور الجديدة";
   static const String hintPassword = "Aa123456#.*";
-  static const String resetPassword1 = "تعيين كلمة المرور الجديدة";
 
   // Drawer taps
   static const String homeScreen = "الصفحة الرئيسية";
   static const String profile = "البروفايل";
   static const String complaints = "الشكاوى";
-  static const String contactUs = "التواصل معنا";
+  static const String contactUs = "تواصل معنا";
   static const String aboutUs = "عن التطبيق";
+  static const String orders = "الطلبات";
+  static const String offers = "العروض";
+  static const String points = "النقاط";
+  static const String specialCustomers = "العملاء المميزين";
+  static const String elagkStore = "متجر علاجك";
 
   // About us
   static const String whoAreWe = "من نحن";
@@ -108,8 +114,7 @@ class AppStrings {
   static const String productPicture = "إضافة صورة";
   static const String confirmDeleteProduct = "هل أنت متأكد من حذف المنتج؟";
   static const String delete = "حذف";
-  static const String prescriptionAndDeliverPrice =
-      "اطلب الدوا بالروشتة ";
+  static const String searchFor = "ابحث الان عن منجاتك";
 
   // static const String availableQuantity = "الكمية المتاحة";
   static const String enterValidProductName = "من فضلك ادخل اسم صحيح";
@@ -146,17 +151,22 @@ class AppStrings {
   // Pharmacy user profile  screen
   static const String area = "منطقة";
   static const String deliveryOrderIn30Minutes = "توصيل طلب \n 30 دقيقة";
+  static const String deliveryDistance = "تبعد مسافة\n 50 متر";
   static const String noProducts = "لا يوجد منتجات في هذه الصيدلة الآن";
   static const String products = "المنتجات";
   static const String newQuantity = "الكمية الجديدة";
   static const String newPrice = "السعر الجديد";
   static const String edit = "تعديل";
   static const String cancel = "إلغاء";
+  static const String saveChanges = "حفظ التعديلات";
+  static const String medicine = "           ادوية            ";
+  static const String cost = "مستحضرات تجميل";
+
+
   // static const String editProduct = "تعديل المنتج: ";
   static const String pressToEdit = "إضغط للتعديل";
 
   // All orders screen
-  static const String orders = "الطلبات";
   static const String readyToDeliver = "جاهز للتوصيل";
   static const String deliverDone = "تم التسليم";
   static const String deliveringInProgress = "جاري التسليم";

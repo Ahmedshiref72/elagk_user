@@ -56,7 +56,7 @@ class ActivatorScreen extends StatelessWidget {
                         children: [
                           const LogoWidget(),
                           const AuthTitleAndSubtitle(
-                            authTitle: AppStrings.codeSendButton,
+                            authTitle: AppStrings.activator,
                             authSubtitle: AppStrings.enterValidnum,
                           ),
 

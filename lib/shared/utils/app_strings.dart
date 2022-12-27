@@ -8,6 +8,7 @@ class AppStrings {
   static const String search  = "ابحث .....";
 // forget password
   static const String codeSendButton  = "اعاده تعيين كلمه المرور";
+  static const String activator  = "تفعيل الحساب";
   static const String codeSendButton1  = "ارسال كود التفعيل ";
   static const String codeSendedSuccessFully="تم ارسال كود التفعيل بنجاح";
   static const String codeSendError  = "برجاء ادخال بريد الكتروني صحيح";

@@ -1,12 +1,8 @@
-import 'package:elagk/pharmacy/pharmacy_controllers/data/categories_model.dart';
+
 import 'package:elagk/shared/global/app_colors.dart';
 import 'package:flutter/material.dart';
-
-import '../auth/presentation/components/main_button.dart';
 import '../shared/utils/app__fonts.dart';
-import '../shared/utils/app_strings.dart';
 import '../shared/utils/app_values.dart';
-import '../shared/utils/default_network_image_widget.dart';
 
 class ProductItemPharmacy extends StatelessWidget {
 
@@ -65,15 +61,14 @@ class ProductItemPharmacy extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                   gradient:const LinearGradient(
-
                       begin:Alignment.topRight ,
                       end:Alignment.bottomRight,
                       colors:
                       [
-
                         Color(0xff1d938c),
                         Color(0xff1c72b5),
-                      ])
+                      ]
+                  )
               ),
               width: AppSize.s110,
               height: AppSize.s30,

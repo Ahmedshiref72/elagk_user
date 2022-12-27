@@ -31,6 +31,7 @@ class SearchCategoriesWidget extends StatelessWidget {
           Container(
             color: Color(0x35a9a3),
             width: width * .75,
+          //  height: height*.09,
             padding: EdgeInsets.all(AppPadding.p15),
             child: AdvancedSearch(
               searchItems: searchableList,
@@ -58,7 +59,7 @@ class SearchCategoriesWidget extends StatelessWidget {
               verticalPadding: 15,
               horizontalPadding: 20,
               hideHintOnTextInputFocus: true,
-              hintTextColor: Colors.grey,
+              hintTextColor: Colors.white,
               searchItemsWidget: searchWidget,
               onItemTap: (index, value) {
                 print("selected item Index is $index");

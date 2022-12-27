@@ -59,7 +59,6 @@ class ActivatorScreen extends StatelessWidget {
                             authTitle: AppStrings.activator,
                             authSubtitle: AppStrings.enterValidnum,
                           ),
-
                           SizedBox(
                               height: mediaQueryHeight(context) / AppSize.s30),
                           ConditionalBuilder(

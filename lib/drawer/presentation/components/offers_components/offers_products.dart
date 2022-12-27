@@ -1,19 +1,20 @@
+import 'package:elagk/drawer/presentation/components/offers_components/offers_items_widget.dart';
 import 'package:flutter/cupertino.dart';
-import '../../../shared/utils/app_values.dart';
-import 'product_item_pharmacy_widget.dart';
+
+import '../../../../shared/utils/app_values.dart';
 
 
-class PharmacyProducts extends StatefulWidget {
-  const PharmacyProducts({Key? key, required this.firstCategoryName}) : super(key: key);
+class OffersProducts extends StatefulWidget {
+  const OffersProducts({Key? key, required this.firstCategoryName}) : super(key: key);
 
   final String firstCategoryName;
 
 
   @override
-  State<PharmacyProducts> createState() => _PharmacyProductsState();
+  State<OffersProducts> createState() => _OffersProductsState();
 }
 
-class _PharmacyProductsState extends State<PharmacyProducts> {
+class _OffersProductsState extends State<OffersProducts> {
   @override
 
 
@@ -30,12 +31,12 @@ class _PharmacyProductsState extends State<PharmacyProducts> {
         ),
         itemCount: 25,
       itemBuilder: (BuildContext context, int index) {
-        return ProductItemPharmacy(
+        return OffersPharmacy(
           categoriesName: "productName",
-          categoriesPrice: " 23 جنية",
+          categoriesPrice: "23 جنية",
           imageSrc: "state.medicines![index].imageUrl ?? AppConstants.empty",
           onTap: () {
-          },
+          }, oldcategoriesPrice: '15 جنية',
         );
       },
     );

@@ -155,6 +155,7 @@ class AppStrings {
   static const String deliveryDistance = "تبعد مسافة\n 50 متر";
   static const String noProducts = "لا يوجد منتجات في هذه الصيدلة الآن";
   static const String products = "المنتجات";
+  static const String offerss = "العروض";
   static const String newQuantity = "الكمية الجديدة";
   static const String newPrice = "السعر الجديد";
   static const String edit = "تعديل";

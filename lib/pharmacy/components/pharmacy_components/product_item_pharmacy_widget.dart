@@ -1,9 +1,11 @@
 import 'package:elagk/pharmacy/pharmacy_controllers/data/categories_model.dart';
 import 'package:elagk/shared/global/app_colors.dart';
+import 'package:elagk/shared/utils/navigation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../auth/presentation/components/main_button.dart';
 import '../../../shared/utils/app__fonts.dart';
+import '../../../shared/utils/app_routes.dart';
 import '../../../shared/utils/app_strings.dart';
 import '../../../shared/utils/app_values.dart';
 import '../../../shared/utils/default_network_image_widget.dart';
@@ -70,7 +72,6 @@ class ProductItemPharmacy extends StatelessWidget {
                       end:Alignment.bottomRight,
                       colors:
                       [
-
                         Color(0xff1d938c),
                         Color(0xff1c72b5),
                       ])
@@ -81,7 +82,9 @@ class ProductItemPharmacy extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(AppPadding.p15),
                 ),
-                onPressed: () {},
+                onPressed: () {
+
+                },
 
                 child: const Text('اضف الي العربة',
                     style:TextStyle(

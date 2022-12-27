@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
 import '../../auth/presentation/screens/vrification/activator_screen.dart';
+import '../../drawer/presentation/screens/offers_screen.dart';
 
 class Routes {
   static const String home = '/';
@@ -33,6 +34,7 @@ class Routes {
   static const String updateMedicineScreen = '/updateMedicineScreen';
   static const String confirmPasswordScreen = '/confirmPasswordScreen';
   static const String activator = '/ActivatorScreen';
+  static const String offers = '/OffersScreen';
 }
 
 class RouteGenerator {
@@ -68,6 +70,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => OtpPasswordScreen());
       case Routes.activator:
         return MaterialPageRoute(builder: (_) => ActivatorScreen());
+      case Routes.offers:
+        return MaterialPageRoute(builder: (_) => OffersScreen());
 
       // case Routes.forgetPasswordScreen:
     //   return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());

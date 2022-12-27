@@ -1,18 +1,14 @@
 import 'package:elagk/shared/global/app_colors.dart';
+import 'package:elagk/shared/utils/app_routes.dart';
 import 'package:elagk/shared/utils/app_strings.dart';
 import 'package:elagk/shared/utils/app_values.dart';
+import 'package:elagk/shared/utils/navigation.dart';
 import 'package:flutter/material.dart';
-
-import '../../../shared/utils/app_routes.dart';
-import '../../../shared/utils/navigation.dart';
 
 
   Widget  PharmacyItem(context)=>InkWell(
     onTap: () {
-      navigateFinalTo(
-          context: context,
-          screenRoute: Routes.pharmacy);
-
+navigateTo(context: context, screenRoute:Routes.pharmacy);
     },
     child: Container(
       width: mediaQueryWidth(context) * .4,

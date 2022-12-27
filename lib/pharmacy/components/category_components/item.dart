@@ -1,8 +1,8 @@
+import 'package:elagk/shared/utils/app_routes.dart';
+import 'package:elagk/shared/utils/navigation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../shared/utils/app_routes.dart';
-import '../shared/utils/navigation.dart';
 
 class HomeScreenItem extends StatelessWidget {
   const HomeScreenItem({Key? key,required this.name,
@@ -15,7 +15,7 @@ class HomeScreenItem extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return  InkWell(
       onTap: () {
-        navigateFinalTo(
+        navigateTo(
             context: context,
             screenRoute: Routes.categories);
       },

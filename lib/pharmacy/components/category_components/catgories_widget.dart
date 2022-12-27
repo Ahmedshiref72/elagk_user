@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../shared/utils/app_routes.dart';
-import '../shared/utils/app_values.dart';
-import '../shared/utils/navigation.dart';
+import '../../../shared/utils/app_routes.dart';
+import '../../../shared/utils/app_values.dart';
+import '../../../shared/utils/navigation.dart';
 class CategoriesItem extends StatelessWidget {
   final String name;
   final String image;

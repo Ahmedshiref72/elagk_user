@@ -15,3 +15,12 @@ class OtpErrorState extends OtpPasswordStates
 
   OtpErrorState(this.error);
 }
+
+class ChangeDurationLoadingState extends OtpPasswordStates {}
+
+class ChangeDurationStartState extends OtpPasswordStates {
+
+}
+
+class ChangeDurationEndState extends OtpPasswordStates {}
+

@@ -24,12 +24,10 @@ class OtpPasswordCubit extends Cubit<OtpPasswordStates>
       emit(OtpErrorState(error.toString()));
     });}
 
-
-  Future<void> otpCOunter ()async {
-
+  Duration duration = Duration();
+  void otpCounter ()async {
 
     const countdownDuration = Duration(minutes: 3);
-    Duration duration = const Duration();
 
     Timer? timer;
     bool countDown =true;
@@ -39,14 +37,21 @@ class OtpPasswordCubit extends Cubit<OtpPasswordStates>
        final seconds = duration.inSeconds + addSeconds;
        if (seconds < 0){
          timer?.cancel();
+         emit(ChangeDurationEndState());
+
        } else{
+         emit(ChangeDurationStartState());
+
          duration = Duration(seconds: seconds);
        }
      }
     void startTimer(){
       timer = Timer.periodic(Duration(seconds: 1),(_) => addTime());
+      emit(ChangeDurationLoadingState());
     }
+    startTimer();
 
   }
+
 
 }

@@ -1,7 +1,7 @@
-import 'package:elagk/pharmacy/pharmacy_categories.dart';
 import 'package:flutter/material.dart';
-import '../shared/global/app_colors.dart';
-import '../shared/utils/app_values.dart';
+import '../../../shared/global/app_colors.dart';
+import '../../../shared/utils/app_values.dart';
+import 'pharmacy_categories.dart';
 
 class PharmacyCategories extends StatelessWidget {
   const PharmacyCategories({Key? key}) : super(key: key);

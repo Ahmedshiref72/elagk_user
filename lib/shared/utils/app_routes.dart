@@ -6,12 +6,14 @@ import 'package:elagk/drawer/presentation/components/home_drawe_widget.dart';
 import 'package:elagk/home/presentation/screens/home_screen.dart';
 import 'package:elagk/opening/presentation/screens/offline_widget.dart';
 import 'package:elagk/opening/presentation/screens/splash_screen.dart';
-import 'package:elagk/pharmacy/categories_screen/categories_screen.dart';
-import 'package:elagk/pharmacy/phamacy_screen.dart';
+import 'package:elagk/pharmacy/screens/categories_screen/categories_screen.dart';
+import 'package:elagk/pharmacy/screens/pharmacy_screens/phamacy_screen.dart';
 import 'package:elagk/shared/utils/app_strings.dart';
 import 'package:elagk/shared/utils/argument_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+
+import '../../auth/presentation/screens/vrification/activator_screen.dart';
 
 class Routes {
   static const String home = '/';
@@ -30,6 +32,7 @@ class Routes {
   static const String addNewMedicinesScreen = '/addNewMedicinesScreen';
   static const String updateMedicineScreen = '/updateMedicineScreen';
   static const String confirmPasswordScreen = '/confirmPasswordScreen';
+  static const String activator = '/ActivatorScreen';
 }
 
 class RouteGenerator {
@@ -62,9 +65,11 @@ class RouteGenerator {
       case Routes.forgetPasswordScreen:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case Routes.confirmPasswordScreen:
-        return MaterialPageRoute(builder: (_) => const OtpPasswordScreen());
+        return MaterialPageRoute(builder: (_) => OtpPasswordScreen());
+      case Routes.activator:
+        return MaterialPageRoute(builder: (_) => ActivatorScreen());
 
-    // case Routes.forgetPasswordScreen:
+      // case Routes.forgetPasswordScreen:
     //   return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
     // case Routes.otpVerifyScreen:
     //   return MaterialPageRoute(builder: (_) {

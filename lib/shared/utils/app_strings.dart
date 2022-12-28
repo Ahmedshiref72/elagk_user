@@ -88,6 +88,7 @@ class AppStrings {
   static const String orders = "الطلبات";
   static const String offers = "العروض";
   static const String points = "النقاط";
+  static const String numOfPoints = "عدد النقاط";
   static const String specialCustomers = "العملاء المميزين";
   static const String elagkStore = "متجر علاجك";
 
@@ -156,6 +157,8 @@ class AppStrings {
   static const String noProducts = "لا يوجد منتجات في هذه الصيدلة الآن";
   static const String products = "المنتجات";
   static const String offerss = "العروض";
+  static const String pointsForReplace = "منتجات لاستبدال النقاط";
+  static const String pointsReplace = "استبدال النقاط";
   static const String newQuantity = "الكمية الجديدة";
   static const String newPrice = "السعر الجديد";
   static const String edit = "تعديل";

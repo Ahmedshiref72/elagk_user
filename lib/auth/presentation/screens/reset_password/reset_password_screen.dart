@@ -15,11 +15,8 @@ import '../../components/auth_title_subtitle_widget.dart';
 import '../../components/logo_widget.dart';
 import '../../components/main_button.dart';
 import '../../components/screen_background.dart';
-import '../../controller/forget_passord_controller/forget_passowrd_state.dart';
 import '../../controller/reset_password_controller/reset_password_cubit.dart';
 import '../../controller/reset_password_controller/reset_password_state.dart';
-import '../forget_password/forget_password_screen.dart';
-
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({Key? key}) : super(key: key);
 

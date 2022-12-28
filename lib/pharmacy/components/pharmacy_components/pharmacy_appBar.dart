@@ -13,7 +13,10 @@ PreferredSizeWidget PharmacyAppBar({
 }) =>
     AppBar(
       iconTheme: const IconThemeData(color: Colors.black),
-      title: Text(title, style: Theme.of(context).textTheme.headlineLarge),
+      title: Text(title, style: const TextStyle(
+        fontWeight: FontWeight.bold,
+        color: Colors.black
+      )),
       centerTitle: true,
       backgroundColor: Colors.transparent,
       elevation: AppSize.s0,

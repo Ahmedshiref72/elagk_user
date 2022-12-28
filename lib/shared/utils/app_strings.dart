@@ -91,6 +91,8 @@ class AppStrings {
   static const String numOfPoints = "عدد النقاط";
   static const String specialCustomers = "العملاء المميزين";
   static const String elagkStore = "متجر علاجك";
+  static const String basket = "عربة التسوق";
+  static const String buy = "تاكيد الشراء";
 
   // About us
   static const String whoAreWe = "من نحن";

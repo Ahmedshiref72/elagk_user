@@ -15,6 +15,7 @@ import 'package:flutter_offline/flutter_offline.dart';
 
 import '../../auth/presentation/screens/vrification/activator_screen.dart';
 import '../../drawer/presentation/screens/offers_screen.dart';
+import '../../pharmacy/screens/basket_screen/basket_screen.dart';
 
 class Routes {
   static const String home = '/';
@@ -82,6 +83,8 @@ class RouteGenerator {
     //   });
       case Routes.homeDrawer:
         return MaterialPageRoute(builder: (_) => const HomeDrawer());
+        case Routes.basketScreen:
+        return MaterialPageRoute(builder: (_) => const basketScreen());
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case Routes.pharmacy:

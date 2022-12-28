@@ -6,6 +6,7 @@ import 'package:elagk/auth/presentation/controller/otp_password/otp_password_cub
 import 'package:elagk/auth/presentation/controller/register_controller/register_cubit.dart';
 import 'package:elagk/drawer/presentation/controller/complaints_controller/complaints_cubit.dart';
 import 'package:elagk/drawer/presentation/controller/profile_controller/profile_cubit.dart';
+import 'package:elagk/pharmacy/pharmacy_controllers/basket_controller/basket_cubit.dart';
 import 'package:elagk/shared/bloc_observer.dart';
 import 'package:elagk/shared/local/shared_preference.dart';
 import 'package:elagk/shared/network/dio_helper.dart';
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (BuildContext context) =>ComplaintsCubit()),
           BlocProvider(create: (BuildContext context) =>ProfileCubit()..getUserProfileData()),
           BlocProvider(create: (BuildContext context) =>OtpPasswordCubit()),
+          BlocProvider(create: (BuildContext context) =>BasketCubit()),
 
         ],
         child: MaterialApp(

@@ -14,13 +14,10 @@ class PharmacyProductsBar extends StatelessWidget {
       padding: const EdgeInsets.all(AppPadding.p20),
       child: Row(
         children: [
-
           Text(
             "صيدلية 19011",
             style: Theme.of(context).textTheme.displayLarge,
           ),
-
-
         ],
       ),
     );

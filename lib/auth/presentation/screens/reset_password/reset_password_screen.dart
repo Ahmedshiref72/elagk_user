@@ -134,7 +134,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                     ResetPasswordCubit.get(context)
                                         .ResetPass(
                                         password: ResetPasswordScreen._passwordController.toString(),
-                                      email: 'ahmedshiref15@gmail.com'
+                                      email: ResetPasswordScreen._emailController.toString()
                                     );
                                   }
                               },

@@ -17,6 +17,8 @@ import 'package:elagk/shared/utils/argument_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
+import '../../auth/presentation/screens/forget_password/comfirm_password_screen.dart';
+import '../../auth/presentation/screens/reset_password/reset_password_screen.dart';
 import '../../auth/presentation/screens/vrification/activator_screen.dart';
 
 class Routes {
@@ -39,6 +41,7 @@ class Routes {
   static const String addNewMedicinesScreen = '/addNewMedicinesScreen';
   static const String orderByPrescription = '/OrderByPrescriptionScreen';
   static const String confirmPasswordScreen = '/confirmPasswordScreen';
+  static const String otpPasswordScreen = '/OtpPasswordScreen';
   static const String activator = '/ActivatorScreen';
 }
 
@@ -68,15 +71,19 @@ class RouteGenerator {
       case Routes.loginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case Routes.registerScreen:
-        return MaterialPageRoute(builder: (_) => const RegisterScreen());
+        return MaterialPageRoute(builder: (_) => RegisterScreen());
       case Routes.forgetPasswordScreen:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
-      case Routes.confirmPasswordScreen:
+      case Routes.otpPasswordScreen:
         return MaterialPageRoute(builder: (_) => OtpPasswordScreen());
+        case Routes.confirmPasswordScreen:
+        return MaterialPageRoute(builder: (_) => ConfirmPasswordScreen());
       case Routes.activator:
         return MaterialPageRoute(builder: (_) => ActivatorScreen());
         case Routes.offersScreen:
       return MaterialPageRoute(builder: (_) => OffersScreen());
+      case Routes.resetPasswordScreen:
+      return MaterialPageRoute(builder: (_) => ResetPasswordScreen());
 
       case Routes.orderByPrescription:
       return MaterialPageRoute(builder: (_) => const OrderByPrescriptionScreen());

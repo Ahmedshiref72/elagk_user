@@ -12,6 +12,7 @@ class AppStrings {
   static const String codeSendButton1  = "ارسال كود التفعيل ";
   static const String codeSendedSuccessFully="تم ارسال كود التفعيل بنجاح";
   static const String codeSendError  = "برجاء ادخال بريد الكتروني صحيح";
+  static const String pleasePass  = "برجاء ادخال كلمة المرور";
   static const String codeSendedSuccessFully1=" كود التفعيل صحيح";
   static const String codeSendError1  = " كود التفعيل غير صحيح";
   // offline screen

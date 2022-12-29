@@ -16,6 +16,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'auth/presentation/controller/reset_password_controller/reset_password_cubit.dart';
 import 'shared/global/app_theme.dart';
 import 'shared/utils/app_routes.dart';
 import 'shared/utils/app_strings.dart';
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         [
           BlocProvider(create: (BuildContext context) =>LoginCubit()),
           BlocProvider(create: (BuildContext context) =>RegisterCubit()),
+          BlocProvider(create: (BuildContext context) =>ResetPasswordCubit()),
           BlocProvider(create: (BuildContext context) =>ForgetPasswordCubit()),
           BlocProvider(create: (BuildContext context) =>ConfirmPasswordCubit()),
           BlocProvider(create: (BuildContext context) =>ComplaintsCubit()),

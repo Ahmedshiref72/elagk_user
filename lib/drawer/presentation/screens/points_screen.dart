@@ -1,15 +1,16 @@
+import 'package:elagk/drawer/presentation/components/fixed_appbar_widget.dart';
+import 'package:elagk/drawer/presentation/components/points_components/points_widget.dart';
+import 'package:elagk/home/presentation/components/app_bar_basket_icon.dart';
+import 'package:elagk/shared/components/second_appBar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../auth/presentation/components/screen_background.dart';
-import '../../../home/presentation/components/app_bar_basket_icon.dart';
-import '../../../pharmacy/components/category_components/categories_and_products_section.dart';
-import '../../../pharmacy/components/pharmacy_components/pharmacy_appBar.dart';
+
 import '../../../shared/global/app_colors.dart';
 import '../../../shared/utils/app_routes.dart';
 import '../../../shared/utils/app_strings.dart';
 import '../../../shared/utils/app_values.dart';
 import '../../../shared/utils/navigation.dart';
-import '../components/points_components/points_widget.dart';
 
 class PointsScreen extends StatelessWidget {
   const PointsScreen({Key? key}) : super(key: key);
@@ -20,16 +21,16 @@ class PointsScreen extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: SafeArea(
         child: Scaffold(
-          appBar: PharmacyAppBar(
+          appBar:fixedAppBar(
             context: context,
-            title:AppStrings.points,
+            title: AppStrings.points,
+            actionWidget:const AppBarBasketIcon(),
             onTap: () {
               navigateTo(
                 context: context,
                 screenRoute: Routes.basketScreen,
               );
             },
-            actionWidget: const AppBarBasketIcon(),
           ),
 
           backgroundColor: AppColors.offWhite,

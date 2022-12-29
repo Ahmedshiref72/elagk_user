@@ -33,6 +33,10 @@ class AppStrings {
   static const String email = "البريد الإلكتروني";
   static const String password = "كلمة المرور";
   static const String phoneExample = "*********01";
+  static const String discountCodeExample = "123456";
+  static const String discountCode = "كود الخصم";
+  static const String active = "تفعيل";
+
   static const String forgotPassword = "نسيت كلمة المرور";
   static const String enterValidEmail = "يرجي إدخال بريد إلكتروني صحيح!";
   static const String enterValidPassword =
@@ -49,7 +53,8 @@ class AppStrings {
   static const String lastName = "الاسم الاخير";
   static const String prescriptionAndDeliverPrice =
       "اطلب الدوا بالروشتة ";
-
+  static const String prescriptionHeader =
+      "اطلب الدوا";
   // OTP verify screen
   static const String emailVerification = "التحقق من البريد الإلكتروني";
   static const String verificationCodeSent =
@@ -86,13 +91,13 @@ class AppStrings {
   static const String contactUs = "تواصل معنا";
   static const String aboutUs = "عن التطبيق";
   static const String orders = "الطلبات";
+  static const String orderDetails = "تفاصيل الطلب";
+  static const String pastOrders = "الطلبات السابقه";
   static const String offers = "العروض";
   static const String points = "النقاط";
-  static const String numOfPoints = "عدد النقاط";
   static const String specialCustomers = "العملاء المميزين";
   static const String elagkStore = "متجر علاجك";
-  static const String basket = "عربة التسوق";
-  static const String buy = "تاكيد الشراء";
+  static const String confirmOrder = "تأكيد الطلب";
 
   // About us
   static const String whoAreWe = "من نحن";
@@ -119,6 +124,7 @@ class AppStrings {
   static const String confirmDeleteProduct = "هل أنت متأكد من حذف المنتج؟";
   static const String delete = "حذف";
   static const String searchFor = "ابحث الان عن منتجاتك";
+  static const String searchForPharmacy = "ابحث الآن عن صيدليه";
 
   // static const String availableQuantity = "الكمية المتاحة";
   static const String enterValidProductName = "من فضلك ادخل اسم صحيح";
@@ -158,9 +164,6 @@ class AppStrings {
   static const String deliveryDistance = "تبعد مسافة\n 50 متر";
   static const String noProducts = "لا يوجد منتجات في هذه الصيدلة الآن";
   static const String products = "المنتجات";
-  static const String offerss = "العروض";
-  static const String pointsForReplace = "منتجات لاستبدال النقاط";
-  static const String pointsReplace = "استبدال النقاط";
   static const String newQuantity = "الكمية الجديدة";
   static const String newPrice = "السعر الجديد";
   static const String edit = "تعديل";
@@ -168,6 +171,7 @@ class AppStrings {
   static const String saveChanges = "حفظ التعديلات";
   static const String medicine = "           ادوية            ";
   static const String cost = "مستحضرات تجميل";
+  static const String editProfile = "تعديل الحساب";
 
 
   // static const String editProduct = "تعديل المنتج: ";
@@ -181,7 +185,14 @@ class AppStrings {
   static const String orderNumber = "الطلب رقم ";
   static const String newOrder = "طلب جديد";
   static const String noOrdersAvailable = "لا توجد طلبات جديدة";
-
+  static const String pharmacyName = "اسم الصيدليه";
+  static const String writeYourOrder = "اكتب طلبك يدويا";
+  static const String addPrescriptionImage = "اضافه صوره الروشته";
+  static const String basket = "عربة التسوق";
+  static const String buy = "تاكيد الشراء";
+  static const String numOfPoints = "عدد النقاط";
+  static const String pointsReplace = "استبدال النقاط";
+  static const String pointsForReplace = "منتجات لاستبدال النقاط";
 
 
   // One order details screen
@@ -191,7 +202,10 @@ class AppStrings {
   static const String addressIs = "العنوان: ";
   static const String medicines = "الأدوية";
   static const String deliverPrice = "سعر التوصيل";
+  static const String deliverTo= "التوصيل الى";
   static const String prescriptionPrice = "سعر الروشتة";
+  static const String addDiscountCode= "اضافه كود الخصم";
+
   static const String sendPrescriptionAndDeliverPrice =
       "ارسال سعر الروشتة والتوصيل";
   static const String equipped = "تم التجهيز";

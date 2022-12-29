@@ -1,5 +1,4 @@
 import 'package:elagk/drawer/presentation/components/points_components/points_products_bar.dart';
-import 'package:elagk/pharmacy/components/pharmacy_components/pharmacy_products_bar.dart';
 import 'package:flutter/material.dart';
 import 'points_products.dart';
 

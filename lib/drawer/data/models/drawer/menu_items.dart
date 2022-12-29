@@ -13,14 +13,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 class MenuItems {
   static const homepage = MyMenuItem(AppStrings.homeScreen, ImageAssets.home);
   static const profile = MyMenuItem(AppStrings.profile, ImageAssets.user);
-  static const complaints = MyMenuItem(AppStrings.complaints, ImageAssets.complaints);
-  static const contactUs = MyMenuItem(AppStrings.contactUs, ImageAssets.contactUs);
+  static const complaints =
+      MyMenuItem(AppStrings.complaints, ImageAssets.complaints);
+  static const contactUs =
+      MyMenuItem(AppStrings.contactUs, ImageAssets.contactUs);
   static const aboutUs = MyMenuItem(AppStrings.aboutUs, ImageAssets.aboutUs);
   static const orders = MyMenuItem(AppStrings.orders, ImageAssets.orders);
   static const points = MyMenuItem(AppStrings.points, ImageAssets.points);
   static const logOut = MyMenuItem(AppStrings.logOut, ImageAssets.logout);
-  static const elagkStore = MyMenuItem(AppStrings.elagkStore, ImageAssets.elagkStore);
-  static const specialCustomers = MyMenuItem(AppStrings.specialCustomers, ImageAssets.specialCustomers);
+  static const elagkStore =
+      MyMenuItem(AppStrings.elagkStore, ImageAssets.elagkStore);
+  static const specialCustomers =
+      MyMenuItem(AppStrings.specialCustomers, ImageAssets.specialCustomers);
 
   static const all = <MyMenuItem>[
     homepage,

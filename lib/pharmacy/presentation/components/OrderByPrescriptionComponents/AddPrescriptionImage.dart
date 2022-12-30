@@ -6,8 +6,35 @@ import 'package:elagk/shared/utils/app_values.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../shared/local/shared_preference.dart';
+import '../../pharmacy_controllers/orderByPerscripiyion_controller/orderByPerscripiyion_cubit.dart';
+
 Widget AddPrescriptionImage(context) => InkWell(
-      onTap: () {},
+      onTap: () {
+
+        showDialog(context: context, builder: (_) => AlertDialog(
+
+          elevation: 50.0,
+          actions: [
+            CupertinoDialogAction(
+              child: const Text(
+                'Gallary',
+                style: TextStyle(color: Colors.green),
+              ),
+              onPressed: () {
+                OrderByPerscripiyionCubit.get(context).pickMedia();
+              },
+            ),
+            CupertinoDialogAction(
+              child: const Text('Camera',
+                  style: TextStyle(color: AppColors.primary)),
+              onPressed: () {
+                OrderByPerscripiyionCubit.get(context).pickMediaCamera();
+              },
+            ),
+          ],
+        ));
+      },
       child: DottedBorder(
         color: Colors.green,
         dashPattern: [8, 8],

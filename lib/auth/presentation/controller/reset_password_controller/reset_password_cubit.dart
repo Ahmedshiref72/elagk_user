@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:elagk/auth/data/models/reset_model/reset_model.dart';
 import 'package:elagk/auth/presentation/controller/reset_password_controller/reset_password_state.dart';
 import 'package:elagk/shared/network/api_constants.dart';

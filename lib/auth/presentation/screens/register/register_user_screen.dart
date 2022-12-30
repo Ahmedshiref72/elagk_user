@@ -95,7 +95,7 @@ class RegisterScreen extends StatelessWidget {
                         textDirection: TextDirection.ltr,
                         obscure: false,
                         validator: (value) {
-                          if (value!.length < AppSize.s11) {
+                          if (value!.length < AppSize.s10) {
                             return AppStrings.enterValidPhone;
                           } else {
                             return null;

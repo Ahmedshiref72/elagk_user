@@ -7,8 +7,11 @@ import 'package:elagk/auth/presentation/controller/otp_password/otp_password_cub
 import 'package:elagk/auth/presentation/controller/register_controller/register_cubit.dart';
 import 'package:elagk/drawer/presentation/controller/about_us_controller/about_us_cubit.dart';
 import 'package:elagk/drawer/presentation/controller/basket_controller/basket_cubit.dart';
+import 'package:elagk/drawer/presentation/controller/contact_us_controller/contact_us_cubit.dart';
 import 'package:elagk/drawer/presentation/controller/complaints_controller/complaints_cubit.dart';
 import 'package:elagk/drawer/presentation/controller/profile_controller/profile_cubit.dart';
+import 'package:elagk/home/presentation/controllers/home_screen_controller/home_screen_cubit.dart';
+import 'package:elagk/pharmacy/presentation/pharmacy_controllers/orderByPerscripiyion_controller/orderByPerscripiyion_cubit.dart';
 import 'package:elagk/shared/bloc_observer.dart';
 import 'package:elagk/shared/local/shared_preference.dart';
 import 'package:elagk/shared/network/dio_helper.dart';
@@ -16,7 +19,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'auth/presentation/controller/reset_password_controller/reset_password_cubit.dart';
 import 'shared/global/app_theme.dart';
 import 'shared/utils/app_routes.dart';
 import 'shared/utils/app_strings.dart';
@@ -53,15 +55,17 @@ class MyApp extends StatelessWidget {
         [
           BlocProvider(create: (BuildContext context) =>LoginCubit()),
           BlocProvider(create: (BuildContext context) =>RegisterCubit()),
-          BlocProvider(create: (BuildContext context) =>ResetPasswordCubit()),
           BlocProvider(create: (BuildContext context) =>ForgetPasswordCubit()),
+          BlocProvider(create: (BuildContext context) =>OrderByPerscripiyionCubit()),
           BlocProvider(create: (BuildContext context) =>ConfirmPasswordCubit()),
           BlocProvider(create: (BuildContext context) =>ComplaintsCubit()),
           BlocProvider(create: (BuildContext context) =>ProfileCubit()..getUserProfileData()),
           BlocProvider(create: (BuildContext context) =>OtpPasswordCubit()),
-          BlocProvider(create: (BuildContext context) =>AboutUsCubit()),
+          BlocProvider(create: (BuildContext context) =>ContactUsCubit()..getContactUs()),
+          BlocProvider(create: (BuildContext context) =>AboutUsCubit()..getAboutUs()),
           BlocProvider(create: (BuildContext context) =>BasketCubit()),
           BlocProvider(create: (BuildContext context) =>ActivatorCubit()),
+          BlocProvider(create: (BuildContext context) =>HomeScreenCubit()..getPharmacies()),
 
         ],
         child: MaterialApp(

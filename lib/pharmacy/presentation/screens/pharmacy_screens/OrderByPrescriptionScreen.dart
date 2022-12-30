@@ -13,6 +13,7 @@ class OrderByPrescriptionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: SafeArea(

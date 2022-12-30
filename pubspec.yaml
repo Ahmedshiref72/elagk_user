@@ -73,6 +73,7 @@ dependencies:
   flutter_verification_code: ^1.1.6
   dotted_border: ^2.0.0+3
   dotted_line: ^3.1.0
+  flutter_geocoder:
 
 dev_dependencies:
   flutter_test:

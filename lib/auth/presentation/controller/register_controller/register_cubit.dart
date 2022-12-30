@@ -30,6 +30,7 @@ class RegisterCubit extends Cubit<RegisterStates>
         data:{
           "firstName": "${firstName}",
           "lastName": "${lastName}",
+          "username":'${email}',
           "email": "${email}",
           "password": "${password}",
           "phones": [
@@ -42,16 +43,34 @@ class RegisterCubit extends Cubit<RegisterStates>
           ]
         }
     ).then((value) {
-      print('value.data.toString()');
 
-      registerModel= RegisterModel.fromJson(value.data);
-
-      emit(RegisterSuccessState(registerModel!));
+      //registerModel= RegisterModel.fromJson(value.data);
+      sendOTP(email: email);
+      emit(RegisterSuccessState());
     }).catchError((error){
       print(error.toString());
       emit(RegisterErrorState(error.toString()));
     });
   }
+
+  Future<void> sendOTP({
+    required String email,
+
+  }) async {
+    emit(SendOTPLoadingState());
+    await DioHelper.postData(
+        url: ApiConstants.sendMail,
+        data:
+        {
+          "email": email,
+
+        }
+    ).then((value) {
+      emit(SendOTPSuccessState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(SendOTPErrorState(error.toString()));
+    });}
 
 
 

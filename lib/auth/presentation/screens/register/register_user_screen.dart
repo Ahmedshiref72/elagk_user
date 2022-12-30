@@ -17,6 +17,7 @@ import '../../components/auth_title_subtitle_widget.dart';
 import '../../components/logo_widget.dart';
 import '../../components/main_button.dart';
 import '../../components/screen_background.dart';
+import '../../controller/activator/activator_cubit.dart';
 
 class RegisterScreen extends StatelessWidget {
 
@@ -27,6 +28,7 @@ class RegisterScreen extends StatelessWidget {
   static final _lastNameController = TextEditingController();
   static final _phoneController = TextEditingController();
   static final _passwordController = TextEditingController();
+  String my='abdo@gmail.com';
 
   @override
   Widget build(BuildContext context) {
@@ -171,12 +173,19 @@ class RegisterScreen extends StatelessWidget {
                           }
                         },
                         builder: (context, state) {
+                          if (state is RegisterSuccessState){
+                            RegisterScreen._emailController.text = '';
+                            RegisterScreen._passwordController.text = '';
+                            RegisterScreen._firstNameController.text = '';
+                            RegisterScreen._lastNameController.text = '';
+                            RegisterScreen._phoneController.text = '';
+                          }
                           return ConditionalBuilder(
                               condition: (state is RegisterLoadingState),
                               builder: (context) => CircularProgressIndicator(),
                               fallback: (context) => MainButton(
                                     title: AppStrings.createAccount,
-                                    onPressed: () {
+                                    onPressed: ( ) {
                                       if (_formKey1.currentState!.validate()) {
                                         RegisterCubit.get(context).userRegister(
                                           email: _emailController.text.trim(),
@@ -186,7 +195,10 @@ class RegisterScreen extends StatelessWidget {
                                           firstName: _firstNameController.text.trim(),
                                           lastName: _lastNameController.text.trim(),
                                         );
+
+
                                       }
+
                                     },
                                   ));
                         },

@@ -11,7 +11,8 @@ import 'package:elagk/drawer/presentation/controller/contact_us_controller/conta
 import 'package:elagk/drawer/presentation/controller/complaints_controller/complaints_cubit.dart';
 import 'package:elagk/drawer/presentation/controller/profile_controller/profile_cubit.dart';
 import 'package:elagk/home/presentation/controllers/home_screen_controller/home_screen_cubit.dart';
-import 'package:elagk/pharmacy/presentation/pharmacy_controllers/orderByPerscripiyion_controller/orderByPerscripiyion_cubit.dart';
+import 'package:elagk/pharmacy/presentation/pharmacy_controllers/categories_controller/categories_cubit.dart';
+import 'package:elagk/pharmacy/presentation/pharmacy_controllers/categories_controller/categories_state.dart';
 import 'package:elagk/shared/bloc_observer.dart';
 import 'package:elagk/shared/local/shared_preference.dart';
 import 'package:elagk/shared/network/dio_helper.dart';
@@ -19,6 +20,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'pharmacy/presentation/pharmacy_controllers/orderByPerscripiyion_controller/order_by_perscripiyion_cubit.dart';
 import 'shared/global/app_theme.dart';
 import 'shared/utils/app_routes.dart';
 import 'shared/utils/app_strings.dart';
@@ -56,7 +58,6 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (BuildContext context) =>LoginCubit()),
           BlocProvider(create: (BuildContext context) =>RegisterCubit()),
           BlocProvider(create: (BuildContext context) =>ForgetPasswordCubit()),
-          BlocProvider(create: (BuildContext context) =>OrderByPerscripiyionCubit()),
           BlocProvider(create: (BuildContext context) =>ConfirmPasswordCubit()),
           BlocProvider(create: (BuildContext context) =>ComplaintsCubit()),
           BlocProvider(create: (BuildContext context) =>ProfileCubit()..getUserProfileData()),
@@ -65,7 +66,10 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (BuildContext context) =>AboutUsCubit()..getAboutUs()),
           BlocProvider(create: (BuildContext context) =>BasketCubit()),
           BlocProvider(create: (BuildContext context) =>ActivatorCubit()),
-          BlocProvider(create: (BuildContext context) =>HomeScreenCubit()..getPharmacies()),
+          BlocProvider(create: (BuildContext context) =>CategoriesCubit()),
+          BlocProvider(create: (BuildContext context) =>HomeScreenCubit()..locationPermission()..getPharmacies()),
+          BlocProvider(create: (BuildContext context) =>OrderByPerscripiyionCubit()),
+
 
         ],
         child: MaterialApp(

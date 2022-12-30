@@ -4,7 +4,6 @@ import 'package:elagk/shared/global/app_colors.dart';
 import 'package:elagk/shared/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../pharmacy/presentation/pharmacy_controllers/orderByPerscripiyion_controller/orderByPerscripiyion_cubit.dart';
 import '../../../../shared/utils/app__fonts.dart';
 import '../../../../shared/utils/app_values.dart';
 
@@ -22,10 +21,8 @@ class BasketPharmacy extends StatelessWidget {
   final String imageSrc;
 
 
-
   @override
   Widget build(BuildContext context) {
-    OrderByPerscripiyionCubit.get(context).imagePath;
     return BlocConsumer<BasketCubit,BasketStates>(
       listener: (context,state){},
       builder: (context,state){
@@ -139,7 +136,7 @@ class BasketPharmacy extends StatelessWidget {
 
                     child: const Center(
                       child: Icon(
-                          Icons.highlight_remove_sharp,color: Colors.red,
+                          Icons.restore_from_trash_rounded,color: Colors.red,
                       ),
                     ),
                   ),

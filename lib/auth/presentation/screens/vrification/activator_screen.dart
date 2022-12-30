@@ -21,7 +21,7 @@ class ActivatorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: TextDirection.ltr,
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           body: BlocConsumer<ActivatorCubit, ActivatorStates>(
@@ -35,12 +35,8 @@ class ActivatorScreen extends StatelessWidget {
                     screenRoute: Routes.homeDrawer);
               } else if (state is ActivatorErrorState) {
                 showToast(
-                    text: AppStrings.codeSendError1, state: ToastStates.ERROR);
-              }
-
-              if (state is ChangeDurationEndState) {
-                navigateFinalTo(
-                    context: context, screenRoute: Routes.forgetPasswordScreen);
+                    text: AppStrings.codeSendError1,
+                    state: ToastStates.ERROR);
               }
             },
             builder: (context, state) {
@@ -90,8 +86,8 @@ class ActivatorScreen extends StatelessWidget {
                           SizedBox(
                               height: mediaQueryHeight(context) / AppSize.s30),
                           
-                          SizedBox(
-                              height: mediaQueryHeight(context) / AppSize.s30),
+                          /*SizedBox(
+                              height: mediaQueryHeight(context) / AppSize.s30),*/
                           // MainButton(
                           //   title: AppStrings.codeSendButton,
                           //   onPressed: (value) async {

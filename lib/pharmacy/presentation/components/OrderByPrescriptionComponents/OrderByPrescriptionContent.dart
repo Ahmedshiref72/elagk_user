@@ -15,78 +15,108 @@ import 'AddPrescriptionImage.dart';
 import 'OrderByPrescriptionDevider.dart';
 
 class OrderByPrescriptionContent extends StatelessWidget {
-   OrderByPrescriptionContent({Key? key}) : super(key: key);
+  OrderByPrescriptionContent({Key? key}) : super(key: key);
   static final _orderController = TextEditingController();
   static final _discountController = TextEditingController();
-  final ImagePicker _picker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<OrderByPerscripiyionCubit,OrderByPerscripiyionStates>(
-      listener: (context,state){
-
-      },
-      builder: (context,state){
+    return BlocConsumer<OrderByPerscripiyionCubit, OrderByPerscripiyionStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.all(AppPadding.p20),
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children:
-              [
+              children: [
                 //deliverTo
-                Row(children:
-                [
-                  Icon(Icons.location_on_outlined,color: Colors.green,size: 30,),
-                  SizedBox(width: 10,),
-                  Text(AppStrings.deliverTo,style: Theme.of(context).textTheme.displayLarge,)
-                ],),
-                Text('مدنية نصر -التجمع الخامس - شارع افريقيا السينمائى',
-                  style:TextStyle(fontWeight:FontWeight.bold ,fontSize:20 ),),
-                SizedBox(height: 20,),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.location_on_outlined,
+                      color: Colors.green,
+                      size: 30,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      AppStrings.deliverTo,
+                      style: Theme.of(context).textTheme.displayLarge,
+                    )
+                  ],
+                ),
+                Text(
+                  'مدنية نصر -التجمع الخامس - شارع افريقيا السينمائى',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 //pharmacy name
-                Row(children:
-                [
-                  Image.asset('assets/images/drawer_icons/phamacy.png',
-                    width: 30,
-                    height:30 ,
-                  ),
-                  SizedBox(width: 10,),
-                  Text(AppStrings.pharmacyName,style: Theme.of(context).textTheme.displayLarge,)
-                ],),
-                const Text('صيدليه 19011',
-                  style:TextStyle(fontWeight:FontWeight.bold ,fontSize:20 ),),
-                const SizedBox(height: 20,),
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/images/drawer_icons/phamacy.png',
+                      width: 30,
+                      height: 30,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      AppStrings.pharmacyName,
+                      style: Theme.of(context).textTheme.displayLarge,
+                    )
+                  ],
+                ),
+                const Text(
+                  'صيدليه 19011',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
                 //write your order
-                Text(AppStrings.writeYourOrder,style: Theme.of(context).textTheme.displayLarge,),
-                const SizedBox(height: 20,),
+                Text(
+                  AppStrings.writeYourOrder,
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
                 MainTextFormField(
-
                   hintColor: Colors.white,
                   focusColor: Colors.white,
                   controller: _orderController,
                   obscure: false,
                   maxLines: 3,
-                  validator: (value) {
-
-                  },
+                  validator: (value) {},
                   inputType: TextInputType.multiline,
                   label: AppStrings.orderDetails,
                 ),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 //OOOOOOOOORRRRRRRR
                 OrderByPrescriptionDivider(context),
 
-                SizedBox(height: 20,),
-              (OrderByPerscripiyionCubit.get(context).imagePath != null)?
-
-                    Image.file(File(OrderByPerscripiyionCubit.get(context).imagePath!))
-                :SizedBox(height: 20,),
-              AddPrescriptionImage(context),
-                SizedBox(height: 20,),
-                Text(AppStrings.addDiscountCode,style: Theme.of(context).textTheme.displayLarge,),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
+                AddPrescriptionImage(context),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  AppStrings.addDiscountCode,
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 MainTextFormField(
                   controller: _discountController,
                   label: AppStrings.discountCode,
@@ -97,21 +127,20 @@ class OrderByPrescriptionContent extends StatelessWidget {
                   textDirection: TextDirection.ltr,
                   obscure: false,
                   icon: InkWell(
-                    onTap: (){
-
-
-                    },
+                    onTap: () {},
                     child: Container(
                       width: 100,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.green[700]
-                      ),
-                      child: Center(child:
-                      Text(AppStrings.active,style: TextStyle
-                        (
-                          fontSize: 17,fontWeight:FontWeight.bold ,color: Colors.white
-                      ),)),
+                          color: Colors.green[700]),
+                      child: Center(
+                          child: Text(
+                        AppStrings.active,
+                        style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      )),
                     ),
                   ),
                   validator: (value) {
@@ -122,25 +151,21 @@ class OrderByPrescriptionContent extends StatelessWidget {
                     // }
                   },
                 ),
-                SizedBox(height: 60,),
+                SizedBox(
+                  height: 60,
+                ),
                 MainButton(
                   title: AppStrings.confirmOrder,
-                  onPressed: () {
-
-                  },
+                  onPressed: () {},
                 ),
-                SizedBox(height: 20,),
-
-
-
-
-
+                SizedBox(
+                  height: 20,
+                ),
               ],
             ),
           ),
         );
       },
-
     );
   }
 }

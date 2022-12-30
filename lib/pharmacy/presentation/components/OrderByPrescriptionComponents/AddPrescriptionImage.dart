@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:elagk/shared/global/app_colors.dart';
 import 'package:elagk/shared/utils/app_assets.dart';
@@ -65,9 +67,26 @@ Widget AddPrescriptionImage(context) => InkWell(
               mainAxisAlignment: MainAxisAlignment.center,
               children:
               [
+                (OrderByPerscripiyionCubit.get(context).imagePath != null)
+                    ? Container(
+                  width:  AppSize.s90,
+                  height: AppSize.s90,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        width: 2,
+                        color: AppColors.primary,
+                      )),
+                  child: Image.file(
+                      File(
+                          OrderByPerscripiyionCubit.get(context).imagePath!),fit: BoxFit.cover,
+                  ),
+                )
+                    :
                 Image.asset(
                   'assets/images/drawer_icons/addPhoto.png',
                   width:  AppSize.s40,),
+
                 SizedBox(width: mediaQueryWidth(context) / AppSize.s30),
                 Text(AppStrings.addPrescriptionImage,style: Theme.of(context).textTheme.displayLarge,),
 

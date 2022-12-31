@@ -18,7 +18,8 @@ PreferredSizeWidget OnboardingAppBar({
       backgroundColor: Colors.transparent,
       elevation: AppSize.s0,
       automaticallyImplyLeading: true,
-      actions: [
+      actions:
+      [
         Padding(
           padding: const EdgeInsets.all(AppPadding.p5),
           child: InkWell(
@@ -32,11 +33,13 @@ PreferredSizeWidget OnboardingAppBar({
                     );*/
             } : onTap,
             child:Center(child: actionWidget),
-            ),
+          ),
         ),
+
+
       ],
 
-      leading: IconButton(onPressed:
+      leading:  IconButton(onPressed:
           ()
       { Navigator.pop(context); }, icon: Icon(Icons.arrow_back_ios),),
     );

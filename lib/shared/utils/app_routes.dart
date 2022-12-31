@@ -14,11 +14,11 @@ import 'package:elagk/pharmacy/presentation/screens/categories_screen/categories
 import 'package:elagk/pharmacy/presentation/screens/pharmacy_screens/OrderByPrescriptionScreen.dart';
 import 'package:elagk/pharmacy/presentation/screens/pharmacy_screens/phamacy_screen.dart';
 import 'package:elagk/shared/utils/app_strings.dart';
-import 'package:elagk/shared/utils/argument_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
 import '../../auth/presentation/screens/vrification/activator_screen.dart';
+import '../../onboarding/screens/onboarding_screen.dart';
 
 class Routes {
   static const String home = '/';
@@ -42,6 +42,7 @@ class Routes {
   static const String orderByPrescription = '/OrderByPrescriptionScreen';
   static const String confirmPasswordScreen = '/confirmPasswordScreen';
   static const String activator = '/ActivatorScreen';
+  static const String onboarding = '/OnBoardingScreen';
 }
 
 class RouteGenerator {
@@ -77,6 +78,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => OtpPasswordScreen());
       case Routes.activator:
         return MaterialPageRoute(builder: (_) => ActivatorScreen());
+        case Routes.onboarding:
+        return MaterialPageRoute(builder: (_) => OnBoardingScreen());
         case Routes.offersScreen:
       return MaterialPageRoute(builder: (_) => OffersScreen());
       case Routes.otpPasswordScreen:

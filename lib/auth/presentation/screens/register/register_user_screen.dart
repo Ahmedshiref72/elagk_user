@@ -179,6 +179,7 @@ class RegisterScreen extends StatelessWidget {
                             RegisterScreen._firstNameController.text = '';
                             RegisterScreen._lastNameController.text = '';
                             RegisterScreen._phoneController.text = '';
+
                           }
                           return ConditionalBuilder(
                               condition: (state is RegisterLoadingState),

@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             navigateTo(
                               context: context,
-                              screenRoute: Routes.forgetPasswordScreen,
+                              screenRoute: Routes.onboarding,
                             );
                           },
                           child: Text(

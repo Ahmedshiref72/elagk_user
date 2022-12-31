@@ -11,6 +11,7 @@ import 'package:elagk/drawer/presentation/controller/contact_us_controller/conta
 import 'package:elagk/drawer/presentation/controller/complaints_controller/complaints_cubit.dart';
 import 'package:elagk/drawer/presentation/controller/profile_controller/profile_cubit.dart';
 import 'package:elagk/home/presentation/controllers/home_screen_controller/home_screen_cubit.dart';
+import 'package:elagk/onboarding/controllers/onboarding_cubit.dart';
 import 'package:elagk/pharmacy/presentation/pharmacy_controllers/categories_controller/categories_cubit.dart';
 import 'package:elagk/pharmacy/presentation/pharmacy_controllers/categories_controller/categories_state.dart';
 import 'package:elagk/shared/bloc_observer.dart';
@@ -69,6 +70,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (BuildContext context) =>CategoriesCubit()),
           BlocProvider(create: (BuildContext context) =>HomeScreenCubit()..locationPermission()..getPharmacies()),
           BlocProvider(create: (BuildContext context) =>OrderByPerscripiyionCubit()),
+          BlocProvider(create: (BuildContext context) =>OnboardingCubit()),
 
 
         ],

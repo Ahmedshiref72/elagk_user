@@ -26,9 +26,7 @@ class OtpPasswordCubit extends Cubit<OtpPasswordStates>
 
   Duration duration = Duration();
   void otpCounter ()async {
-
     const countdownDuration = Duration(minutes: 3);
-
     Timer? timer;
     bool countDown =true;
     duration = countdownDuration;

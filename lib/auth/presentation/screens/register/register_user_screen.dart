@@ -189,6 +189,7 @@ class RegisterScreen extends StatelessWidget {
                                     onPressed: ( ) {
                                       if (_formKey1.currentState!.validate()) {
                                         RegisterCubit.get(context).userRegister(
+                                          user: 'user',
                                           email: _emailController.text.trim(),
                                           password:
                                               _passwordController.text.trim(),

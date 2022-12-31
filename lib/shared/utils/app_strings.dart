@@ -77,6 +77,7 @@ class AppStrings {
       "سيتم إرسال رمز تحقق علي بريدك الإلكتروني المسجل لدينا";
   static const String currentLoggedInEmail = "البريد الحالي المسجل لدينا";
   static const String send = "إرسال";
+  static const String sendCodeAgain = " ارسال رمز التحقق مرة اخري";
   static const String alreadyHaveAccount = "لديك حساب بالفعل؟";
 
   // Reset password screen

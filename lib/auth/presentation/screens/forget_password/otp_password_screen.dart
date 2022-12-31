@@ -11,8 +11,10 @@ import '../../../../shared/utils/navigation.dart';
 import '../../components/auth_title_subtitle_widget.dart';
 import '../../components/logo_widget.dart';
 import '../../components/screen_background.dart';
+import '../../controller/forget_passord_controller/forget_password_cubit.dart';
 import '../../controller/otp_password/otp_password_cubit.dart';
 import '../../controller/otp_password/otp_password_state.dart';
+import 'forget_password_screen.dart';
 import 'otp_componant/otp_componants.dart';
 
 class OtpPasswordScreen extends StatelessWidget {
@@ -96,11 +98,28 @@ class OtpPasswordScreen extends StatelessWidget {
                           ),
                           SizedBox(
                               height: mediaQueryHeight(context) / AppSize.s30),
-                          buildTime(
-                            duration,
-                          ),
+                          buildTime(duration),
                           SizedBox(
                               height: mediaQueryHeight(context) / AppSize.s30),
+                          TextButton(
+                            onPressed: () {
+                              ForgetPasswordCubit.get(context)
+                                  .sendOTP(email: ForgetPasswordScreen.emailController.text.trim());
+                              navigateFinalTo(
+                                  context: context,
+                                  screenRoute: Routes.otpPasswordScreen);
+
+                            },
+                            child: Text(
+                              AppStrings.sendCodeAgain,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium!
+                                  .copyWith(
+                                color: AppColors.yellowBold,
+                              ),
+                            ),
+                          ),
                           // MainButton(
                           //   title: AppStrings.codeSendButton,
                           //   onPressed: (value) async {

@@ -20,6 +20,7 @@ class RegisterCubit extends Cubit<RegisterStates>
     required String phone,
     required String firstName,
     required String lastName,
+    required String user,
 
 
   }) async
@@ -38,13 +39,13 @@ class RegisterCubit extends Cubit<RegisterStates>
           ],
           "roles": [
             {
-              "name": "user"
+              "name": "${user}"
             }
           ]
         }
     ).then((value) {
 
-      //registerModel= RegisterModel.fromJson(value.data);
+      registerModel= RegisterModel.fromJson(value.data);
       sendOTP(email: email);
       emit(RegisterSuccessState());
     }).catchError((error){

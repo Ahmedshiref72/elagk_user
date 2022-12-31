@@ -20,7 +20,8 @@ class ConfirmPasswordCubit extends Cubit<ConfirmPasswordStates>
     }).catchError((error) {
       print(error.toString());
       emit(SendCodeErrorState(error.toString()));
-    });}
+    });
+  }
 
 
 }

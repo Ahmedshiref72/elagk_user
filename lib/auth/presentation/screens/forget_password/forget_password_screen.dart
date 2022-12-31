@@ -81,7 +81,6 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                                   context: context,
                                   screenRoute: Routes.otpPasswordScreen);
                             }
-
                           } else if (state is SendOTPErrorState) {
                             showToast(
                                 text: AppStrings.codeSendError,

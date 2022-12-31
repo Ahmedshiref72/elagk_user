@@ -13,7 +13,6 @@ import 'package:elagk/drawer/presentation/controller/profile_controller/profile_
 import 'package:elagk/home/presentation/controllers/home_screen_controller/home_screen_cubit.dart';
 import 'package:elagk/onboarding/controllers/onboarding_cubit.dart';
 import 'package:elagk/pharmacy/presentation/pharmacy_controllers/categories_controller/categories_cubit.dart';
-import 'package:elagk/pharmacy/presentation/pharmacy_controllers/categories_controller/categories_state.dart';
 import 'package:elagk/shared/bloc_observer.dart';
 import 'package:elagk/shared/local/shared_preference.dart';
 import 'package:elagk/shared/network/dio_helper.dart';
@@ -47,7 +46,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   // const MyApp._internal();
-  //
+
   // static const MyApp instance = MyApp._internal();
 
   // This widget is the root of your application.
@@ -71,8 +70,6 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (BuildContext context) =>HomeScreenCubit()..locationPermission()..getPharmacies()),
           BlocProvider(create: (BuildContext context) =>OrderByPerscripiyionCubit()),
           BlocProvider(create: (BuildContext context) =>OnboardingCubit()),
-
-
         ],
         child: MaterialApp(
       debugShowCheckedModeBanner: false,

@@ -4,7 +4,7 @@ class RegisterModel {
   String? email;
   String? password;
   List<String>? phones;
-  List<Roles>? roles;
+  List? roles;
 
   RegisterModel(
       {this.firstName,
@@ -22,12 +22,8 @@ class RegisterModel {
     email = json['email'];
     password = json['password'];
     phones = json['phones'];
-    if (json['roles'] != null) {
-      roles = <Roles>[];
-      json['roles'].forEach((v) {
-        roles!.add(Roles.fromJson(v));
-      });
-    }
+    roles = json['roles'];
+
   }
 
   Map<String, dynamic> toJson() {
@@ -38,13 +34,13 @@ class RegisterModel {
     data['email'] = email;
     data['password'] = password;
     data['phones'] = phones;
-    if (roles != null) {
-      data['roles'] = roles!.map((v) => v.toJson()).toList();
-    }
+    data['roles'] = roles;
+
     return data;
   }
 }
 
+/*
 class Roles {
   String? id;
   String? name;
@@ -62,4 +58,4 @@ class Roles {
     data['name'] = name;
     return data;
   }
-}
+}*/

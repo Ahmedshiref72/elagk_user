@@ -20,15 +20,13 @@ import '../../components/screen_background.dart';
 import '../../controller/activator/activator_cubit.dart';
 
 class RegisterScreen extends StatelessWidget {
-
-
   static final _formKey1 = GlobalKey<FormState>();
   static final _emailController = TextEditingController();
   static final _firstNameController = TextEditingController();
   static final _lastNameController = TextEditingController();
   static final _phoneController = TextEditingController();
   static final _passwordController = TextEditingController();
-  String my='abdo@gmail.com';
+  String my = 'abdo@gmail.com';
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +59,7 @@ class RegisterScreen extends StatelessWidget {
                         textDirection: TextDirection.ltr,
                         obscure: false,
                         validator: (value) {
-                          if (value!.length < AppSize.s0) {
+                          if (value!.length < AppSize.s3) {
                             return AppStrings.enterValidFullName;
                           } else {
                             return null;
@@ -78,7 +76,7 @@ class RegisterScreen extends StatelessWidget {
                         textDirection: TextDirection.ltr,
                         obscure: false,
                         validator: (value) {
-                          if (value!.length < AppSize.s0) {
+                          if (value!.length < AppSize.s3) {
                             return AppStrings.enterValidFullName;
                           } else {
                             return null;
@@ -104,8 +102,7 @@ class RegisterScreen extends StatelessWidget {
                           }
                         },
                       ),
-                      SizedBox(
-                          height: mediaQueryHeight(context) / AppSize.s30),
+                      SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                       //email
                       MainTextFormField(
                         controller: _emailController,
@@ -140,7 +137,6 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       FlutterPwValidator(
                         successColor: AppColors.primary,
-
                         controller: _passwordController,
                         minLength: 8,
                         uppercaseCharCount: 1,
@@ -148,11 +144,10 @@ class RegisterScreen extends StatelessWidget {
                         specialCharCount: 1,
                         width: 400,
                         height: 150,
-                        onSuccess: (){
-
+                        onSuccess: () {
                           return 'Success';
                         },
-                        onFail: (){
+                        onFail: () {
                           return 'Password is Weak';
                         },
                       ),
@@ -173,20 +168,19 @@ class RegisterScreen extends StatelessWidget {
                           }
                         },
                         builder: (context, state) {
-                          if (state is RegisterSuccessState){
+                          if (state is RegisterSuccessState) {
                             RegisterScreen._emailController.text = '';
                             RegisterScreen._passwordController.text = '';
                             RegisterScreen._firstNameController.text = '';
                             RegisterScreen._lastNameController.text = '';
                             RegisterScreen._phoneController.text = '';
-
                           }
                           return ConditionalBuilder(
                               condition: (state is RegisterLoadingState),
                               builder: (context) => CircularProgressIndicator(),
                               fallback: (context) => MainButton(
                                     title: AppStrings.createAccount,
-                                    onPressed: ( ) {
+                                    onPressed: () {
                                       if (_formKey1.currentState!.validate()) {
                                         RegisterCubit.get(context).userRegister(
                                           user: 'user',
@@ -194,13 +188,12 @@ class RegisterScreen extends StatelessWidget {
                                           password:
                                               _passwordController.text.trim(),
                                           phone: _phoneController.text.trim(),
-                                          firstName: _firstNameController.text.trim(),
-                                          lastName: _lastNameController.text.trim(),
+                                          firstName:
+                                              _firstNameController.text.trim(),
+                                          lastName:
+                                              _lastNameController.text.trim(),
                                         );
-
-
                                       }
-
                                     },
                                   ));
                         },
@@ -217,9 +210,8 @@ class RegisterScreen extends StatelessWidget {
                             TextSpan(
                               text: ' ${AppStrings.login}',
                               style: TextStyle(
-                                color: AppColors.blue,
-                                fontWeight: FontWeight.bold
-                              ),
+                                  color: AppColors.blue,
+                                  fontWeight: FontWeight.bold),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   navigateTo(

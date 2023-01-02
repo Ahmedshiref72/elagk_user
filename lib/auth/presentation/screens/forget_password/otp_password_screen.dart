@@ -1,4 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:elagk/auth/presentation/controller/forget_passord_controller/forget_password_cubit.dart';
+import 'package:elagk/auth/presentation/screens/forget_password/forget_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_verification_code/flutter_verification_code.dart';
@@ -11,10 +13,8 @@ import '../../../../shared/utils/navigation.dart';
 import '../../components/auth_title_subtitle_widget.dart';
 import '../../components/logo_widget.dart';
 import '../../components/screen_background.dart';
-import '../../controller/forget_passord_controller/forget_password_cubit.dart';
 import '../../controller/otp_password/otp_password_cubit.dart';
 import '../../controller/otp_password/otp_password_state.dart';
-import 'forget_password_screen.dart';
 import 'otp_componant/otp_componants.dart';
 
 class OtpPasswordScreen extends StatelessWidget {
@@ -24,7 +24,7 @@ class OtpPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: TextDirection.ltr,
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           body: BlocConsumer<OtpPasswordCubit, OtpPasswordStates>(
@@ -40,19 +40,13 @@ class OtpPasswordScreen extends StatelessWidget {
                 showToast(
                     text: AppStrings.codeSendError1, state: ToastStates.ERROR);
               }
-
-              if (state is ChangeDurationEndState) {
-                navigateFinalTo(
-                    context: context, screenRoute: Routes.forgetPasswordScreen);
-              }
             },
             builder: (context, state) {
               Duration duration = OtpPasswordCubit.get(context).duration;
 
-              if (state is OtpPasswordInitialState ||
-                  (duration == Duration(seconds: 0) &&
-                      state is! ChangeDurationEndState))
+              if (duration == Duration(seconds: 0)&&state is OtpPasswordInitialState) {
                 OtpPasswordCubit.get(context).otpCounter();
+              }
               return ScreenBackground(
                 child: Center(
                   child: SingleChildScrollView(
@@ -98,17 +92,21 @@ class OtpPasswordScreen extends StatelessWidget {
                           ),
                           SizedBox(
                               height: mediaQueryHeight(context) / AppSize.s30),
-                          buildTime(duration),
+                          buildTime(
+                            duration,
+                          ),
                           SizedBox(
-                              height: mediaQueryHeight(context) / AppSize.s30),
+                              height: mediaQueryHeight(context) / AppSize.s50),
+
                           TextButton(
                             onPressed: () {
-                              ForgetPasswordCubit.get(context)
-                                  .sendOTP(email: ForgetPasswordScreen.emailController.text.trim());
-                              navigateFinalTo(
-                                  context: context,
-                                  screenRoute: Routes.otpPasswordScreen);
-
+                              if (duration == Duration(seconds: 0)) {
+                                OtpPasswordCubit.get(context).otpCounter();
+                                ForgetPasswordCubit.get(context).sendOTP(
+                                    email: ForgetPasswordScreen
+                                        .emailController.text
+                                        .trim());
+                              }
                             },
                             child: Text(
                               AppStrings.sendCodeAgain,
@@ -116,8 +114,10 @@ class OtpPasswordScreen extends StatelessWidget {
                                   .textTheme
                                   .labelMedium!
                                   .copyWith(
-                                color: AppColors.yellowBold,
-                              ),
+                                    color: AppColors.yellowBold,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20
+                                  ),
                             ),
                           ),
                           // MainButton(

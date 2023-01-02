@@ -13,21 +13,21 @@ class OnBoardingScreen extends StatelessWidget {
 
   List<BoardingModel> boarding = [
     BoardingModel(
-        title: 'Welcome To Teledoctor',
+        title: 'جميع أنواع الأدويه في مكان واحد',
         body: 'Facilitates Follow-up patients and discuss issues with the nurse',
         image:  'assets/images/onboarding/1/image.png',
         color:Color(0xff04914F),
         bColor: Color(0xff45DC95)
     ),
     BoardingModel(
-        title: 'We are making virtual healthcare more accessible . ',
+        title: 'هتلاقينا جمبك في كل مكان',
         body: 'Together,let\’s innovate for impact',
         image: 'assets/images/onboarding/2/image.png',
         color:Color(0xff1D71B8),
         bColor: Color(0xff1ECEE9)
     ),
     BoardingModel(
-        title: 'Smart patient care system',
+        title: 'اسرع توصيل في مصر',
         body:
             'Smart application to make doctor always aware of the patient\'s condition',
         image: 'assets/images/onboarding/3/image.png',

@@ -1,10 +1,17 @@
+import 'package:elagk/auth/data/models/login_model/login_model.dart';
+import 'package:elagk/drawer/data/models/profile/user_profile_model.dart';
+
 class AppConstants {
   // General
   static const String empty = "";
+  static const String userName = "userName";
+
 
   // Cache helper
   static const String userId = "userId";
   static const String token = "token";
+  static const String onBoarding = "onBoarding";
+
   static const String pharmacyId = "pharmacyId";
   static const String categoryId = "categoryId";
   static const String defaultCategory = "defaultCategory";
@@ -13,6 +20,7 @@ class AppConstants {
   static String pharmacyLocation = '';
   static String distance = '';
   static String currentLocation='';
+
 
 
   // About us Screen

@@ -2,11 +2,8 @@ import 'package:elagk/drawer/presentation/components/basket_components/basket_ap
 import 'package:elagk/drawer/presentation/components/basket_components/basket_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../../auth/presentation/components/screen_background.dart';
-import '../../../home/presentation/components/app_bar_basket_icon.dart';
 import '../../../shared/global/app_colors.dart';
-import '../../../shared/utils/app_routes.dart';
 import '../../../shared/utils/app_strings.dart';
 import '../../../shared/utils/app_values.dart';
 
@@ -30,8 +27,8 @@ class BasketScreen extends StatelessWidget {
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(AppPadding.p20),
               child: Column(
-                children: [
-                  const BasketSection(
+                children: const [
+                  BasketSection(
                     firstCategoryName: "categoryName",
                   ),
 

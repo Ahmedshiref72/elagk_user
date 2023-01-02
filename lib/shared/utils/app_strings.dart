@@ -4,13 +4,19 @@ class AppStrings {
   static const String isNull = "null";
   static const String nA = "N/A";
   static const String welcome  = " مرحبا بكم في علاجك";
-  static const String pharmacies="صيدليات";
+  static const String pharmacies="الصيدليات";
   static const String search  = "ابحث .....";
+  static const String noPharmacies= "لا يوجد صيدليات حتى الآن";
+  static const String pleaseCheckYourInternet= "من فضلك تحقق من اتصال الانترنت لديك ثم أعد تحميل الصفحه";
+  static const String pleaseGiveGPSPermission= "من فضلك قم باعطاء التطبيق صلاحيه الوصول الى GPS من اعدادات جهازك";
+  static const String thenRestartApp= "ثم اعد تشغيل التطبيق";
+
 // forget password
   static const String codeSendButton  = "اعاده تعيين كلمه المرور";
   static const String activator  = "تفعيل الحساب";
   static const String pleasePass  = "برجاء ادخال كلمة المرور";
-
+  static const String sendCodeAgain = " ارسال رمز التحقق مرة اخري";
+  static const String sendingVerificationCodeAgain = " ارسال رمز التفعيل مرة اخري";
   static const String codeSendButton1  = "ارسال كود التفعيل ";
   static const String codeSendedSuccessFully="تم ارسال كود التفعيل بنجاح";
   static const String codeSendError  = "برجاء ادخال بريد الكتروني صحيح";
@@ -77,11 +83,12 @@ class AppStrings {
       "سيتم إرسال رمز تحقق علي بريدك الإلكتروني المسجل لدينا";
   static const String currentLoggedInEmail = "البريد الحالي المسجل لدينا";
   static const String send = "إرسال";
-  static const String sendCodeAgain = " ارسال رمز التحقق مرة اخري";
   static const String alreadyHaveAccount = "لديك حساب بالفعل؟";
 
   // Reset password screen
   static const String newPassword = "كلمة مرور جديدة";
+  static const String oldPassword = "كلمة المرور القديمه";
+
   static const String resetPasswordSubtitle =
       "ادخل كلمة مرور تتكون من 8 أحرف بحد أدني، وتحتوي علي رقم وحرف كبير ورمز واحد عالأقل.";
   static const String theNewPassword = "كلمة المرور الجديدة";

@@ -44,7 +44,6 @@ class RegisterCubit extends Cubit<RegisterStates>
           ]
         }
     ).then((value) {
-
       registerModel= RegisterModel.fromJson(value.data);
       sendOTP(email: email);
       emit(RegisterSuccessState());

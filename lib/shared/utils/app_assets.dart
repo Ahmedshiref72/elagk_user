@@ -6,7 +6,6 @@ class ImageAssets {
   // General
   static const String logo = '$IMAGE_PATH/splash/logo.png';
   static const String elagkWord = '$IMAGE_PATH/login/3elagk_word.png';
-  static const String onboard1 = '$IMAGE_PATH/onboarding/image.png';
   static const String background = '$IMAGE_PATH/login/background.png';
   static const String errorImage = '$IMAGE_PATH/about_us/info(1)@3x.png';
 

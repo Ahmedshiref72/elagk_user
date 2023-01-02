@@ -23,8 +23,8 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   static final _formKey = GlobalKey<FormState>();
-  static final emailController = TextEditingController();
-  static final passwordController = TextEditingController();
+  static final _emailController = TextEditingController();
+  static final _passwordController = TextEditingController();
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         authSubtitle: AppStrings.pleaseLogin,
                       ),
                       MainTextFormField(
-                        controller: LoginScreen.emailController,
+                        controller: LoginScreen._emailController,
                         label: AppStrings.email,
                         hint: AppStrings.emailExample,
                         hintColor: AppColors.lightGrey,
@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                       MainTextFormField(
-                        controller: LoginScreen.passwordController,
+                        controller: LoginScreen._passwordController,
                         label: AppStrings.password,
                         hint: AppStrings.passwordExample,
                         hintColor: AppColors.lightGrey,
@@ -132,10 +132,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         },
                         builder: (context, state) {
-                          if (state is LoginSuccessState){
-                            LoginScreen.emailController.text = '';
-                            LoginScreen.passwordController.text = '';
-                          }
                           return ConditionalBuilder(condition:(state is LoginLoadingState),
                               builder: (context)=>const CircularProgressIndicator(),
                               fallback: (context)=>MainButton(
@@ -143,8 +139,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 onPressed: () {
                                   if (LoginScreen._formKey.currentState!.validate()) {
                                     LoginCubit.get(context).userLogin(
-                                        email: LoginScreen.emailController.text.trim(),
-                                        password: LoginScreen.passwordController.text);
+                                        email: LoginScreen._emailController.text.trim(),
+                                        password: LoginScreen._passwordController.text);
                                   }
                                 },
                               )

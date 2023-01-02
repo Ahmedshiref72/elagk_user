@@ -21,7 +21,6 @@ class ProfileContent extends StatelessWidget {
   static final _firstNameController = TextEditingController();
   static final _lastNameController = TextEditingController();
   static final _emailController = TextEditingController();
-  static final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +41,8 @@ class ProfileContent extends StatelessWidget {
       ProfileCubit.get(context).userModel!.firstName!;
       _lastNameController.text =
       ProfileCubit.get(context).userModel!.lastName!;
-      _passwordController.text ='***********';
+      var profileCubit = ProfileCubit.get(context);
+
       return Padding(
         padding: const EdgeInsets.all(AppPadding.p15),
         child: SingleChildScrollView(
@@ -53,26 +53,27 @@ class ProfileContent extends StatelessWidget {
                 SizedBox(
                   height: mediaQueryHeight(context) * .025,
                 ),
-                Container(
-                  width: 150,
-                  height: 150,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      border: Border.all(
-                        width: 4,
-                        color: AppColors.lightGrey,
-                      )),
-                  child: Center(
-                    child: Image(
-                      image: AssetImage(
-                        'assets/images/menu/profile.png',
+                Stack(
+                  alignment: AlignmentDirectional.bottomEnd,
+                  children: [
+                    CircleAvatar(
+                      radius: 88,
+                      backgroundColor: AppColors.primary,
+                      child: CircleAvatar(
+                        radius: 85.0,
+                        backgroundImage: profileCubit.profileImage != null
+                            ? FileImage(profileCubit.profileImage!)
+                            : profileCubit.userModel!.profilePicturePath != ''
+                            ? NetworkImage(
+                            '${profileCubit.userModel!.profilePicturePath.toString()}')
+                            : AssetImage(
+                          'assets/images/menu/user.png',
+                        ) as ImageProvider,
                       ),
-                      width: 150,
-                      height: 150,
-                      fit: BoxFit.cover,
                     ),
-                  ),
+                  ],
                 ),
+
 
                 SizedBox(
                   height: mediaQueryHeight(context) * .025,
@@ -170,25 +171,7 @@ class ProfileContent extends StatelessWidget {
                 SizedBox(
                   height: mediaQueryHeight(context) * .025,
                 ),
-                ProfileTextFormField(
-                  controller: _passwordController,
-                  label: AppStrings.password,
-                  hint: AppStrings.passwordExample,
-                  hintColor: AppColors.lightGrey,
-                  inputType: TextInputType.visiblePassword,
-                  textDirection: TextDirection.ltr,
-                  obscure: true,
-                  validator: (value) {
-                    if (value!.length < AppSize.s8) {
-                      return AppStrings.enterValidPassword;
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: mediaQueryHeight(context) * .02,
-                ),
+
                 MainButton(
                   title: AppStrings.editProfile,
                   onPressed: ()  {

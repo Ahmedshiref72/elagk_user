@@ -9,7 +9,6 @@ class RegisterModel {
   RegisterModel(
       {this.firstName,
         this.lastName,
-
         this.email,
         this.password,
         this.phones,
@@ -18,7 +17,6 @@ class RegisterModel {
   RegisterModel.fromJson(Map<String, dynamic> json) {
     firstName = json['firstName'];
     lastName = json['lastName'];
-
     email = json['email'];
     password = json['password'];
     phones = json['phones'];

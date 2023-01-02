@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:elagk/shared/network/api_constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../shared/network/dio_helper.dart';
@@ -27,7 +25,6 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordStates>
 
       }
     ).then((value) {
-
       emit(SendOTPSuccessState());
     }).catchError((error) {
       print(error.toString());

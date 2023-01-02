@@ -1,6 +1,7 @@
 
 import 'package:elagk/auth/data/models/login_model/login_model.dart';
 import 'package:elagk/auth/presentation/controller/login_controller/login_states.dart';
+import 'package:elagk/drawer/data/models/profile/user_profile_model.dart';
 import 'package:elagk/shared/local/shared_preference.dart';
 import 'package:elagk/shared/network/api_constants.dart';
 import 'package:elagk/shared/network/dio_helper.dart';
@@ -20,8 +21,7 @@ class LoginCubit extends Cubit<LoginStates> {
   })
   async {
     emit(LoginLoadingState());
-
-   await DioHelper.postData(
+    await DioHelper.postData(
       url: ApiConstants.login,
       data:
       {
@@ -35,11 +35,18 @@ class LoginCubit extends Cubit<LoginStates> {
       loginModel = LoginModel.fromJson(value.data);
       CacheHelper.setData(key: AppConstants.userId, value: loginModel!.userId);
       CacheHelper.setData(key: AppConstants.token, value: loginModel!.token);
+      CacheHelper.setData(key: AppConstants.userName, value: loginModel!.username);
       emit(LoginSuccessState(loginModel!));
+
     }).catchError((error)
     {
       print(error.toString());
       emit(LoginErrorState('Invalid Account or Password'));
     });
   }
+
+
+
+
+
 }

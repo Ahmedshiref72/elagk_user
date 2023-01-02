@@ -1,7 +1,12 @@
 
+import 'package:elagk/drawer/data/models/profile/user_profile_model.dart';
+
 abstract class HomeScreenState {}
 
 class HomeScreenInitialState extends HomeScreenState {}
+
+class ProfileGetUserDataLoadingState  extends HomeScreenState {}
+
 
 class GetPharmaciesLoadingState extends HomeScreenState {}
 
@@ -17,4 +22,10 @@ class GetPharmaciesErrorState extends HomeScreenState
 }
 
 class GetUserLocationState extends HomeScreenState {}
+
+class GetPermissionLoadingState extends HomeScreenState {}
+
+class GetPermissionSuccessState extends HomeScreenState {}
+
+class GetPermissionErrorState extends HomeScreenState {}
 

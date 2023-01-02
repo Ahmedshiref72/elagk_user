@@ -16,11 +16,3 @@ class SendOTPErrorState extends ForgetPasswordStates
 
   SendOTPErrorState(this.error);
 }
-
-class ChangeDurationLoadingState extends ForgetPasswordStates {}
-
-class ChangeDurationStartState extends ForgetPasswordStates {
-
-}
-
-class ChangeDurationEndState extends ForgetPasswordStates {}

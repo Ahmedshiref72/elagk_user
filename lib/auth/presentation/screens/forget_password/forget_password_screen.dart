@@ -77,10 +77,11 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                             {
                               showToast(
                                   text: AppStrings.codeSendedSuccessFully, state: ToastStates.SUCCESS);
-                              navigateFinalTo(
+                              navigateTo(
                                   context: context,
                                   screenRoute: Routes.otpPasswordScreen);
                             }
+
                           } else if (state is SendOTPErrorState) {
                             showToast(
                                 text: AppStrings.codeSendError,

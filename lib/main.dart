@@ -5,8 +5,8 @@ import 'package:elagk/auth/presentation/controller/forget_passord_controller/for
 import 'package:elagk/auth/presentation/controller/login_controller/login_cubit.dart';
 import 'package:elagk/auth/presentation/controller/otp_password/otp_password_cubit.dart';
 import 'package:elagk/auth/presentation/controller/register_controller/register_cubit.dart';
+import 'package:elagk/basket/basket_presentation/basket_controller/basket_cubit.dart';
 import 'package:elagk/drawer/presentation/controller/about_us_controller/about_us_cubit.dart';
-import 'package:elagk/drawer/presentation/controller/basket_controller/basket_cubit.dart';
 import 'package:elagk/drawer/presentation/controller/contact_us_controller/contact_us_cubit.dart';
 import 'package:elagk/drawer/presentation/controller/complaints_controller/complaints_cubit.dart';
 import 'package:elagk/drawer/presentation/controller/past_orders_controller/past_orders_cubit.dart';
@@ -30,15 +30,14 @@ import 'shared/utils/app_strings.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-   initializeFancyCart(
-    child: const MyApp(),
-  );
   // await Firebase.initializeApp();
   // await initFCM(); // TODO: enable it after adding app notifications.
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   CacheHelper.init();
-
+  initializeFancyCart(
+    child: MyApp(),
+  );
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.white,
@@ -77,7 +76,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (BuildContext context) =>HomeScreenCubit()..getPermission()),
           BlocProvider(create: (BuildContext context) =>OrderByPerscripiyionCubit()),
           BlocProvider(create: (BuildContext context) =>PastOrdersCubit()),
-          BlocProvider(create: (BuildContext context) =>PharmacyProductiesCubit()..getPharmacies()),
+          BlocProvider(create: (BuildContext context) =>PharmacyProductiesCubit()),
 
 
         ],

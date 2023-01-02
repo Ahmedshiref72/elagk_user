@@ -27,6 +27,7 @@ class OrderByPrescriptionContent extends StatelessWidget {
     return BlocConsumer<OrderByPerscripiyionCubit, OrderByPerscripiyionStates>(
       listener: (context, state) {},
       builder: (context, state) {
+        final String? image= OrderByPerscripiyionCubit.get(context).imagePath;
         return Padding(
           padding: const EdgeInsets.all(AppPadding.p20),
           child: SingleChildScrollView(
@@ -158,6 +159,7 @@ class OrderByPrescriptionContent extends StatelessWidget {
                   height: 60,
                 ),
 
+                state is PickImageSuccessState?
                 AddToCartButton(
                   actionAfterAdding: () {
                     print('object');
@@ -167,7 +169,7 @@ class OrderByPrescriptionContent extends StatelessWidget {
                       id: DateTime.now().millisecondsSinceEpoch,
                       name: 'روشتة ',
                       price:0 ,
-                      image:''),
+                      image:OrderByPerscripiyionCubit.get(context).imagePath!),
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(AppPadding.p15),
@@ -179,7 +181,7 @@ class OrderByPrescriptionContent extends StatelessWidget {
                       child: Text(AppStrings.confirmOrder, style: Theme.of(context).textTheme.headlineMedium),
                     ),
                   ),
-                ),
+                ):
 
                 SizedBox(
                   height: 20,

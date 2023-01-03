@@ -90,7 +90,9 @@ class ProductItemPharmacy extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(AppPadding.p15),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+
+                  },
 
                   child: const Text('اضف الي العربة',
                       style:TextStyle(

@@ -17,7 +17,7 @@ class BasketPharmacy extends StatelessWidget {
   }) : super(key: key);
 
   final String categoriesName;
-  final String Basket;
+  final double Basket;
   final String imageSrc;
 
 
@@ -38,10 +38,10 @@ class BasketPharmacy extends StatelessWidget {
             child: Row(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(AppSize.s15),
-                  child: const Image(
-                    image: AssetImage(
-                      "assets/images/profile/r.png",
+                  borderRadius: BorderRadius.circular(AppSize.s25),
+                  child: Image(
+                    image: NetworkImage(
+                      '${imageSrc}',
                     ),
                     width: 120,
                     height: 200,
@@ -58,12 +58,12 @@ class BasketPharmacy extends StatelessWidget {
                         categoriesName,
                         style:const TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 10
+                            fontSize: 20
                         ),
                       ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s150),
                       Text(
-                        Basket,
+                        '$Basket',
                         style:const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20
@@ -136,7 +136,7 @@ class BasketPharmacy extends StatelessWidget {
 
                     child: const Center(
                       child: Icon(
-                          Icons.restore_from_trash_rounded,color: Colors.red,
+                          Icons.delete,color: Colors.red,
                       ),
                     ),
                   ),

@@ -140,6 +140,7 @@ class RegisterScreen extends StatelessWidget {
                         controller: _passwordController,
                         minLength: 8,
                         uppercaseCharCount: 1,
+                        normalCharCount: 2,
                         numericCharCount: 3,
                         specialCharCount: 1,
                         width: 400,

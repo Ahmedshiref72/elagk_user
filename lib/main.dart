@@ -79,7 +79,6 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (BuildContext context) =>OrderByPerscripiyionCubit()),
           BlocProvider(create: (BuildContext context) =>PastOrdersCubit()),
           BlocProvider(create: (BuildContext context) =>PharmacyProductiesCubit()),
-          BlocProvider(create: (BuildContext context) =>BasketCubit()),
 
 
         ],

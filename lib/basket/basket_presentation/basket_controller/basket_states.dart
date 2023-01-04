@@ -19,3 +19,12 @@ class AddToBasketErrorState extends BasketStates
 
   AddToBasketErrorState(this.error);
 }
+
+class removeFromCartLoadingState extends BasketStates {}
+
+class removeFromCartSuccessState extends BasketStates {}
+
+class CalculatedSuccessfullyState extends BasketStates {}
+
+class CheckIfContainedSuccessfullyState extends BasketStates {}
+

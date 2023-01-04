@@ -63,10 +63,10 @@ class PharmacyProducts extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(AppSize.s15),
                             child:   Image(
-                              image: AssetImage(
-                                "assets/images/medicine.jpg",
+                              image: NetworkImage(
+                                "${PharmacyProductiesCubit.get(context).producties[index].imageUrl}",
                               ),
-                              width: double.infinity,
+                              width: AppSize.s70,
                               height:AppSize.s70,
                             ),
 
@@ -80,7 +80,7 @@ class PharmacyProducts extends StatelessWidget {
                       ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s150),
                       Text(
-                        '${PharmacyProductiesCubit.get(context).producties[index].price.toString()} جنيه ',
+                        '${PharmacyProductiesCubit.get(context).producties[index].price} جنيه ',
                         style: Theme.of(context).textTheme.displaySmall!.copyWith(
                             fontSize: FontSize.s11, fontWeight: FontWeightManager.light),
                       ),

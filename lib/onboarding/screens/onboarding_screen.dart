@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../auth/presentation/components/screen_background.dart';
-import '../../shared/utils/app_assets.dart';
 import '../components/onboarding_appBar.dart';
 import '../controllers/onboarding_cubit.dart';
 import '../controllers/onboarding_model.dart';
@@ -16,7 +15,7 @@ class OnBoardingScreen extends StatelessWidget {
         title: 'جميع أنواع الأدويه في مكان واحد',
         body: 'Facilitates Follow-up patients and discuss issues with the nurse',
         image:  'assets/images/onboarding/1/image.png',
-        color:Color(0xff04914F),
+        color: Color(0xff04914F),
         bColor: Color(0xff45DC95)
     ),
     BoardingModel(
@@ -87,6 +86,7 @@ class OnBoardingScreen extends StatelessWidget {
                             OnboardingCubit.get(context).submit(context);
                           },
                           child: Row(
+
                             children: const [
                               Text(
                                 'تخطى',
@@ -105,23 +105,23 @@ class OnBoardingScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${model.title}',
-                    style: TextStyle(
+                    model.title,
+                    style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Text(
                     '${model.body}',
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
                   Row(

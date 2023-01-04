@@ -14,7 +14,8 @@ class CategoryModel {
         this.image,
         this.createdAt,
         this.superCategoryId,
-        this.superCategory});
+        this.superCategory
+      });
 
   CategoryModel.fromJson(Map<String, dynamic> json) {
     categoryId = json['categoryId'];

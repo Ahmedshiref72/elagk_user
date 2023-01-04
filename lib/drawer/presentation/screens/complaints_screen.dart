@@ -11,9 +11,12 @@ import 'package:elagk/shared/utils/app_routes.dart';
 import 'package:elagk/shared/utils/app_strings.dart';
 import 'package:elagk/shared/utils/app_values.dart';
 import 'package:elagk/shared/utils/navigation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+
+import '../../../shared/utils/alertDialog_widget.dart';
 
 class ComplaintsScreen extends StatelessWidget {
   ComplaintsScreen({Key? key}) : super(key: key);
@@ -76,33 +79,46 @@ class ComplaintsScreen extends StatelessWidget {
                       inputType: TextInputType.multiline,
                       label: AppStrings.complaintDetails,
                     ),
+
+
                     SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                     // cubit.isLoadingAuth ? const Center(child: CircularProgressIndicator(color: AppColors.primary),) :
                     BlocConsumer<ComplaintsCubit, ComplaintsState>(
                       listener: (context, state) {
+
                         if (state is SendComplaintSuccessState) {
                           showToast(
                               text: 'Complaint Sent Successfully',
                               state: ToastStates.SUCCESS);
+                          showDialog(
+                              context: context,
+                              builder: (_) {
+                                Future.delayed(Duration(seconds: 4), () {
+                                  Navigator.of(context).pop(true);
+                                });
+                                return alertDialog(imageSrc:  'assets/images/menu/profile.png',
+                                  text: 'شكرا ليك يسعادنا دايما انك معانا وهنرد على\n             شكاوك في اقرب وقت',);
+                              });
                           _titleController.text = '';
                           _descriptionController.text = '';
                         } else if (state is SendComplaintErrorState) {
                           showToast(
-                              text: '${state.error}', state: ToastStates.ERROR);
+                              text: "${state.error}", state: ToastStates.ERROR);
                         }
                       },
                       builder: (context, state) {
+
+
+
                         return ConditionalBuilder(
                             condition: (state is SendComplaintLoadingState),
                             builder: (BuildContext context) =>
-                                CircularProgressIndicator(),
+                                  CircularProgressIndicator(),
                             fallback: (BuildContext context) => WideButton(
                                   title: AppStrings.sendRequest,
                                   color: AppColors.offBlue,
                                   onPressed: () async {
-                                    _hasInternet =
-                                        await InternetConnectionChecker()
-                                            .hasConnection;
+                                    _hasInternet = await InternetConnectionChecker().hasConnection;
                                     if (_hasInternet) {
                                       if (_formKey.currentState!.validate()) {
                                         ComplaintsCubit.get(context)
@@ -113,9 +129,13 @@ class ComplaintsScreen extends StatelessWidget {
                                                     _descriptionController
                                                         .text);
                                       }
+
                                     }
-                                  },
-                                ));
+
+
+                                  }
+                                  )
+                        );
                       },
                     ),
                   ],

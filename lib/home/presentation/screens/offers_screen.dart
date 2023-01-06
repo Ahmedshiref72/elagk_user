@@ -15,7 +15,6 @@ import 'package:flutter/material.dart';
 
 class OffersScreen extends StatelessWidget {
   const OffersScreen({
-
     Key? key
   }) : super(key: key);
 
@@ -48,7 +47,6 @@ class OffersScreen extends StatelessWidget {
 
                   OffersSection(
                     firstCategoryName: "categoryName",
-
                   ),
                 ],
 

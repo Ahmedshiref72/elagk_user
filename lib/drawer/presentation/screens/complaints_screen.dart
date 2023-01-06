@@ -5,6 +5,7 @@ import 'package:elagk/drawer/presentation/components/complaints_components/wide_
 import 'package:elagk/drawer/presentation/components/fixed_appbar_widget.dart';
 import 'package:elagk/drawer/presentation/controller/complaints_controller/complaints_cubit.dart';
 import 'package:elagk/home/presentation/components/app_bar_basket_icon.dart';
+import 'package:elagk/shared/components/alert_dialoge.dart';
 import 'package:elagk/shared/components/toast_component.dart';
 import 'package:elagk/shared/global/app_colors.dart';
 import 'package:elagk/shared/utils/app_routes.dart';
@@ -15,8 +16,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-
-import '../../../shared/utils/alertDialog_widget.dart';
 
 class ComplaintsScreen extends StatelessWidget {
   ComplaintsScreen({Key? key}) : super(key: key);
@@ -51,41 +50,47 @@ class ComplaintsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
-                    MainTextFormField(
-                      controller: _titleController,
-                      obscure: false,
-                      validator: (value) {
-                        if (value!.length < AppSize.s3) {
-                          return AppStrings.enterValidComplaintTitle;
-                        } else {
-                          return null;
-                        }
-                      },
-                      inputType: TextInputType.text,
-                      label: AppStrings.complaintTitle,
+                    Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: MainTextFormField(
+                        controller: _titleController,
+                        textDirection: TextDirection.rtl,
+                        obscure: false,
+                        validator: (value) {
+                          if (value!.length < AppSize.s3) {
+                            return AppStrings.enterValidComplaintTitle;
+                          } else {
+                            return null;
+                          }
+                        },
+                        inputType: TextInputType.text,
+                        label: AppStrings.complaintTitle,
+                      ),
                     ),
                     SizedBox(height: mediaQueryHeight(context) / AppSize.s40),
-                    MainTextFormField(
-                      controller: _descriptionController,
-                      obscure: false,
-                      maxLines: AppSize.si5,
-                      validator: (value) {
-                        if (value!.length < AppSize.s3) {
-                          return AppStrings.enterValidComplaintDetails;
-                        } else {
-                          return null;
-                        }
-                      },
-                      inputType: TextInputType.multiline,
-                      label: AppStrings.complaintDetails,
+                    Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: MainTextFormField(
+                        controller: _descriptionController,
+                        textDirection: TextDirection.rtl,
+                        obscure: false,
+                        maxLines: AppSize.si5,
+                        validator: (value) {
+                          if (value!.length < AppSize.s3) {
+                            return AppStrings.enterValidComplaintDetails;
+                          } else {
+                            return null;
+                          }
+                        },
+                        inputType: TextInputType.multiline,
+                        label: AppStrings.complaintDetails,
+                      ),
                     ),
-
 
                     SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                     // cubit.isLoadingAuth ? const Center(child: CircularProgressIndicator(color: AppColors.primary),) :
                     BlocConsumer<ComplaintsCubit, ComplaintsState>(
                       listener: (context, state) {
-
                         if (state is SendComplaintSuccessState) {
                           showToast(
                               text: 'Complaint Sent Successfully',
@@ -93,11 +98,11 @@ class ComplaintsScreen extends StatelessWidget {
                           showDialog(
                               context: context,
                               builder: (_) {
-                                Future.delayed(Duration(seconds: 4), () {
-                                  Navigator.of(context).pop(true);
-                                });
-                                return alertDialog(imageSrc:  'assets/images/menu/profile.png',
-                                  text: 'شكرا ليك يسعادنا دايما انك معانا وهنرد على\n             شكاوك في اقرب وقت',);
+                                return alertDialog(
+                                  imageSrc: 'assets/images/menu/profile.png',
+                                  text:
+                                      'شكرا ليك يسعادنا دايما انك معانا وهنرد على\n             شكاوك في اقرب وقت',
+                                );
                               });
                           _titleController.text = '';
                           _descriptionController.text = '';
@@ -107,35 +112,27 @@ class ComplaintsScreen extends StatelessWidget {
                         }
                       },
                       builder: (context, state) {
-
-
-
                         return ConditionalBuilder(
                             condition: (state is SendComplaintLoadingState),
                             builder: (BuildContext context) =>
-                                  CircularProgressIndicator(),
+                                CircularProgressIndicator(),
                             fallback: (BuildContext context) => WideButton(
-                                  title: AppStrings.sendRequest,
-                                  color: AppColors.offBlue,
-                                  onPressed: () async {
-                                    _hasInternet = await InternetConnectionChecker().hasConnection;
-                                    if (_hasInternet) {
-                                      if (_formKey.currentState!.validate()) {
-                                        ComplaintsCubit.get(context)
-                                            .sendComplaint(
-                                                issueType:
-                                                    _titleController.text,
-                                                issueDescription:
-                                                    _descriptionController
-                                                        .text);
-                                      }
-
+                                title: AppStrings.sendRequest,
+                                color: AppColors.offBlue,
+                                onPressed: () async {
+                                  _hasInternet =
+                                      await InternetConnectionChecker()
+                                          .hasConnection;
+                                  if (_hasInternet) {
+                                    if (_formKey.currentState!.validate()) {
+                                      ComplaintsCubit.get(context)
+                                          .sendComplaint(
+                                              issueType: _titleController.text,
+                                              issueDescription:
+                                                  _descriptionController.text);
                                     }
-
-
                                   }
-                                  )
-                        );
+                                }));
                       },
                     ),
                   ],

@@ -1,32 +1,33 @@
 import 'dart:async';
 
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:elagk/auth/presentation/components/MainTextFormField.dart';
+import 'package:elagk/auth/presentation/components/auth_title_subtitle_widget.dart';
+import 'package:elagk/auth/presentation/components/logo_widget.dart';
+import 'package:elagk/auth/presentation/components/main_button.dart';
+import 'package:elagk/auth/presentation/components/screen_background.dart';
+import 'package:elagk/drawer/presentation/components/fixed_appbar_widget.dart';
+import 'package:elagk/drawer/presentation/controller/profile_controller/profile_cubit.dart';
+import 'package:elagk/home/presentation/components/app_bar_basket_icon.dart';
+import 'package:elagk/shared/components/second_appBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../../../../shared/components/toast_component.dart';
 import '../../../../shared/global/app_colors.dart';
 import '../../../../shared/utils/app_routes.dart';
 import '../../../../shared/utils/app_strings.dart';
 import '../../../../shared/utils/app_values.dart';
 import '../../../../shared/utils/navigation.dart';
-import '../../../../shared/utils/text_field_validation.dart';
-import '../../components/MainTextFormField.dart';
-import '../../components/auth_title_subtitle_widget.dart';
-import '../../components/logo_widget.dart';
-import '../../components/main_button.dart';
-import '../../components/screen_background.dart';
-import '../../controller/forget_passord_controller/forget_passowrd_state.dart';
-import '../../controller/reset_password_controller/reset_password_cubit.dart';
-import '../../controller/reset_password_controller/reset_password_state.dart';
-import '../forget_password/forget_password_screen.dart';
 
-class ResetPasswordScreen extends StatelessWidget {
-  const ResetPasswordScreen({Key? key}) : super(key: key);
 
-  static final _formKey = new GlobalKey<FormState>();
-  static final _passwordController = TextEditingController();
-  static final _emailController = TextEditingController();
+class ResetPasswordScreenByOldPassword extends StatelessWidget {
+
+  static final _changePasswordformKey = new GlobalKey<FormState>();
+  static final _oldPasswordController = TextEditingController();
+  static final _newPasswordController = TextEditingController();
+  bool _hasInternet = false;
 
 
 
@@ -37,36 +38,36 @@ class ResetPasswordScreen extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: SafeArea(
         child: Scaffold(
+          appBar: SecondAppBar(
+            context: context,
+            title: AppStrings.editProfile,
+            onTap: () {
+              navigateTo(
+                context: context,
+                screenRoute: Routes.basketScreen,
+              );
+            },
+            actionWidget: const AppBarBasketIcon(),
+          ),
           resizeToAvoidBottomInset: true,
           body: ScreenBackground(
             child: Center(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(AppPadding.p15),
                 child: Form(
-                  key: _formKey,
+                  key: _changePasswordformKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const LogoWidget(),
                       const AuthTitleAndSubtitle(
-                        authTitle: AppStrings.forgotPassword,
-                        authSubtitle: AppStrings.pleasePass,
+                        authTitle: AppStrings.changePassword,
+                        authSubtitle: AppStrings.pleaseEnterOldPass,
                       ),
                       MainTextFormField(
-                        controller: _emailController,
-                        label: AppStrings.email,
-                        hint: AppStrings.emailExample,
-                        hintColor: AppColors.lightGrey,
-                        inputType: TextInputType.emailAddress,
-                        textDirection: TextDirection.ltr,
-                        obscure: false,
-                        validator: (value) => validateEmail(value!),
-                      ),
-                      SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
-                      MainTextFormField(
-                        controller: _passwordController,
-                        label: AppStrings.password,
+                        controller: _oldPasswordController,
+                        label: AppStrings.oldPassword,
                         hint: AppStrings.passwordExample,
                         hintColor: AppColors.lightGrey,
                         inputType: TextInputType.visiblePassword,
@@ -78,12 +79,28 @@ class ResetPasswordScreen extends StatelessWidget {
                           } else {
                             return null;
                           }
+                        },                      ),
+                      SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
+                      MainTextFormField(
+                        controller: _newPasswordController,
+                        label: AppStrings.newPassword,
+                        hint: AppStrings.passwordExample,
+                        hintColor: AppColors.lightGrey,
+                        inputType: TextInputType.visiblePassword,
+                        textDirection: TextDirection.ltr,
+                        obscure: false,
+                        validator: (value) {
+                          if (value!.length < AppSize.s8) {
+                            return AppStrings.enterValidPassword;
+                          } else {
+                            return null;
+                          }
                         },
                       ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s30),
                       FlutterPwValidator(
                         successColor: AppColors.primary,
-                        controller: _passwordController,
+                        controller: _newPasswordController,
                         minLength: 8,
                         uppercaseCharCount: 1,
                         numericCharCount: 3,
@@ -100,38 +117,52 @@ class ResetPasswordScreen extends StatelessWidget {
                         },
                       ),
                       SizedBox(height: mediaQueryHeight(context) / AppSize.s20),
-                      BlocConsumer<ResetPasswordCubit, ResetPasswordStates>(
+                      BlocConsumer<ProfileCubit, ProfileStates>(
                         listener: (context, state) {
-                          if (state is ResetPassSuccessState) {
+                          if (state is ProfileChangePasswordSuccessState) {
                             {
                               showToast(
                                   text: AppStrings.resetPassword,
                                   state: ToastStates.SUCCESS);
-                              navigateFinalTo(
-                                  context: context,
-                                  screenRoute: Routes.loginScreen);
+
                             }
 
-                          } else if (state is ResetPassErrorState) {
+                          } else if (state is ProfileChangePasswordErrorState) {
                             showToast(
                                 text: AppStrings.erorrResetPassword,
                                 state: ToastStates.ERROR);
                           }
                         },
                         builder: (context, state) {
+
+                          if (state is ProfileChangePasswordSuccessState) {
+                              _newPasswordController.text="";
+                              _oldPasswordController.text="";
+
+                          }
+
                           return ConditionalBuilder(
-                            condition: state is! ResetPassLoadingState,
+                            condition: state is! ProfileChangePasswordLoadingState,
                             builder: (context) => MainButton(
                               title: AppStrings.codeSendButton,
-                              onPressed: () async {
-                                  if (_formKey.currentState!.validate()) {
-                                    ResetPasswordCubit.get(context)
-                                        .ResetPass(
-                                        password: _passwordController.toString(),
-                                      email: _emailController.toString()
+                              onPressed: () async
+                              {
+                                _hasInternet =
+                                await InternetConnectionChecker().hasConnection;
+                                if (_hasInternet) {
+                                  if (_changePasswordformKey.currentState!.validate()) {
+                                    ProfileCubit.get(context)
+                                        .changePassword(
+                                        oldPassword: _oldPasswordController.text.trim(),
+                                        newPassword: _newPasswordController.text.trim()
+
                                     );
                                   }
-                              },
+
+                                }
+                              }
+
+
                             ),
                             fallback: (context) =>
                             const CircularProgressIndicator(),
@@ -149,4 +180,3 @@ class ResetPasswordScreen extends StatelessWidget {
     );
   }
 }
-

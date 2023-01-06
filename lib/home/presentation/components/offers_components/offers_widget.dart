@@ -5,11 +5,11 @@ import 'offers_products.dart';
 
 
 class OffersSection extends StatelessWidget {
-  const OffersSection({Key? key, required this.firstCategoryName,})
+  const OffersSection({Key? key, required this.firstCategoryName})
       : super(key: key);
 
   final String firstCategoryName;
-    @override
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -23,7 +23,6 @@ class OffersSection extends StatelessWidget {
         ),
         OffersProducts(
           firstCategoryName: firstCategoryName,
-
         ),
       ],
     );

@@ -6,7 +6,7 @@ class AppStrings {
   static const String welcome  = " مرحبا بكم في علاجك";
   static const String pharmacies="الصيدليات";
   static const String search  = "ابحث .....";
-  static const String noPharmacies= "لا يوجد صيدليات حتى الآن";
+  static const String noPharmacies= "نأسف على  عدم توافر صيدليات في هذه المنطقه سوف يتم توفير صيدليات في أقرب وقت ممكن ...";
   static const String pleaseCheckYourInternet= "من فضلك تحقق من اتصال الانترنت لديك ثم أعد تحميل الصفحه";
   static const String pleaseGiveGPSPermission= "من فضلك قم باعطاء التطبيق صلاحيه الوصول الى GPS من اعدادات جهازك";
   static const String thenRestartApp= "ثم اعد تشغيل التطبيق";
@@ -111,10 +111,14 @@ class AppStrings {
   static const String specialCustomers = "العملاء المميزين";
   static const String elagkStore = "متجر علاجك";
   static const String confirmOrder = "تأكيد الطلب";
+  static const String noPointsProductes =  'لا يوجد منتجات متاحه الان للاستبدال';
+  static const String activeOrder =   'طلب نشط';
+  static const String doneOrder =   'طلب مكتمل';
 
   // About us
   static const String whoAreWe = "من نحن";
   static const String ourVision = "رؤيتنا";
+  static const String noTopUsers = "لا يوجد عملاء مميزين حتى الآن";
   static const String vision =
       "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى";
   static const String version = "الاصدار";
@@ -176,6 +180,7 @@ class AppStrings {
   static const String deliveryOrderIn30Minutes = "توصيل طلب \n 30 دقيقة";
   static const String deliveryDistance = "تبعد مسافة كم";
   static const String noProducts = "لا يوجد منتجات في هذا القسم الآن";
+  static const String noProductsOffers = "لا يوجد منتجات علبها عروض حتى الان";
   static const String products = "المنتجات";
   static const String newQuantity = "الكمية الجديدة";
   static const String newPrice = "السعر الجديد";
@@ -247,5 +252,18 @@ class AppStrings {
   static const String routeNotFound = "Screen not found.";
 
 
+  //stepper
+  static const String stepperYourOrder = "تفاصيل الطلب";
+  static const String stepperHeader1 = "حاله الطلب";
+  static const String stepperBody1 = "تم ارسال الطلب بنجاح";
+  static const String stepperHeader2 = "التجهيز";
+  static const String stepperBody2 = "جاري تجهيز طلبك الآن";
+  static const String stepperHeader3 = "التوصيل";
+  static const String stepperBody3 = "طلبك في الطريق   ...";
+  static const String stepperHeader4 = "التسليم";
+  static const String stepperBody4 = "تم التسليم";
+  static const String note = "ملاحظات : ";
+  static const String deliveryName = "اسم السائق : ";
+  static const String deliveryPhone = "رقم هاتفه : ";
 
 }

@@ -4,10 +4,12 @@ import 'package:elagk/auth/presentation/screens/forget_password/forget_password_
 import 'package:elagk/auth/presentation/screens/login/login_screen.dart';
 import 'package:elagk/auth/presentation/screens/register/register_user_screen.dart';
 import 'package:elagk/auth/presentation/screens/reset_password/reset_password_screen.dart';
+import 'package:elagk/basket/presentation/basket_screen.dart';
 import 'package:elagk/drawer/presentation/components/home_drawe_widget.dart';
-import 'package:elagk/basket/basket_presentation/basket_screen.dart';
 import 'package:elagk/drawer/presentation/components/profile_components/reset_password_byOld.dart';
 import 'package:elagk/drawer/presentation/screens/edit_profile_screen.dart';
+import 'package:elagk/drawer/presentation/screens/stepper_screen.dart';
+import 'package:elagk/home/data/models/offer_product_model.dart';
 import 'package:elagk/home/presentation/screens/home_screen.dart';
 import 'package:elagk/home/presentation/screens/offers_screen.dart';
 import 'package:elagk/onboarding/screens/onboarding_screen.dart';
@@ -17,6 +19,7 @@ import 'package:elagk/pharmacy/data/pharmacy_model.dart';
 import 'package:elagk/pharmacy/presentation/screens/categories_screen/categories_screen.dart';
 import 'package:elagk/pharmacy/presentation/screens/pharmacy_screens/OrderByPrescriptionScreen.dart';
 import 'package:elagk/pharmacy/presentation/screens/pharmacy_screens/phamacy_screen.dart';
+import 'package:elagk/shared/components/gps_permission_denied.dart';
 import 'package:elagk/shared/utils/app_strings.dart';
 import 'package:elagk/shared/utils/argument_models.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +50,9 @@ class Routes {
   static const String confirmPasswordScreen = '/confirmPasswordScreen';
   static const String activator = '/ActivatorScreen';
   static const String resetPasswordScreenByOldPassword = '/ResetPasswordScreenByOldPassword';
+  static const String stepperScreen = '/StepperScreen';
+
+
 
 }
 
@@ -90,8 +96,12 @@ class RouteGenerator {
       return MaterialPageRoute(builder: (_) => ResetPasswordScreenByOldPassword());
       case Routes.activator:
         return MaterialPageRoute(builder: (_) => ActivatorScreen());
-        case Routes.offersScreen:
-      return MaterialPageRoute(builder: (_) => OffersScreen());
+
+      case Routes.offersScreen:
+        return MaterialPageRoute(builder: (_) {
+
+          return OffersScreen();
+        });
       case Routes.otpPasswordScreen:
         return MaterialPageRoute(builder: (_) => OtpPasswordScreen());
       case Routes.orderByPrescription:
@@ -103,7 +113,6 @@ class RouteGenerator {
       return MaterialPageRoute(builder: (_) {
         final pharmacyModel = routeSettings.arguments as PharmacyModel;
         // final pharmacyLocation = routeSettings.arguments as String;
-
         return PharmacyScreen(pharmacyModel:pharmacyModel ,);
       });
       case Routes.homeDrawer:
@@ -116,8 +125,10 @@ class RouteGenerator {
           final pharmacyModel = routeSettings.arguments as PharmacyModel;
           return CategoriesScreen(pharmacyModel: pharmacyModel);
         });
-    case Routes.basketScreen:
-      return MaterialPageRoute(builder: (_) => const BasketScreen());
+      case Routes.basketScreen:
+        return MaterialPageRoute(builder: (_) => const BasketScreen());
+        case Routes.stepperScreen:
+      return MaterialPageRoute(builder: (_) => const StepperScreen());
 
 
       default:

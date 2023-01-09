@@ -15,16 +15,16 @@ class ImageAssets {
   // Main drawer || Drawer icons
   static const String menuIcon = '$IMAGE_PATH/bold_menu_icon.png';
   static const String home = '$IMAGE_PATH/drawer_icons/home.svg';
-  static const String user = '$IMAGE_PATH/drawer_icons/user.svg';
+  static const String user = '$IMAGE_PATH/drawer_icons/profile.svg';
   static const String complaints = '$IMAGE_PATH/drawer_icons/complaint.svg';
   static const String contactUs = '$IMAGE_PATH/drawer_icons/contact-us.svg';
   static const String aboutUs = '$IMAGE_PATH/drawer_icons/about-us.svg';
   static const String logout = '$IMAGE_PATH/drawer_icons/logout.svg';
   static const String offers = '$IMAGE_PATH/drawer_icons/offer.svg';
-  static const String points = '$IMAGE_PATH/drawer_icons/point.svg';
+  static const String points = '$IMAGE_PATH/drawer_icons/points.svg';
   static const String orders = '$IMAGE_PATH/drawer_icons/order.svg';
-  static const String elagkStore = '$IMAGE_PATH/drawer_icons/offer.svg';
-  static const String specialCustomers = '$IMAGE_PATH/drawer_icons/order.svg';
+  static const String elagkStore = '$IMAGE_PATH/drawer_icons/elagkStore.svg';
+  static const String specialCustomers = '$IMAGE_PATH/drawer_icons/top.svg';
   // About us screen
   static const String info = '$IMAGE_PATH/about_us/info(1).png';
   static const String visibility = '$IMAGE_PATH/about_us/visibility.png';
@@ -57,10 +57,12 @@ class ImageAssets {
 class JsonAssets {
   // Offline screen
   static const String noInternet = '$JSON_PATH/no-internet.json';
+  static const String permissionDenied = '$JSON_PATH/permissionDenied.json';
+
   // Notifications screen
   static const String noNotifications = '$JSON_PATH/no-notification.json';
   // Home screen
-  static const String ordersDone = '$JSON_PATH/orders-done.json';
+  static const String noPharmacies = '$JSON_PATH/noPharmacies.json';
 }
 
 class VideoAssets {

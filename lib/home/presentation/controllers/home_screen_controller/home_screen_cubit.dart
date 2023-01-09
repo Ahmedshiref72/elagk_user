@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:elagk/drawer/data/models/profile/user_profile_model.dart';
+import 'package:elagk/home/data/models/offer_product_model.dart';
+import 'package:elagk/home/data/models/pharmacy_offer_model.dart';
 import 'package:elagk/home/presentation/controllers/home_screen_controller/home_screen_state.dart';
 import 'package:elagk/pharmacy/data/pharmacy_model.dart';
 import 'package:elagk/shared/local/shared_preference.dart';
@@ -40,7 +42,6 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
 
   //get All Pharmacies
   List<PharmacyModel> pharmacies = [];
-
   Future<void> getPharmacies() async {
     pharmacies = [];
     emit(GetPharmaciesLoadingState());
@@ -50,12 +51,64 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
           .map((x) => PharmacyModel.fromJson(x))
           .toList();
       emit(GetPharmaciesSuccessState());
+      filterPharmacies();
     } catch (error, stacktrace) {
       emit(GetPharmaciesErrorState(error.toString()));
 
       throw Exception("Exception occured: $error stackTrace: $stacktrace");
     }
   }
+
+  List<PharmacyModel> filteredPharmacies=[];
+  List<PharmacyOfferModel> filteredOffers = [];
+
+  void filterPharmacies()
+  {
+    filteredPharmacies=[];
+    filteredOffers = [];
+    emit(FilterPharmaciesLoadingState());
+    pharmacies.forEach((element)
+    {
+      getDistance(element.latitude,element.longitude).then((value)
+      {
+        print("lat1:${element.latitude}");
+        print("long1:${element.longitude}");
+        print("myLat:${AppConstants.myLat}");
+        print("myLong:${AppConstants.myLong}");
+        print(distance.toString());
+        if(distance! < 20000)
+        {
+          filteredPharmacies.add(element);
+        }
+      });
+    });
+    offers.forEach((element)
+    {
+      getDistance(element.latitude,element.longitude).then((value)
+      {
+        print(distance.toString());
+        if(distance! < 20000)
+        {
+          filteredOffers.add(element);
+        }
+      });
+    });
+    emit(FilterPharmaciesSuccessState());
+
+  }
+
+  int? distance;
+//get distance by mitres
+  Future<void> getDistance(lat1, long1) async {
+
+    distance = await Geolocator.distanceBetween(
+        lat1, long1, AppConstants.myLat!,AppConstants.myLong!)
+        .round();
+    emit(CalculateDistanceSuccessState());
+    print(AppConstants.distance);
+  }
+
+
 
   LocationPermission? permission;
 
@@ -64,14 +117,16 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     locationPermission();
   }
 
+  bool permissionStatue=true;
   Future<void> locationPermission() async {
     var status = await Permission.location.request();
-    if (status == Null){
+    if (status == Null) {
       permission = await Geolocator.requestPermission().then((value) async {
         var status = await Permission.location.request();
         emit(GetPermissionSuccessState());
         if (status == PermissionStatus.denied ||
             status == PermissionStatus.permanentlyDenied) {
+          permissionStatue = false;
           emit(GetPermissionErrorState());
           permission = await Geolocator.requestPermission();
         } else {
@@ -79,21 +134,23 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
         }
       })
           .catchError((onError) {
+        permissionStatue = false;
         emit(GetPermissionErrorState());
         print('fff');
         print(onError);
         print(permission);
-      });}
+      });
+    }
     else {
       if (status == PermissionStatus.denied ||
           status == PermissionStatus.permanentlyDenied) {
+        permissionStatue = false;
         emit(GetPermissionErrorState());
       } else {
         getUserLocation();
       }
     }
   }
-
   //get Current Location
   LatLng? currentPostion;
 
@@ -103,6 +160,8 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
       getCurrentLocation(currentPostion!.latitude, currentPostion!.longitude);
       AppConstants.myLat = currentPostion!.latitude;
       AppConstants.myLong = currentPostion!.longitude;
+    }).catchError((onError){
+      emit(GetUserLocationErrorState());
     });
   }
 
@@ -111,14 +170,73 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     final coordinates = new Coordinates(lat, long);
     addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
 
-    emit(GetUserLocationState());
-    AppConstants.currentLocation = addresses
-        .sublist(3,addresses.length)
-        .first
-        .addressLine
+    emit(GetUserLocationSuccessState());
+    AppConstants.currentLocation = addresses[2].addressLine
         .toString();
     getPharmacies();
     // print("${addresses.addressLine}");
     // print("permission:${permission.toString()}");
   }
+
+  String searchWord='';
+
+  List<PharmacyModel> searchResult=[];
+  void search()
+  {
+    if(searchWord!=''){
+      searchResult=[];
+      searchResult = pharmacies
+          .where((pharmacy) =>
+          pharmacy.pharmacyName!.toLowerCase()
+              .contains(searchWord.toLowerCase()))
+          .toList();
+      emit(SearchDoneSuccessState());
+    }
+    else
+    {
+      searchWord='';
+      emit(SearchDoneSuccessState());
+
+    }
+
+  }
+
+
+  List<PharmacyOfferModel> offers = [];
+  Future<void> getOffers() async {
+    offers = [];
+    emit(GetOffersLoadingState());
+    try {
+      Response response = await DioHelper
+          .getData(url: ApiConstants.getOffers);
+      offers = (response.data as List)
+          .map((x) => PharmacyOfferModel.fromJson(x))
+          .toList();
+      emit(GetOffersSuccessState());
+    } catch (error, stacktrace) {
+      emit(GetOffersErrorState(error.toString()));
+
+      throw Exception("Exception occured: $error stackTrace: $stacktrace");
+    }
+  }
+
+  List<OfferProductModel> offerProducts = [];
+  Future<void> getOfferProducts({required int pharmacyId}) async {
+    offerProducts = [];
+    emit(GetOfferProductsLoadingState());
+    try {
+      Response response = await DioHelper
+          .getData(url: ApiConstants.getOfferProducts(pharmacyId));
+      offerProducts = (response.data as List)
+          .map((x) => OfferProductModel.fromJson(x))
+          .toList();
+      emit(GetOfferProductsSuccessState());
+    } catch (error, stacktrace) {
+      emit(GetOfferProductsErrorState(error.toString()));
+
+      throw Exception("Exception occured: $error stackTrace: $stacktrace");
+    }
+  }
+
+
 }

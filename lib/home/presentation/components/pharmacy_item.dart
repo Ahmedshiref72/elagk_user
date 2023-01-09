@@ -23,8 +23,10 @@ class PharmacyItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
           CategoriesCubit.get(context).changeStringsToDef();
-          navigateTo(context: context, screenRoute:Routes.pharmacy,
-              arguments:pharmacy );
+          navigateTo(context: context,
+              screenRoute:Routes.pharmacy,
+              arguments:pharmacy
+          );
         },
         child: Container(
           width: mediaQueryWidth(context) * .4,
@@ -39,8 +41,8 @@ class PharmacyItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Image(
-                image: AssetImage(
-                  'assets/images/profile/download (4).png',
+                image: NetworkImage(
+                  pharmacy.imageUrl!,
                 ),
                 width: mediaQueryWidth(context) * .35,
                 height: mediaQueryHeight(context) * .12,

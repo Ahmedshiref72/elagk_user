@@ -26,7 +26,7 @@ class BasketSalary extends StatelessWidget {
             focusColor: Colors.white,
             inputType: TextInputType.visiblePassword,
             textDirection: TextDirection.ltr,
-            obscure: false,
+            isObsecured: false,
             icon: InkWell(
               onTap: (){},
               child: Container(

@@ -118,7 +118,7 @@ class OrderByPrescriptionContent extends StatelessWidget {
                   hintColor: Colors.white,
                   focusColor: Colors.white,
                   controller: _orderController,
-                  obscure: false,
+                  isObsecured: false,
                   maxLines: 3,
                   validator: (value) {},
                   inputType: TextInputType.multiline,
@@ -152,7 +152,7 @@ class OrderByPrescriptionContent extends StatelessWidget {
                   focusColor: Colors.white,
                   inputType: TextInputType.visiblePassword,
                   textDirection: TextDirection.ltr,
-                  obscure: false,
+                  isObsecured: false,
                   icon: InkWell(
                     onTap: () {},
                     child: Container(

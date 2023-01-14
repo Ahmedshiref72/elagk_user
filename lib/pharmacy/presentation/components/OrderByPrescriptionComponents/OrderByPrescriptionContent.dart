@@ -117,7 +117,7 @@ class OrderByPrescriptionContent extends StatelessWidget {
                 MainTextFormField(
                   hintColor: Colors.white,
                   focusColor: Colors.white,
-                  controller: _orderController,
+                  controller:   _orderController,
                   isObsecured: false,
                   maxLines: 3,
                   validator: (value) {},
@@ -198,7 +198,8 @@ class OrderByPrescriptionContent extends StatelessWidget {
                                             OrderByPerscripiyionCubit.get(
                                                     context)
                                                 .imagePath,
-                                        pharmacyId: pharmacyModel!.pharmacyId);
+                                        pharmacyId: pharmacyModel!.pharmacyId,
+                                     PrescriptionText: _orderController.text);
 
                               },
                               color: AppColors.offBlue,
@@ -214,7 +215,6 @@ class OrderByPrescriptionContent extends StatelessWidget {
                                 color: AppColors.primary,
                               ),
                             ))),
-
                 SizedBox(
                   height: 20,
                 ),

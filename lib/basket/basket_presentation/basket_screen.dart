@@ -24,6 +24,7 @@ class BasketScreen extends StatelessWidget {
           ),
           backgroundColor: AppColors.offWhite,
           body: ScreenBackground(
+            textDirection: TextDirection.rtl,
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(AppPadding.p20),
               child: Column(

@@ -15,6 +15,8 @@ import 'package:elagk/shared/utils/default_network_image_widget.dart';
 import 'package:elagk/shared/utils/navigation.dart';
 import 'package:flutter/material.dart';
 
+import '../controller/elagk_store_controller/elagk_store_cubit.dart';
+
 
 class ElagkStoreScreen extends StatelessWidget {
   const ElagkStoreScreen({
@@ -23,7 +25,7 @@ class ElagkStoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Directionality(
+    return  ScreenBackground(
       textDirection: TextDirection.rtl,
       child: SafeArea(
         child: Scaffold(
@@ -40,68 +42,80 @@ class ElagkStoreScreen extends StatelessWidget {
           ),
 
           backgroundColor: AppColors.offWhite,
-          body: ScreenBackground(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.all(AppPadding.p20),
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: AppSize.s220,
-                    child: Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        // Pharmacy photo
-                        Align(
-                          alignment: Alignment.center,
-                          child: Container(
-                            decoration:  BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                  AppSize.s8,
-                                ),
-                                gradient:const LinearGradient(
-                                    begin:Alignment.topRight ,
-                                    end:Alignment.bottomRight ,
-                                    colors:
-                                    [
-                                      Color(0xff137e8f),
-                                      Color(0xff059053),
-                                    ])
-                            ),
-                            width: mediaQueryWidth(context),
-                            height: AppSize.s300,
-                            child: Column(
-                              children: [
-                                const SizedBox(
-                                  height: AppSize.s35,
-                                ),
-                                const Center(
-                                  child: Text(
-                                    AppStrings.searchFor,
-                                    style: TextStyle(
-                                        fontSize: 25,color: Colors.white
-                                    ),
+          body: SingleChildScrollView(
+            padding: EdgeInsets.all(AppPadding.p20),
+            child: Column(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: AppSize.s220,
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      // Pharmacy photo
+                      Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          decoration:  BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                AppSize.s8,
+                              ),
+                              gradient:const LinearGradient(
+                                  begin:Alignment.topRight ,
+                                  end:Alignment.bottomRight ,
+                                  colors:
+                                  [
+                                    Color(0xff137e8f),
+                                    Color(0xff059053),
+                                  ])
+                          ),
+                          width: mediaQueryWidth(context),
+                          height: AppSize.s300,
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: AppSize.s35,
+                              ),
+                              const Center(
+                                child: Text(
+                                  AppStrings.searchFor,
+                                  style: TextStyle(
+                                      fontSize: 25,color: Colors.white
                                   ),
                                 ),
-                                ElagkStoreSearch(),
-                              ],
-                            ),
+                              ),
+                              Row(
+                                children: [
+                                  ElagkStoreSearch(),
 
-
+                                ],
+                              ),
+                            ],
                           ),
-                        ),                   // Pharmacy information
-                      ],
-                    ),
+
+
+                        ),
+                      ),                   // Pharmacy information
+                    ],
                   ),
-                  SizedBox(
-                      height: mediaQueryHeight(context) / AppSize.s40),
-                  ElagkStoreCategoriesAndProductsSection(),
-                ],
-
-              ),
-
+                ),
+                SizedBox(
+                    height: mediaQueryHeight(context) / AppSize.s40),
+                ElagkStoreCategoriesAndProductsSection(),
+              ],
 
             ),
+
+
+          ),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.refresh),
+            onPressed: (){
+              ElagkStoreCubit.get(context).getProducts(pharmacyId: 58,
+                  categoryName: ElagkStoreCubit.get(context)
+                      .categories[0]
+                      .categoryName!);
+            },
           ),
         ),
       ),

@@ -113,6 +113,7 @@ class RouteGenerator {
       return MaterialPageRoute(builder: (_) {
         final pharmacyModel = routeSettings.arguments as PharmacyModel;
         // final pharmacyLocation = routeSettings.arguments as String;
+
         return PharmacyScreen(pharmacyModel:pharmacyModel ,);
       });
       case Routes.homeDrawer:
@@ -128,8 +129,10 @@ class RouteGenerator {
       case Routes.basketScreen:
         return MaterialPageRoute(builder: (_) => const BasketScreen());
         case Routes.stepperScreen:
-      return MaterialPageRoute(builder: (_) => const StepperScreen());
-
+          return MaterialPageRoute(builder: (_) {
+            final orderId = routeSettings.arguments as int;
+            return StepperScreen(orderId: orderId);
+          });
 
       default:
         return unDefinedRoute();

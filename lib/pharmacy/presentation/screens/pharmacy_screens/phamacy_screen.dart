@@ -1,6 +1,7 @@
 import 'package:elagk/auth/presentation/components/screen_background.dart';
 import 'package:elagk/home/presentation/components/app_bar_basket_icon.dart';
 import 'package:elagk/pharmacy/data/pharmacy_model.dart';
+import 'package:elagk/pharmacy/presentation/components/OrderByPrescriptionComponents/OrderByPrescriptionContent.dart';
 import 'package:elagk/pharmacy/presentation/components/category_components/item.dart';
 import 'package:elagk/pharmacy/presentation/pharmacy_controllers/categories_controller/categories_cubit.dart';
 import 'package:elagk/pharmacy/presentation/pharmacy_controllers/categories_controller/categories_state.dart';
@@ -16,6 +17,8 @@ import 'package:elagk/shared/utils/default_network_image_widget.dart';
 import 'package:elagk/shared/utils/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../shared/components/second_appBar.dart';
+
 class PharmacyScreen extends StatelessWidget {
   final PharmacyModel? pharmacyModel;
 
@@ -56,6 +59,7 @@ class PharmacyScreen extends StatelessWidget {
                     pharmacyModel!.latitude, pharmacyModel!.longitude);
               }
               return ScreenBackground(
+                textDirection: TextDirection.rtl,
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(AppPadding.p10),
                   child: Column(
@@ -100,7 +104,7 @@ class PharmacyScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             HomeScreenItem(
-                              image: 'assets/images/make-up.jpg',
+                              image: JsonAssets.cosmatics,
                               name: AppStrings.cost,
                               SuperCategoryId: 1,
                               pharmacyModel: pharmacyModel!,
@@ -108,7 +112,7 @@ class PharmacyScreen extends StatelessWidget {
                             SizedBox(
                                 width: mediaQueryHeight(context) / AppSize.s18),
                             HomeScreenItem(
-                              image: 'assets/images/medicine.jpg',
+                              image: JsonAssets.medicens,
                               name: AppStrings.medicine,
                               SuperCategoryId: 2,
                               pharmacyModel: pharmacyModel!,

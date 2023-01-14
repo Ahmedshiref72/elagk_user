@@ -71,17 +71,26 @@ dependencies:
   internet_connection_checker:
   flutter_pw_validator:
   flutter_verification_code: ^1.1.6
-  dotted_border: ^2.0.0+3
-  dotted_line: ^3.1.0
-  flutter_geocoder:
+  dotted_border:
+  dotted_line:
+  flutter_geocoder: ^0.2.2-nullsafety
   permission_handler: ^10.2.0
   location: ^4.4.0
   intl:
-# fancy_cart: ^0.0.4
+  flutter_local_notifications:
+
+#  fancy_cart: ^0.0.4
+#  hive:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  flutter_launcher_icons:
+flutter_icons:
+  android: true
+  desktop: true
+  image_path: "assets/images/appLogo.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

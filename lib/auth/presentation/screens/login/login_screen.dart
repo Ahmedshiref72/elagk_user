@@ -88,8 +88,8 @@ class LoginScreen extends StatelessWidget {
                           isObsecured:LoginCubit.get(context).isObsecured ,
                           suffixIcon: IconButton(
                               color: Colors.white,
-                              icon: LoginCubit.get(context).isObsecured?Icon(Icons.visibility,color: AppColors.primary,):
-                              Icon(Icons.visibility_off,color: AppColors.primary,),
+                              icon: LoginCubit.get(context).isObsecured?Icon(Icons.visibility,color: AppColors.blue,):
+                              Icon(Icons.visibility_off,color: AppColors.blue,),
                               onPressed: (){
                                 LoginCubit.get(context).changeVisibility();
                               }),

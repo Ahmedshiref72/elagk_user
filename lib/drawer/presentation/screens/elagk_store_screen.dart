@@ -84,12 +84,7 @@ class ElagkStoreScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Row(
-                                children: [
-                                  ElagkStoreSearch(),
-
-                                ],
-                              ),
+                              ElagkStoreSearch(),
                             ],
                           ),
 
@@ -108,17 +103,16 @@ class ElagkStoreScreen extends StatelessWidget {
 
 
           ),
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.refresh),
-            onPressed: (){
-              ElagkStoreCubit.get(context).getProducts(pharmacyId: 58,
-                  categoryName: ElagkStoreCubit.get(context)
-                      .categories[0]
-                      .categoryName!);
-            },
-          ),
+           floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.refresh),
+               onPressed: (){
+             ElagkStoreCubit.get(context).getProducts(pharmacyId: 58,
+               categoryName: ElagkStoreCubit.get(context)
+        .categories[0]
+                                    .categoryName!);
+    },
         ),
       ),
-    );
+    ));
   }
 }

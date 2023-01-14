@@ -123,16 +123,6 @@ class OtpPasswordScreen extends StatelessWidget {
                                 ),
                           ),
                         ),
-                        // MainButton(
-                        //   title: AppStrings.codeSendButton,
-                        //   onPressed: (value) async {
-                        //     if (_formKey.currentState!.validate()) {
-                        //       OtpPasswordCubit.get(context)
-                        //           .Otp(code:int.parse(value) ,);
-                        //     }
-                        //
-                        //   },
-                        // ),
                       ],
                     ),
                   ),

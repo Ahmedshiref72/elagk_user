@@ -55,7 +55,7 @@ Widget OrderItem(
                         style:
                             TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                     SizedBox(
-                      width: mediaQueryWidth(context) * 0.18,
+                      width: mediaQueryWidth(context) * 0.24,
                     ),
                     !isActive
                         ? Text(AppStrings.activeOrder,
@@ -74,13 +74,13 @@ Widget OrderItem(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                        '${DateFormat("yyyy-MM-dd").format(DateTime.parse(pastOrder.createdAt.toString()))}',
+                        '${DateFormat("yyyy-MM-dd-hh:mm").format(DateTime.parse(pastOrder.createdAt.toString()))}',
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                             color: Colors.grey.shade500)),
                     SizedBox(
-                      width: mediaQueryWidth(context) * 0.24,
+                      width: mediaQueryWidth(context) * 0.19,
                     ),
                     Text(pastOrder.totalPrice.toString() + ' جنيه ',
                         style: TextStyle(

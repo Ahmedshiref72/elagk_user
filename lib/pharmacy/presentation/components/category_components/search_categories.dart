@@ -90,7 +90,7 @@ class SearchCategoriesWidget extends StatelessWidget {
                     },
                   ),
                 ),
-                InkWell(
+              /*  InkWell(
                   onTap: ()
                   {
                     FocusScope.of(context).unfocus();
@@ -109,7 +109,7 @@ class SearchCategoriesWidget extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                ),
+                ),*/
               ],
             ),
           ),

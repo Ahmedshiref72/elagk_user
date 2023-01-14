@@ -8,8 +8,10 @@ import 'package:elagk/shared/components/toast_component.dart';
 import 'package:elagk/shared/global/app_colors.dart';
 import 'package:elagk/shared/utils/app_assets.dart';
 import 'package:elagk/shared/utils/app_constants.dart';
+import 'package:elagk/shared/utils/app_routes.dart';
 import 'package:elagk/shared/utils/app_strings.dart';
 import 'package:elagk/shared/utils/app_values.dart';
+import 'package:elagk/shared/utils/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'AddPrescriptionImage.dart';
@@ -38,6 +40,7 @@ class OrderByPrescriptionContent extends StatelessWidget {
                     AppStrings.stepperBody1,
                   );
                 });
+
 
           }
 
@@ -188,14 +191,15 @@ class OrderByPrescriptionContent extends StatelessWidget {
                                 borderRadius:
                                     BorderRadius.circular(AppPadding.p15),
                               ),
-                              onPressed: () => {
-                                OrderByPerscripiyionCubit.get(context)
+                              onPressed: ()  {
+                                 OrderByPerscripiyionCubit.get(context)
                                     .orderByPerscription(
                                         prescriptionImageFile:
                                             OrderByPerscripiyionCubit.get(
                                                     context)
                                                 .imagePath,
-                                        pharmacyId: pharmacyModel!.pharmacyId)
+                                        pharmacyId: pharmacyModel!.pharmacyId);
+
                               },
                               color: AppColors.offBlue,
                               child: Center(

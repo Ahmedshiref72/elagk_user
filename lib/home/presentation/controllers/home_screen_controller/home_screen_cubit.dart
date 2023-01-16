@@ -14,7 +14,7 @@ import 'package:elagk/shared/network/api_constants.dart';
 import 'package:elagk/shared/network/dio_helper.dart';
 import 'package:elagk/shared/utils/app_constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_geocoder/geocoder.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -170,13 +170,15 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
   }
 
   Future<void> getCurrentLocation(lat, long) async {
-    List<Address> addresses;
-    final coordinates = new Coordinates(lat, long);
-    addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    List<Placemark> addresses;
+    addresses = await placemarkFromCoordinates(lat, long);
 
     emit(GetUserLocationSuccessState());
-    AppConstants.currentLocation = addresses[2].addressLine
+    AppConstants.currentLocation = addresses[0].street
         .toString();
+
+    print('///////////////////////////////////');
+    print(addresses);
     getPharmacies();
     // print("${addresses.addressLine}");
     // print("permission:${permission.toString()}");

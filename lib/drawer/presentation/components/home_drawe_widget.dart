@@ -33,7 +33,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
   getScreen(MyMenuItem currentItem) {
     switch (currentItem) {
       case MenuItems.homepage:
-        return const HomeScreen();
+        return  HomeScreen();
       case MenuItems.profile:
         return const ProfileScreen();
       case MenuItems.points:

@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
           textDirection: TextDirection.rtl,
           child: SafeArea(
             child: Scaffold(
-                // TODO: remove Scaffold qnd appBar.
+              // TODO: remove Scaffold qnd appBar.
                 appBar: homePageAppBar(
                   title: AppBarTitle(
                       currentLocation: AppConstants.currentLocation),
@@ -59,118 +59,118 @@ class HomeScreen extends StatelessWidget {
                 HomeScreenCubit.get(context).permissionStatue==false?
                 GpsPermissionDenied():
                 Padding(
-                        padding: const EdgeInsets.all(AppPadding.p15),
-                        child: RefreshIndicator(
-                          onRefresh: () async {
-                            HomeScreenCubit.get(context).getUserProfileData();
-                            HomeScreenCubit.get(context).getPermission();
-                            HomeScreenCubit.get(context).getOffers();
-                          },
-                          child: SingleChildScrollView(
-                              physics: AlwaysScrollableScrollPhysics(),
-                              child: (state is GetPharmaciesLoadingState ||
-                                      state is FilterPharmaciesLoadingState||
+                  padding: const EdgeInsets.all(AppPadding.p15),
+                  child: RefreshIndicator(
+                    onRefresh: () async {
+                      HomeScreenCubit.get(context).getUserProfileData();
+                      HomeScreenCubit.get(context).getPermission();
+                      HomeScreenCubit.get(context).getOffers();
+                    },
+                    child: SingleChildScrollView(
+                        physics: AlwaysScrollableScrollPhysics(),
+                        child: (state is GetPharmaciesLoadingState ||
+                            state is FilterPharmaciesLoadingState||
                             state is GetPermissionLoadingState)
-                                  ? Center(
-                                      child: CircularProgressIndicator(
-                                      color: AppColors.primary,
-                                    ))
-                                  : HomeScreenCubit.get(context)
-                                          .pharmacies
-                                          .isEmpty &&
-                                  state is FilterPharmaciesSuccessState
+                            ? Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.primary,
+                            ))
+                            : HomeScreenCubit.get(context)
+                            .pharmacies
+                            .isEmpty &&
+                            state is FilterPharmaciesSuccessState
 
-                                      ? Padding(
-                                        padding: EdgeInsets.symmetric(vertical:
-                                        mediaQueryHeight(context)*.4),
-                                        child: NoPharmaciesAvailable(),
-                                      )
+                            ? Padding(
+                          padding: EdgeInsets.symmetric(vertical:
+                          mediaQueryHeight(context)*.4),
+                          child: NoPharmaciesAvailable(),
+                        )
 
-                                          : HomeScreenCubit.get(context)
-                                                  .pharmacies
-                                                  .isNotEmpty
-                                              ? Column(
-                                                  children: [
-                                                    SizedBox(
-                                                      height: mediaQueryHeight(
-                                                              context) *
-                                                          .025,
-                                                    ),
-                                                    WelcomeWidget(),
-                                                    SizedBox(
-                                                      height: mediaQueryHeight(
-                                                              context) *
-                                                          .025,
-                                                    ),
-                                                    Align(
-                                                      alignment: Alignment.center,
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                              AppSize.s8,
-                                                            ),
-                                                            gradient:
-                                                                const LinearGradient(
-                                                                    begin: Alignment
-                                                                        .topRight,
-                                                                    end: Alignment
-                                                                        .bottomRight,
-                                                                    colors: [
-                                                                  Color(0xff137e8f),
-                                                                  Color(0xff059053),
-                                                                ])),
-                                                        width: mediaQueryWidth(
-                                                            context),
-                                                        height: AppSize.s230,
-                                                        child: Column(
-                                                          children: [
-                                                            const SizedBox(
-                                                              height: AppSize.s30,
-                                                            ),
-                                                            const Center(
-                                                              child: Text(
-                                                                AppStrings
-                                                                    .searchForPharmacy,
-                                                                style: TextStyle(
-                                                                    fontSize: 25,
-                                                                    color: Colors
-                                                                        .white),
-                                                              ),
-                                                            ),
-                                                            SearchWidget(),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ), // Pharmacy information
-                                                    SizedBox(
-                                                      height: mediaQueryHeight(
-                                                              context) *
-                                                          .025,
-                                                    ),
-                                                    HomeScreenCubit.get(context)
-                                                            .filteredOffers
-                                                            .isNotEmpty
-                                                        ? OffersWidget(
-                                                            offers:
-                                                                HomeScreenCubit.get(
-                                                                        context)
-                                                                    .filteredOffers,
-                                                          )
-                                                        : SizedBox(),
-                                                    SizedBox(
-                                                      height: mediaQueryHeight(
-                                                              context) *
-                                                          .025,
-                                                    ),
-                                                    PharmaciesWidget()
-                                                  ],
-                                                )
-                                              : Center(child: NoPharmaciesAvailable())
-                          ),
-                        ),
-                      )),
+                            : HomeScreenCubit.get(context)
+                            .pharmacies
+                            .isNotEmpty
+                            ? Column(
+                          children: [
+                            SizedBox(
+                              height: mediaQueryHeight(
+                                  context) *
+                                  .025,
+                            ),
+                            WelcomeWidget(),
+                            SizedBox(
+                              height: mediaQueryHeight(
+                                  context) *
+                                  .025,
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius
+                                        .circular(
+                                      AppSize.s8,
+                                    ),
+                                    gradient:
+                                    const LinearGradient(
+                                        begin: Alignment
+                                            .topRight,
+                                        end: Alignment
+                                            .bottomRight,
+                                        colors: [
+                                          Color(0xff137e8f),
+                                          Color(0xff059053),
+                                        ])),
+                                width: mediaQueryWidth(
+                                    context),
+                                height: AppSize.s230,
+                                child: Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: AppSize.s30,
+                                    ),
+                                    const Center(
+                                      child: Text(
+                                        AppStrings
+                                            .searchForPharmacy,
+                                        style: TextStyle(
+                                            fontSize: 25,
+                                            color: Colors
+                                                .white),
+                                      ),
+                                    ),
+                                    SearchWidget(),
+                                  ],
+                                ),
+                              ),
+                            ), // Pharmacy information
+                            SizedBox(
+                              height: mediaQueryHeight(
+                                  context) *
+                                  .025,
+                            ),
+                            HomeScreenCubit.get(context)
+                                .filteredOffers
+                                .isNotEmpty
+                                ? OffersWidget(
+                              offers:
+                              HomeScreenCubit.get(
+                                  context)
+                                  .filteredOffers,
+                            )
+                                : SizedBox(),
+                            SizedBox(
+                              height: mediaQueryHeight(
+                                  context) *
+                                  .025,
+                            ),
+                            PharmaciesWidget()
+                          ],
+                        )
+                            : Center(child: NoPharmaciesAvailable())
+                    ),
+                  ),
+                )),
             // HomeScreen
           ),
         );

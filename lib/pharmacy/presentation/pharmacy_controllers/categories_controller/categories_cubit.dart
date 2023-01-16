@@ -3,8 +3,8 @@ import 'package:elagk/pharmacy/presentation/pharmacy_controllers/categories_cont
 import 'package:elagk/shared/network/api_constants.dart';
 import 'package:elagk/shared/utils/app_constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_geocoder/geocoder.dart';
-import 'package:flutter_geocoder/model.dart';
+import 'package:geocoding/geocoding.dart';
+
 import 'package:geolocator/geolocator.dart';
 import '../../../../shared/network/dio_helper.dart';
 
@@ -22,10 +22,11 @@ void changeStringsToDef()
 }
 
   Future<void> getLocation(lat, long) async {
-    var addresses;
+
     var first;
-    final coordinates = new Coordinates(lat,long);
-    addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    List<Placemark> addresses;
+    addresses = await placemarkFromCoordinates(lat, long);
+
     first = addresses[2];
     emit(GetLocationState());
     AppConstants.pharmacyLocation = first.addressLine!;

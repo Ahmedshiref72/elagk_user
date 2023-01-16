@@ -5,9 +5,7 @@ import 'package:elagk/shared/utils/app_strings.dart';
 import 'package:elagk/shared/utils/app_values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:lottie/lottie.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class GpsPermissionDenied extends StatelessWidget {
   const GpsPermissionDenied({Key? key}) : super(key: key);

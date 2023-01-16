@@ -73,11 +73,12 @@ dependencies:
   flutter_verification_code: ^1.1.6
   dotted_border:
   dotted_line:
-  flutter_geocoder: ^0.2.2-nullsafety
-  permission_handler: ^10.2.0
   location: ^4.4.0
   intl:
   flutter_local_notifications:
+  geocoding: ^2.0.5
+  permission_handler: ^10.2.0
+
 
 #  fancy_cart: ^0.0.4
 #  hive:

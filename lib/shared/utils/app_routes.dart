@@ -118,7 +118,7 @@ class RouteGenerator {
       case Routes.homeDrawer:
         return MaterialPageRoute(builder: (_) => const HomeDrawer());
       case Routes.homeScreen:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return MaterialPageRoute(builder: (_) =>  HomeScreen());
 
       case Routes.categories:
         return MaterialPageRoute(builder: (_) {

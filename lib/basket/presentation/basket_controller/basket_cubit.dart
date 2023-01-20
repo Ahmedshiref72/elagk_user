@@ -1,5 +1,4 @@
 import 'package:elagk/basket/data/basket_model.dart';
-import 'package:elagk/home/presentation/controllers/home_screen_controller/home_screen_cubit.dart';
 import 'package:elagk/pharmacy/data/product_model.dart';
 import 'package:elagk/shared/local/shared_preference.dart';
 import 'package:elagk/shared/network/api_constants.dart';
@@ -71,10 +70,9 @@ class BasketCubit extends Cubit<BasketStates> {
         basketProducts.add(basketModel);
         calcTotalPrice();
         emit(AddToBasketSuccessState());
-        // print(basketProducts.length);
-        // print(basketModel.productId);
         print(basketModel.productName);
         print(basketModel.price);
+        print(basketModel.productId);
       } else {
         plus(index: index);
         print(index);
@@ -127,11 +125,13 @@ class BasketCubit extends Cubit<BasketStates> {
   }
 
   double totalPrice = 0.0;
-  double delivery=0.0;
+  double delivery=0;
   void calcTotalPrice() {
     totalPrice = 0.0;
     basketProducts.forEach((element) {
       totalPrice += (element.price! * element.quantity!);
+
+
     });
     // totalPrice+=delivery;
     emit(CalculatedSuccessfullyState());
@@ -216,7 +216,8 @@ class BasketCubit extends Cubit<BasketStates> {
                     key: AppConstants.userId),
                 "cartId": int.parse(cartId.toString()),
                 "quantity": element.quantity,
-                "price": element.price});
+                "price": element.price
+              });
              await DioHelper.postData(
                   url: ApiConstants.postCartProducts,
                   data: {

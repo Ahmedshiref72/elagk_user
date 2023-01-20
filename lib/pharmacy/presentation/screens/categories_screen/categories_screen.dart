@@ -91,7 +91,8 @@ class CategoriesScreen extends StatelessWidget {
                                       child: Text(
                                         AppStrings.searchFor,
                                         style: TextStyle(
-                                            fontSize: 25, color: Colors.white
+                                            fontSize: 25,
+                                            color: Colors.white
                                         ),
                                       ),
                                     ),

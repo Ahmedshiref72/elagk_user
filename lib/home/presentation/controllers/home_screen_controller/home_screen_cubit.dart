@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:elagk/basket/data/notification_model.dart';
 import 'package:elagk/drawer/data/models/profile/user_profile_model.dart';
@@ -42,8 +41,6 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     });
   }
 
-
-
   //get All Pharmacies
   List<PharmacyModel> pharmacies = [];
   Future<void> getPharmacies() async {
@@ -55,10 +52,12 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
           .map((x) => PharmacyModel.fromJson(x))
           .toList();
       emit(GetPharmaciesSuccessState());
+      print('/////////////////////////////////////ahmedshiref7/////////////////////////////////');
+      print(pharmacies.length);
       filterPharmacies();
-    } catch (error, stacktrace) {
+      } catch (error, stacktrace)
+    {
       emit(GetPharmaciesErrorState(error.toString()));
-
       throw Exception("Exception occured: $error stackTrace: $stacktrace");
     }
   }
@@ -80,18 +79,19 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
         print("myLat:${AppConstants.myLat}");
         print("myLong:${AppConstants.myLong}");
         print(distance.toString());
-        if(distance! < 20000)
+        if(distance! <20000)
         {
           filteredPharmacies.add(element);
         }
       });
+      print(filteredPharmacies.length);
     });
     offers.forEach((element)
     {
       getDistance(element.latitude,element.longitude).then((value)
       {
         print(distance.toString());
-        if(distance! < 20000)
+        if(distance! <20000)
         {
           filteredOffers.add(element);
         }
@@ -109,6 +109,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
         lat1, long1, AppConstants.myLat!,AppConstants.myLong!)
         .round();
     emit(CalculateDistanceSuccessState());
+    print('/////////////////shefo/////////////////');
     print(AppConstants.distance);
   }
 
@@ -174,14 +175,12 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     addresses = await placemarkFromCoordinates(lat, long);
 
     emit(GetUserLocationSuccessState());
-    AppConstants.currentLocation = addresses[0].street
+    AppConstants.currentLocation = addresses[1].street
         .toString();
 
     print('///////////////////////////////////');
     print(addresses);
     getPharmacies();
-    // print("${addresses.addressLine}");
-    // print("permission:${permission.toString()}");
   }
 
   String searchWord='';

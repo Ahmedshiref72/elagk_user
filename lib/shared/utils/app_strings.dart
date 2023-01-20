@@ -1,6 +1,6 @@
 class AppStrings {
   // General
-  static const String appTitle = "3elagk pharmacy - علاجك لصيدليات";
+  static const String appTitle = " - علاجك لصيدليات";
   static const String isNull = "null";
   static const String nA = "N/A";
   static const String welcome  = " مرحبا بكم في علاجك";

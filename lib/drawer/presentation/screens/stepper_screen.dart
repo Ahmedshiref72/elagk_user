@@ -32,6 +32,8 @@ import 'package:flutter/material.dart';
         floatingActionButton: FloatingActionButton(
           onPressed: () async{
             StepperCubit.get(context).followOrder(orderId: orderId);
+            StepperCubit.get(context).calcTotalPrice();
+
           },
           child:Icon(Icons.refresh) ,
         ),

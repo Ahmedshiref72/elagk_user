@@ -52,6 +52,7 @@ class BasketSection extends StatelessWidget {
               ),
               BasketSalary(
                 totalPrice: BasketCubit.get(context).totalPrice,
+                feesPrice: BasketCubit.get(context).delivery,
               ),
               SizedBox(
                   width: double.infinity,

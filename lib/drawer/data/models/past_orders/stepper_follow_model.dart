@@ -3,6 +3,8 @@ class StepperFollowModel {
   bool? isAcceptedByDelivery;
   bool? isRejected;
   bool? isDelivered;
+  double? deliveryFees;
+  double? orderPrice;
   DeliveryDetails? deliveryDetails;
 
   StepperFollowModel(
@@ -10,6 +12,8 @@ class StepperFollowModel {
         this.isAcceptedByDelivery,
         this.isRejected,
         this.isDelivered,
+        this.deliveryFees,
+        this.orderPrice,
         this.deliveryDetails});
 
   StepperFollowModel.fromJson(Map<String, dynamic> json) {
@@ -17,6 +21,8 @@ class StepperFollowModel {
     isAcceptedByDelivery = json['isAcceptedByDelivery'];
     isRejected = json['isRejected'];
     isDelivered = json['isDelivered'];
+    deliveryFees = json['deliveryFees'];
+    orderPrice = json['orderPrice'];
     deliveryDetails = json['deliveryDetails'] != null
         ? new DeliveryDetails.fromJson(json['deliveryDetails'])
         : null;
@@ -28,6 +34,8 @@ class StepperFollowModel {
     data['isAcceptedByDelivery'] = this.isAcceptedByDelivery;
     data['isRejected'] = this.isRejected;
     data['isDelivered'] = this.isDelivered;
+    data['deliveryFees'] = this.deliveryFees;
+    data['orderPrice'] = this.orderPrice;
     if (this.deliveryDetails != null) {
       data['deliveryDetails'] = this.deliveryDetails!.toJson();
     }

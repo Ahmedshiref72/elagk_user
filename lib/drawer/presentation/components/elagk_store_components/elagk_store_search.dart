@@ -36,6 +36,7 @@ class ElagkStoreSearch extends StatelessWidget {
                   child: AdvancedSearch(
 
                     searchItems: searchableList,
+
                     maxElementsToDisplay: 10,
                     singleItemHeight: 50,
                     minLettersForSearch: 0,
@@ -52,6 +53,7 @@ class ElagkStoreSearch extends StatelessWidget {
                     enabled: true,
                     caseSensitive: true,
                     inputTextFieldBgColor: Colors.white10,
+
                     clearSearchEnabled: true,
                     itemsShownAtStart: 10,
                     searchMode: SearchMode.CONTAINS,

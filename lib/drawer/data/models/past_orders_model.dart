@@ -10,7 +10,6 @@ class PastOrdersModel {
   String? createdAt;
   String? updatedAt;
   double? totalPrice;
-
   Null? userId;
   int? pharmacyId;
   int? cartId;

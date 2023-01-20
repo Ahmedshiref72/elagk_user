@@ -76,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                               color: AppColors.primary,
                             ))
                             : HomeScreenCubit.get(context)
-                            .pharmacies
+                            .filteredPharmacies
                             .isEmpty &&
                             state is FilterPharmaciesSuccessState
 
@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                         )
 
                             : HomeScreenCubit.get(context)
-                            .pharmacies
+                            .filteredPharmacies
                             .isNotEmpty
                             ? Column(
                           children: [

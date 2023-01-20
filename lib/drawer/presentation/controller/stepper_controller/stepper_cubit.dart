@@ -16,11 +16,13 @@ class StepperCubit extends Cubit<StepperState> {
   StepperFollowModel? stepperFollowModel;
   Future<StepperFollowModel?> followOrder({required orderId})
   async {
+
     emit(OrderFollowLoadingState());
     DioHelper.getData(url: ApiConstants.followOrder(orderId))
         .then((value)
     {
       stepperFollowModel=StepperFollowModel.fromJson(value.data);
+      print(stepperFollowModel!.deliveryFees!);
       emit(OrderFollowSuccessState());
 
     }).catchError((onError)
@@ -35,9 +37,13 @@ class StepperCubit extends Cubit<StepperState> {
   }
 
 
+  double totalPrice = 0;
 
-
-
-
+  void calcTotalPrice() {
+    totalPrice=stepperFollowModel!.deliveryFees!+stepperFollowModel!.orderPrice!;
+    print('totalPrice');
+    print(totalPrice);
+    print('totalPrice');
+  }
 
 }

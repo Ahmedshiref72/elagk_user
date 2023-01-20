@@ -110,10 +110,8 @@ class StepperContent extends StatelessWidget {
                     ),
                     StepperNotes(
                       name:
-                      StepperCubit.get(context)
-                          .stepperFollowModel?.deliveryDetails !=null?
-                      StepperCubit.get(context)
-                          .stepperFollowModel!.deliveryDetails!.firstName.toString()+
+                      StepperCubit.get(context).stepperFollowModel?.deliveryDetails !=null?
+                      StepperCubit.get(context).stepperFollowModel!.deliveryDetails!.firstName.toString()+
                       ' '+
                           StepperCubit.get(context)
                               .stepperFollowModel!.deliveryDetails!.lastName.toString():
@@ -123,7 +121,58 @@ class StepperContent extends StatelessWidget {
                           .stepperFollowModel?.deliveryDetails !=null ?
                       StepperCubit.get(context)
                           .stepperFollowModel!.deliveryDetails!.phones!.toList() :[''],
-                    )
+                    ),
+                    SizedBox(height: mediaQueryHeight(context) / AppSize.s50),
+                    Row(
+                      children:  [
+                        Text(
+                          "سعر الديلفري",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            color:Colors.grey,
+                          ),
+                        ),
+                        Spacer(),
+                        Text(
+                          StepperCubit.get(context).stepperFollowModel?.deliveryFees !=null?
+                          StepperCubit.get(context).stepperFollowModel!.deliveryFees!.toString():
+                          'لم يتم تحديد السائق بعد',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            color:Colors.grey,
+
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children:  [
+                        Text(
+                          "السعر الكلي",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            color:Colors.grey,
+                          ),
+                        ),
+                        Spacer(),
+                        Text(
+                          StepperCubit.get(context).stepperFollowModel?.orderPrice !=null?
+                          StepperCubit.get(context).totalPrice.toString():
+                          'لم يتم التحديد بعد',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            color:Colors.grey,
+
+                          ),
+                        ),
+                      ],
+                    ),
+
+
                   ],
                 ),
               ),

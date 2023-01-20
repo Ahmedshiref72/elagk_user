@@ -1,6 +1,4 @@
 class BasketModel {
-
-
   int? productId;
   String? productName;
   String? imageUrl;

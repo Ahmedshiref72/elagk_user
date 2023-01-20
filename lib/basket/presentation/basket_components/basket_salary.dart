@@ -6,12 +6,12 @@ import 'package:elagk/shared/utils/app_strings.dart';
 import '../../../../auth/presentation/components/MainTextFormField.dart';
 
 class BasketSalary extends StatelessWidget {
-  BasketSalary({Key? key, required this.totalPrice}) : super(key: key);
+  BasketSalary({Key? key, required this.totalPrice, required this.feesPrice}) : super(key: key);
   static final _discountController = TextEditingController();
   final double totalPrice;
+  final double feesPrice;
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.all(AppPadding.p20),
       child: Column(
@@ -73,26 +73,6 @@ class BasketSalary extends StatelessWidget {
             ],
           ),
           SizedBox(height: mediaQueryHeight(context) / AppSize.s50),
-          Row(
-            children: const [
-              Text(
-                "الديلفري",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20
-                ),
-              ),
-              Spacer(),
-              Text(
-                "15 جنية",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: mediaQueryHeight(context) / AppSize.s50),
           DottedLine(
               dashColor: Colors.grey,
               dashLength: 11, dashGapLength: 10),
@@ -103,12 +83,13 @@ class BasketSalary extends StatelessWidget {
                 "اجمالي السعر",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20
+                    fontSize: 20,
+                  color: Colors.green
                 ),
               ),
               Spacer(),
               Text(
-                '${totalPrice+15}',
+                '${totalPrice+feesPrice}',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,color: Colors.green

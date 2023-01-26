@@ -55,8 +55,7 @@ class HomeScreen extends StatelessWidget {
                   actionWidget: const AppBarBasketIcon(),
                   context,
                 ),
-                body:
-                HomeScreenCubit.get(context).permissionStatue==false?
+                body: HomeScreenCubit.get(context).permissionStatue==false?
                 GpsPermissionDenied():
                 Padding(
                   padding: const EdgeInsets.all(AppPadding.p15),
@@ -69,25 +68,25 @@ class HomeScreen extends StatelessWidget {
                     child: SingleChildScrollView(
                         physics: AlwaysScrollableScrollPhysics(),
                         child: (state is GetPharmaciesLoadingState ||
-                            state is FilterPharmaciesLoadingState||
+                          state is FilterPharmaciesLoadingState||
                             state is GetPermissionLoadingState)
                             ? Center(
                             child: CircularProgressIndicator(
                               color: AppColors.primary,
                             ))
                             : HomeScreenCubit.get(context)
-                            .filteredPharmacies
+                            .pharmacies
                             .isEmpty &&
-                            state is FilterPharmaciesSuccessState
+                            state is GetPharmaciesSuccessState
 
                             ? Padding(
                           padding: EdgeInsets.symmetric(vertical:
                           mediaQueryHeight(context)*.4),
-                          child: NoPharmaciesAvailable(),
+                             child: NoPharmaciesAvailable(),
                         )
 
                             : HomeScreenCubit.get(context)
-                            .filteredPharmacies
+                            .pharmacies
                             .isNotEmpty
                             ? Column(
                           children: [
@@ -148,15 +147,9 @@ class HomeScreen extends StatelessWidget {
                               height: mediaQueryHeight(
                                   context) *
                                   .025,
-                            ),
-                            HomeScreenCubit.get(context)
-                                .filteredOffers
-                                .isNotEmpty
+                            ), HomeScreenCubit.get(context).filteredOffers.isNotEmpty
                                 ? OffersWidget(
-                              offers:
-                              HomeScreenCubit.get(
-                                  context)
-                                  .filteredOffers,
+                              offers: HomeScreenCubit.get(context).filteredOffers,
                             )
                                 : SizedBox(),
                             SizedBox(
@@ -170,9 +163,15 @@ class HomeScreen extends StatelessWidget {
                             : Center(child: NoPharmaciesAvailable())
                     ),
                   ),
-                )),
+                ),
+
+
+            ),
+
+
             // HomeScreen
-          ),
+          )
+          ,
         );
       },
     );
